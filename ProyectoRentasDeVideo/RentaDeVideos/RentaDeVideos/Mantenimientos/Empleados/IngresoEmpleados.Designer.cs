@@ -105,6 +105,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(281, 32);
             this.txtUsuario.TabIndex = 18;
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // txtNIT
             // 
@@ -121,6 +122,7 @@
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(281, 32);
             this.txtApellidos.TabIndex = 16;
+            this.txtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidos_KeyPress);
             // 
             // txtTelefono
             // 
@@ -129,6 +131,7 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(281, 32);
             this.txtTelefono.TabIndex = 15;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // txtDireccion
             // 
@@ -153,6 +156,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(281, 32);
             this.txtNombre.TabIndex = 12;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // txtDPI
             // 
@@ -161,6 +165,7 @@
             this.txtDPI.Name = "txtDPI";
             this.txtDPI.Size = new System.Drawing.Size(281, 32);
             this.txtDPI.TabIndex = 11;
+            this.txtDPI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDPI_KeyPress);
             // 
             // txtCargo
             // 
@@ -169,6 +174,7 @@
             this.txtCargo.Name = "txtCargo";
             this.txtCargo.Size = new System.Drawing.Size(281, 32);
             this.txtCargo.TabIndex = 10;
+            this.txtCargo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCargo_KeyPress);
             // 
             // btnGuardar
             // 

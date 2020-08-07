@@ -25,7 +25,7 @@ namespace RentaDeVideos.Mantenimientos.Clientes
 
         private void CargarImagenes()
         {
-            if (contadorImagen == 4)
+            if (contadorImagen == 5)
             {
                 contadorImagen = 1;
             }

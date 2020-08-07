@@ -87,6 +87,13 @@ namespace RentaDeVideos.Mantenimientos.Cargos
 
         }
 
-       
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char cCaracter = e.KeyChar;
+            if (!char.IsLetter(cCaracter) && cCaracter != 8 && cCaracter != 32)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

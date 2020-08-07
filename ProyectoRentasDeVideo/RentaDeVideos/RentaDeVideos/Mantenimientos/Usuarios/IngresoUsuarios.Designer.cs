@@ -82,6 +82,7 @@
             this.btnGuardar.TabIndex = 7;
             this.btnGuardar.Text = "Guardar Datos";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // lblRol
             // 
@@ -120,6 +121,7 @@
             this.txtRol.Name = "txtRol";
             this.txtRol.Size = new System.Drawing.Size(228, 32);
             this.txtRol.TabIndex = 2;
+            this.txtRol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRol_KeyPress);
             // 
             // txtPassword
             // 

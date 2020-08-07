@@ -51,5 +51,33 @@ namespace RentaDeVideos
             emp.Show();
             this.Hide();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Mantenimientos.CategoriaVideos.FormularioIngreso_CatVideo catv = new Mantenimientos.CategoriaVideos.FormularioIngreso_CatVideo();
+            catv.Show();
+            this.Hide();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Mantenimientos.Videos.FormularioIngreso_Video video = new Mantenimientos.Videos.FormularioIngreso_Video();
+            video.Show();
+            this.Hide();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Mantenimientos.ControlMembresias.FormularioIngreso_Membresia membresia = new Mantenimientos.ControlMembresias.FormularioIngreso_Membresia();
+            membresia.Show();
+            this.Hide();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Mantenimientos.EstadosVideos.FormularioIngreso_Estado estado = new Mantenimientos.EstadosVideos.FormularioIngreso_Estado();
+            estado.Show();
+            this.Hide();
+        }
     }
 }

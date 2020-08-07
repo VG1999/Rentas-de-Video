@@ -56,7 +56,7 @@ namespace RentaDeVideos.Mantenimientos.Cargos
 
         private void btnIngreso_Click(object sender, EventArgs e)
         {
-            FormularioIngreso_Cargo fic = new FormularioIngreso_Cargo();
+            IngresoCargos fic = new IngresoCargos();
             fic.Show();
             this.Hide();
         }

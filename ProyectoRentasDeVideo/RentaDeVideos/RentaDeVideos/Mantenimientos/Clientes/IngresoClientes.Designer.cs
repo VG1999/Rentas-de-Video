@@ -103,15 +103,16 @@
             // txtMembresia
             // 
             this.txtMembresia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMembresia.Location = new System.Drawing.Point(160, 352);
+            this.txtMembresia.Location = new System.Drawing.Point(227, 336);
             this.txtMembresia.Name = "txtMembresia";
             this.txtMembresia.Size = new System.Drawing.Size(298, 32);
             this.txtMembresia.TabIndex = 12;
+            this.txtMembresia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMembresia_KeyPress);
             // 
             // txtCorreo
             // 
             this.txtCorreo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(646, 251);
+            this.txtCorreo.Location = new System.Drawing.Point(708, 251);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(298, 32);
             this.txtCorreo.TabIndex = 11;
@@ -119,15 +120,16 @@
             // txtTelefono
             // 
             this.txtTelefono.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefono.Location = new System.Drawing.Point(160, 254);
+            this.txtTelefono.Location = new System.Drawing.Point(227, 254);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(298, 32);
             this.txtTelefono.TabIndex = 10;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // txtNIT
             // 
             this.txtNIT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNIT.Location = new System.Drawing.Point(646, 143);
+            this.txtNIT.Location = new System.Drawing.Point(708, 143);
             this.txtNIT.Name = "txtNIT";
             this.txtNIT.Size = new System.Drawing.Size(298, 32);
             this.txtNIT.TabIndex = 9;
@@ -135,32 +137,35 @@
             // txtDPI
             // 
             this.txtDPI.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDPI.Location = new System.Drawing.Point(160, 140);
+            this.txtDPI.Location = new System.Drawing.Point(227, 140);
             this.txtDPI.Name = "txtDPI";
             this.txtDPI.Size = new System.Drawing.Size(298, 32);
             this.txtDPI.TabIndex = 8;
+            this.txtDPI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDPI_KeyPress);
             // 
             // txtApellidos
             // 
             this.txtApellidos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidos.Location = new System.Drawing.Point(646, 42);
+            this.txtApellidos.Location = new System.Drawing.Point(708, 42);
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(298, 32);
             this.txtApellidos.TabIndex = 8;
+            this.txtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidos_KeyPress);
             // 
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(160, 39);
+            this.txtNombre.Location = new System.Drawing.Point(227, 39);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(298, 32);
             this.txtNombre.TabIndex = 7;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // lblCorreo
             // 
             this.lblCorreo.AutoSize = true;
             this.lblCorreo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorreo.Location = new System.Drawing.Point(507, 254);
+            this.lblCorreo.Location = new System.Drawing.Point(573, 254);
             this.lblCorreo.Name = "lblCorreo";
             this.lblCorreo.Size = new System.Drawing.Size(77, 23);
             this.lblCorreo.TabIndex = 6;
@@ -171,7 +176,7 @@
             // 
             this.lblNIT.AutoSize = true;
             this.lblNIT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNIT.Location = new System.Drawing.Point(507, 143);
+            this.lblNIT.Location = new System.Drawing.Point(573, 143);
             this.lblNIT.Name = "lblNIT";
             this.lblNIT.Size = new System.Drawing.Size(38, 23);
             this.lblNIT.TabIndex = 5;
@@ -182,7 +187,7 @@
             // 
             this.lblApellidos.AutoSize = true;
             this.lblApellidos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidos.Location = new System.Drawing.Point(507, 42);
+            this.lblApellidos.Location = new System.Drawing.Point(573, 42);
             this.lblApellidos.Name = "lblApellidos";
             this.lblApellidos.Size = new System.Drawing.Size(100, 23);
             this.lblApellidos.TabIndex = 4;
@@ -193,11 +198,11 @@
             // 
             this.lblMembresia.AutoSize = true;
             this.lblMembresia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMembresia.Location = new System.Drawing.Point(37, 355);
+            this.lblMembresia.Location = new System.Drawing.Point(48, 345);
             this.lblMembresia.Name = "lblMembresia";
-            this.lblMembresia.Size = new System.Drawing.Size(117, 23);
+            this.lblMembresia.Size = new System.Drawing.Size(143, 23);
             this.lblMembresia.TabIndex = 3;
-            this.lblMembresia.Text = "Membresia";
+            this.lblMembresia.Text = "ID Membresia";
             this.lblMembresia.Click += new System.EventHandler(this.label4_Click);
             // 
             // lblTelefono

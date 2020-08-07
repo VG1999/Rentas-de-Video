@@ -56,7 +56,7 @@ namespace RentaDeVideos.Mantenimientos.Empleados
 
         private void btnIngreso_Click(object sender, EventArgs e)
         {
-            FormularioIngreso_Empleado fic = new FormularioIngreso_Empleado();
+            IngresoEmpleados fic = new IngresoEmpleados();
             fic.Show();
             this.Hide();
         }

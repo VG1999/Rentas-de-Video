@@ -30,6 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresoProveedores));
             this.pnlContenido = new System.Windows.Forms.Panel();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.txtNIT = new System.Windows.Forms.TextBox();
+            this.txtRepresentante = new System.Windows.Forms.TextBox();
+            this.txtRazon = new System.Windows.Forms.TextBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.lblCorreo = new System.Windows.Forms.Label();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblNIT = new System.Windows.Forms.Label();
+            this.lblRepresentante = new System.Windows.Forms.Label();
+            this.lblRazonSocial = new System.Windows.Forms.Label();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
             this.picSalir = new System.Windows.Forms.PictureBox();
             this.picMinimizar = new System.Windows.Forms.PictureBox();
@@ -41,6 +52,7 @@
             this.btnIngreso = new System.Windows.Forms.Button();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
+            this.pnlContenido.SuspendLayout();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
@@ -52,11 +64,124 @@
             // pnlContenido
             // 
             this.pnlContenido.BackColor = System.Drawing.Color.White;
+            this.pnlContenido.Controls.Add(this.txtCorreo);
+            this.pnlContenido.Controls.Add(this.txtTelefono);
+            this.pnlContenido.Controls.Add(this.txtNIT);
+            this.pnlContenido.Controls.Add(this.txtRepresentante);
+            this.pnlContenido.Controls.Add(this.txtRazon);
+            this.pnlContenido.Controls.Add(this.btnGuardar);
+            this.pnlContenido.Controls.Add(this.lblCorreo);
+            this.pnlContenido.Controls.Add(this.lblTelefono);
+            this.pnlContenido.Controls.Add(this.lblNIT);
+            this.pnlContenido.Controls.Add(this.lblRepresentante);
+            this.pnlContenido.Controls.Add(this.lblRazonSocial);
             this.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenido.Location = new System.Drawing.Point(250, 50);
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(1050, 550);
             this.pnlContenido.TabIndex = 5;
+            // 
+            // txtCorreo
+            // 
+            this.txtCorreo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreo.Location = new System.Drawing.Point(196, 315);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(278, 32);
+            this.txtCorreo.TabIndex = 10;
+            // 
+            // txtTelefono
+            // 
+            this.txtTelefono.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefono.Location = new System.Drawing.Point(714, 190);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(278, 32);
+            this.txtTelefono.TabIndex = 9;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
+            // 
+            // txtNIT
+            // 
+            this.txtNIT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNIT.Location = new System.Drawing.Point(196, 196);
+            this.txtNIT.Name = "txtNIT";
+            this.txtNIT.Size = new System.Drawing.Size(278, 32);
+            this.txtNIT.TabIndex = 8;
+            // 
+            // txtRepresentante
+            // 
+            this.txtRepresentante.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRepresentante.Location = new System.Drawing.Point(714, 64);
+            this.txtRepresentante.Name = "txtRepresentante";
+            this.txtRepresentante.Size = new System.Drawing.Size(278, 32);
+            this.txtRepresentante.TabIndex = 7;
+            this.txtRepresentante.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRepresentante_KeyPress);
+            // 
+            // txtRazon
+            // 
+            this.txtRazon.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRazon.Location = new System.Drawing.Point(196, 67);
+            this.txtRazon.Name = "txtRazon";
+            this.txtRazon.Size = new System.Drawing.Size(278, 32);
+            this.txtRazon.TabIndex = 6;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Location = new System.Drawing.Point(391, 425);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(205, 85);
+            this.btnGuardar.TabIndex = 5;
+            this.btnGuardar.Text = "Guardar Datos";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            // 
+            // lblCorreo
+            // 
+            this.lblCorreo.AutoSize = true;
+            this.lblCorreo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCorreo.Location = new System.Drawing.Point(37, 324);
+            this.lblCorreo.Name = "lblCorreo";
+            this.lblCorreo.Size = new System.Drawing.Size(77, 23);
+            this.lblCorreo.TabIndex = 4;
+            this.lblCorreo.Text = "Correo";
+            // 
+            // lblTelefono
+            // 
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelefono.Location = new System.Drawing.Point(538, 190);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(93, 23);
+            this.lblTelefono.TabIndex = 3;
+            this.lblTelefono.Text = "Telefono";
+            // 
+            // lblNIT
+            // 
+            this.lblNIT.AutoSize = true;
+            this.lblNIT.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNIT.Location = new System.Drawing.Point(37, 199);
+            this.lblNIT.Name = "lblNIT";
+            this.lblNIT.Size = new System.Drawing.Size(38, 23);
+            this.lblNIT.TabIndex = 2;
+            this.lblNIT.Text = "NIT";
+            // 
+            // lblRepresentante
+            // 
+            this.lblRepresentante.AutoSize = true;
+            this.lblRepresentante.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRepresentante.Location = new System.Drawing.Point(538, 67);
+            this.lblRepresentante.Name = "lblRepresentante";
+            this.lblRepresentante.Size = new System.Drawing.Size(154, 23);
+            this.lblRepresentante.TabIndex = 1;
+            this.lblRepresentante.Text = "Representante";
+            // 
+            // lblRazonSocial
+            // 
+            this.lblRazonSocial.AutoSize = true;
+            this.lblRazonSocial.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRazonSocial.Location = new System.Drawing.Point(37, 64);
+            this.lblRazonSocial.Name = "lblRazonSocial";
+            this.lblRazonSocial.Size = new System.Drawing.Size(134, 23);
+            this.lblRazonSocial.TabIndex = 0;
+            this.lblRazonSocial.Text = "Razon Social";
             // 
             // pnlFormMenu
             // 
@@ -230,6 +355,8 @@
             this.Name = "IngresoProveedores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IngresoClientes";
+            this.pnlContenido.ResumeLayout(false);
+            this.pnlContenido.PerformLayout();
             this.pnlFormMenu.ResumeLayout(false);
             this.pnlFormMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
@@ -255,5 +382,16 @@
         private System.Windows.Forms.Button btnIngreso;
         private System.Windows.Forms.Button btnVolverMenu;
         private System.Windows.Forms.PictureBox picLogo;
+        private System.Windows.Forms.TextBox txtCorreo;
+        private System.Windows.Forms.TextBox txtTelefono;
+        private System.Windows.Forms.TextBox txtNIT;
+        private System.Windows.Forms.TextBox txtRepresentante;
+        private System.Windows.Forms.TextBox txtRazon;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Label lblCorreo;
+        private System.Windows.Forms.Label lblTelefono;
+        private System.Windows.Forms.Label lblNIT;
+        private System.Windows.Forms.Label lblRepresentante;
+        private System.Windows.Forms.Label lblRazonSocial;
     }
 }

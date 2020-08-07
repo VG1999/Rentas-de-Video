@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Conexion.cs" />
     <Compile Include="InicioMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +92,30 @@
     <Compile Include="Mantenimientos\Cargos\IngresoCargos.Designer.cs">
       <DependentUpon>IngresoCargos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\ActualizarEliminarCatVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\ActualizarEliminarCatVideos.Designer.cs">
+      <DependentUpon>ActualizarEliminarCatVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\BuscarCatVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\BuscarCatVideos.Designer.cs">
+      <DependentUpon>BuscarCatVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\FormularioIngreso_CatVideo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\FormularioIngreso_CatVideo.Designer.cs">
+      <DependentUpon>FormularioIngreso_CatVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\IngresoCatVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\IngresoCatVideos.Designer.cs">
+      <DependentUpon>IngresoCatVideos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mantenimientos\Clientes\ActualizarEliminarClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +140,102 @@
     <Compile Include="Mantenimientos\Clientes\IngresoClientes.Designer.cs">
       <DependentUpon>IngresoClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenimientos\ControlDevolucion\ActualizarEliminarDevolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlDevolucion\ActualizarEliminarDevolucion.Designer.cs">
+      <DependentUpon>ActualizarEliminarDevolucion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlDevolucion\BuscarDevolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlDevolucion\BuscarDevolucion.Designer.cs">
+      <DependentUpon>BuscarDevolucion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlDevolucion\FormularioIngreso_Devolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlDevolucion\FormularioIngreso_Devolucion.Designer.cs">
+      <DependentUpon>FormularioIngreso_Devolucion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlDevolucion\IngresoDevolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlDevolucion\IngresoDevolucion.Designer.cs">
+      <DependentUpon>IngresoDevolucion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\ActualizarEliminarMembresias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\ActualizarEliminarMembresias.Designer.cs">
+      <DependentUpon>ActualizarEliminarMembresias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\BuscarMembresias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\BuscarMembresias.Designer.cs">
+      <DependentUpon>BuscarMembresias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\FormularioIngreso_Membresia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\FormularioIngreso_Membresia.Designer.cs">
+      <DependentUpon>FormularioIngreso_Membresia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\IngresoMembresias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\IngresoMembresias.Designer.cs">
+      <DependentUpon>IngresoMembresias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlRentas\ActualizarEliminarRentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlRentas\ActualizarEliminarRentas.Designer.cs">
+      <DependentUpon>ActualizarEliminarRentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlRentas\BuscarRentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlRentas\BuscarRentas.Designer.cs">
+      <DependentUpon>BuscarRentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlRentas\FormularioIngreso_Renta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlRentas\FormularioIngreso_Renta.Designer.cs">
+      <DependentUpon>FormularioIngreso_Renta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlRentas\IngresoRentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlRentas\IngresoRentas.Designer.cs">
+      <DependentUpon>IngresoRentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlCompra\ActualizarEliminarDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlCompra\ActualizarEliminarDetalle.Designer.cs">
+      <DependentUpon>ActualizarEliminarDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlCompra\BuscarDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlCompra\BuscarDetalle.Designer.cs">
+      <DependentUpon>BuscarDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlCompra\FormularioIngreso_Detalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlCompra\FormularioIngreso_Detalle.Designer.cs">
+      <DependentUpon>FormularioIngreso_Detalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlCompra\IngresoDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlCompra\IngresoDetalle.Designer.cs">
+      <DependentUpon>IngresoDetalle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mantenimientos\Empleados\ActualizarEliminarEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +259,54 @@
     </Compile>
     <Compile Include="Mantenimientos\Empleados\IngresoEmpleados.Designer.cs">
       <DependentUpon>IngresoEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\ActualizarEliminarEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\ActualizarEliminarEstado.Designer.cs">
+      <DependentUpon>ActualizarEliminarEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\BuscarEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\BuscarEstado.Designer.cs">
+      <DependentUpon>BuscarEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\FormularioIngreso_Estado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\FormularioIngreso_Estado.Designer.cs">
+      <DependentUpon>FormularioIngreso_Estado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\IngresoEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\IngresoEstado.Designer.cs">
+      <DependentUpon>IngresoEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Facturas\ActualizarEliminarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Facturas\ActualizarEliminarFactura.Designer.cs">
+      <DependentUpon>ActualizarEliminarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Facturas\BuscarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Facturas\BuscarFactura.Designer.cs">
+      <DependentUpon>BuscarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Facturas\FormularioIngreso_Factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Facturas\FormularioIngreso_Factura.Designer.cs">
+      <DependentUpon>FormularioIngreso_Factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Facturas\IngresoFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Facturas\IngresoFactura.Designer.cs">
+      <DependentUpon>IngresoFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="Mantenimientos\Proveedores\ActualizarEliminarProveedores.cs">
       <SubType>Form</SubType>
@@ -187,6 +356,30 @@
     <Compile Include="Mantenimientos\Usuarios\IngresoUsuarios.Designer.cs">
       <DependentUpon>IngresoUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mantenimientos\Videos\ActualizarEliminarVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\ActualizarEliminarVideos.Designer.cs">
+      <DependentUpon>ActualizarEliminarVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\BuscarVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\BuscarVideos.Designer.cs">
+      <DependentUpon>BuscarVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\FormularioIngreso_Video.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\FormularioIngreso_Video.Designer.cs">
+      <DependentUpon>FormularioIngreso_Video.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\IngresoVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\IngresoVideos.Designer.cs">
+      <DependentUpon>IngresoVideos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="InicioMenu.resx">
@@ -204,6 +397,18 @@
     <EmbeddedResource Include="Mantenimientos\Cargos\IngresoCargos.resx">
       <DependentUpon>IngresoCargos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\CategoriaVideos\ActualizarEliminarCatVideos.resx">
+      <DependentUpon>ActualizarEliminarCatVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\CategoriaVideos\BuscarCatVideos.resx">
+      <DependentUpon>BuscarCatVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\CategoriaVideos\FormularioIngreso_CatVideo.resx">
+      <DependentUpon>FormularioIngreso_CatVideo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\CategoriaVideos\IngresoCatVideos.resx">
+      <DependentUpon>IngresoCatVideos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mantenimientos\Clientes\ActualizarEliminarClientes.resx">
       <DependentUpon>ActualizarEliminarClientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +421,54 @@
     <EmbeddedResource Include="Mantenimientos\Clientes\IngresoClientes.resx">
       <DependentUpon>IngresoClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlDevolucion\ActualizarEliminarDevolucion.resx">
+      <DependentUpon>ActualizarEliminarDevolucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlDevolucion\BuscarDevolucion.resx">
+      <DependentUpon>BuscarDevolucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlDevolucion\FormularioIngreso_Devolucion.resx">
+      <DependentUpon>FormularioIngreso_Devolucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlDevolucion\IngresoDevolucion.resx">
+      <DependentUpon>IngresoDevolucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlMembresias\ActualizarEliminarMembresias.resx">
+      <DependentUpon>ActualizarEliminarMembresias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlMembresias\BuscarMembresias.resx">
+      <DependentUpon>BuscarMembresias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlMembresias\FormularioIngreso_Membresia.resx">
+      <DependentUpon>FormularioIngreso_Membresia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlMembresias\IngresoMembresias.resx">
+      <DependentUpon>IngresoMembresias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlRentas\ActualizarEliminarRentas.resx">
+      <DependentUpon>ActualizarEliminarRentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlRentas\BuscarRentas.resx">
+      <DependentUpon>BuscarRentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlRentas\FormularioIngreso_Renta.resx">
+      <DependentUpon>FormularioIngreso_Renta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlRentas\IngresoRentas.resx">
+      <DependentUpon>IngresoRentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlCompra\ActualizarEliminarDetalle.resx">
+      <DependentUpon>ActualizarEliminarDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlCompra\BuscarDetalle.resx">
+      <DependentUpon>BuscarDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlCompra\FormularioIngreso_Detalle.resx">
+      <DependentUpon>FormularioIngreso_Detalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlCompra\IngresoDetalle.resx">
+      <DependentUpon>IngresoDetalle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mantenimientos\Empleados\ActualizarEliminarEmpleados.resx">
       <DependentUpon>ActualizarEliminarEmpleados.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,6 +480,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenimientos\Empleados\IngresoEmpleados.resx">
       <DependentUpon>IngresoEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\EstadosVideos\ActualizarEliminarEstado.resx">
+      <DependentUpon>ActualizarEliminarEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\EstadosVideos\BuscarEstado.resx">
+      <DependentUpon>BuscarEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\EstadosVideos\FormularioIngreso_Estado.resx">
+      <DependentUpon>FormularioIngreso_Estado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\EstadosVideos\IngresoEstado.resx">
+      <DependentUpon>IngresoEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Facturas\ActualizarEliminarFactura.resx">
+      <DependentUpon>ActualizarEliminarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Facturas\BuscarFactura.resx">
+      <DependentUpon>BuscarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Facturas\FormularioIngreso_Factura.resx">
+      <DependentUpon>FormularioIngreso_Factura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Facturas\IngresoFactura.resx">
+      <DependentUpon>IngresoFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenimientos\Proveedores\ActualizarEliminarProveedores.resx">
       <DependentUpon>ActualizarEliminarProveedores.cs</DependentUpon>
@@ -252,6 +529,18 @@
     <EmbeddedResource Include="Mantenimientos\Usuarios\IngresoUsuarios.resx">
       <DependentUpon>IngresoUsuarios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Videos\ActualizarEliminarVideos.resx">
+      <DependentUpon>ActualizarEliminarVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Videos\BuscarVideos.resx">
+      <DependentUpon>BuscarVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Videos\FormularioIngreso_Video.resx">
+      <DependentUpon>FormularioIngreso_Video.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Videos\IngresoVideos.resx">
+      <DependentUpon>IngresoVideos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -270,11 +559,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mantenimientos\CategoriaVideos\" />
     <Folder Include="Mantenimientos\ControlInventario\" />
-    <Folder Include="Mantenimientos\ControlMembresias\" />
-    <Folder Include="Mantenimientos\ControlPedidos\" />
-    <Folder Include="Mantenimientos\ControlRentas\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

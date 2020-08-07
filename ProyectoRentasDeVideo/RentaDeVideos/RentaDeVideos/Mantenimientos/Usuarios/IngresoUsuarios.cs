@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Data.Odbc;
+using RentaDeVideos.Clases;
 
 namespace RentaDeVideos.Mantenimientos.Usuarios
 {
@@ -17,6 +19,8 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
         {
             InitializeComponent();
         }
+
+        Conexion cn=new Conexion();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,6 +84,30 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
             BuscarUsuarios bu = new BuscarUsuarios();
             this.Hide();
             bu.Show();
+        }
+
+        void insertarUsuario()
+        {
+           string cadena = "INSERT INTO tbl_usuario (usuario,clave, roles,estado) VALUES ('"+txtUsuario.Text+"','"+txtPassword.Text+"','"+txtRol.Text+"',1);";
+           OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+           consulta.ExecuteNonQuery();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            insertarUsuario();
+            txtRol.Text = "";
+            txtPassword.Text = "";
+            txtUsuario.Text = "";
+        }
+
+        private void txtRol_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char cCaracter = e.KeyChar;
+            if (!char.IsLetter(cCaracter)&& cCaracter != 8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
