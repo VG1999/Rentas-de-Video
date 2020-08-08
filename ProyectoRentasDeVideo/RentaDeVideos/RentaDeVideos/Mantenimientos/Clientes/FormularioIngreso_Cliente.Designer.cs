@@ -38,20 +38,20 @@
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlContenido = new System.Windows.Forms.Panel();
+            this.picSlider = new System.Windows.Forms.PictureBox();
             this.picBotonMenuSlide = new System.Windows.Forms.PictureBox();
             this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
             this.picSalir = new System.Windows.Forms.PictureBox();
-            this.picSlider = new System.Windows.Forms.PictureBox();
             this.timerClientes = new System.Windows.Forms.Timer(this.components);
             this.pnlSlideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.pnlContenido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSlideMenu
@@ -175,6 +175,18 @@
             this.pnlContenido.TabIndex = 2;
             this.pnlContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContenido_Paint);
             // 
+            // picSlider
+            // 
+            this.picSlider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picSlider.ErrorImage = null;
+            this.picSlider.Image = ((System.Drawing.Image)(resources.GetObject("picSlider.Image")));
+            this.picSlider.Location = new System.Drawing.Point(0, 0);
+            this.picSlider.Name = "picSlider";
+            this.picSlider.Size = new System.Drawing.Size(1050, 550);
+            this.picSlider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picSlider.TabIndex = 0;
+            this.picSlider.TabStop = false;
+            // 
             // picBotonMenuSlide
             // 
             this.picBotonMenuSlide.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -225,22 +237,10 @@
             this.picSalir.TabStop = false;
             this.picSalir.Click += new System.EventHandler(this.picSalir_Click);
             // 
-            // picSlider
-            // 
-            this.picSlider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picSlider.ErrorImage = null;
-            this.picSlider.Image = ((System.Drawing.Image)(resources.GetObject("picSlider.Image")));
-            this.picSlider.Location = new System.Drawing.Point(0, 0);
-            this.picSlider.Name = "picSlider";
-            this.picSlider.Size = new System.Drawing.Size(1050, 550);
-            this.picSlider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picSlider.TabIndex = 0;
-            this.picSlider.TabStop = false;
-            // 
             // timerClientes
             // 
             this.timerClientes.Enabled = true;
-            this.timerClientes.Interval = 2000;
+            this.timerClientes.Interval = 1500;
             this.timerClientes.Tick += new System.EventHandler(this.timerClientes_Tick);
             // 
             // FormularioIngreso_Cliente
@@ -260,12 +260,12 @@
             this.pnlSlideMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.pnlContenido.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             this.pnlFormMenu.ResumeLayout(false);
             this.pnlFormMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using RentaDeVideos.Clases;
+using System.Data.Odbc;
 
 namespace RentaDeVideos.Mantenimientos.ControlMembresias
 {
@@ -16,7 +18,12 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
         public BuscarMembresias()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        Conexion cn = new Conexion();
+        OdbcDataAdapter datos;
+        DataTable dt;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,6 +87,48 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        void CargarDatos()
+        {
+            string cadena = "SELECT * FROM membresia";
+
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridDatos.DataSource = dt;
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (cmbColumna.Text == "ID")
+            {
+                datos = new OdbcDataAdapter("SELECT id_membresia, descripcion_membresia, puntos_membresia, descuento_membresia FROM membresia WHERE id_membresia='" + txtBuscar.Text + "' AND estado_membresia=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Descripcion")
+            {
+                datos = new OdbcDataAdapter("SELECT id_membresia, descripcion_membresia, puntos_membresia, descuento_membresia FROM membresia WHERE descripcion_membresia='" + txtBuscar.Text + "' AND estado_membresia=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Puntos")
+            {
+                datos = new OdbcDataAdapter("SELECT id_membresia, descripcion_membresia, puntos_membresia, descuento_membresia FROM membresia WHERE puntos_membresia='" + txtBuscar.Text + "' AND estado_membresia=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Descuento")
+            {
+                datos = new OdbcDataAdapter("SELECT id_membresia, descripcion_membresia, puntos_membresia, descuento_membresia FROM membresia WHERE descuento_membresia='" + txtBuscar.Text + "' AND estado_membresia=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
         }
     }
 }

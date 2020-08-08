@@ -88,7 +88,7 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
 
         void insertarUsuario()
         {
-           string cadena = "INSERT INTO tbl_usuario (usuario,clave, roles,estado) VALUES ('"+txtUsuario.Text+"','"+txtPassword.Text+"','"+txtRol.Text+"',1);";
+           string cadena = "INSERT INTO control_usuario (usuario,contraseña_usuario, rol_usuario,estado) VALUES ('"+txtUsuario.Text+"','"+txtPassword.Text+"','"+txtRol.Text+"',1);";
            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
            consulta.ExecuteNonQuery();
         }

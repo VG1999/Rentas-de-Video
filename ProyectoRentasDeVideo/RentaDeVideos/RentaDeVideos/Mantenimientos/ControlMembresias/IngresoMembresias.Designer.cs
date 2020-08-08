@@ -34,10 +34,8 @@
             this.lblDescuentos = new System.Windows.Forms.Label();
             this.txtPuntos = new System.Windows.Forms.TextBox();
             this.lblPuntos = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
-            this.txtEstado = new System.Windows.Forms.TextBox();
-            this.lblEstado = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
             this.picSalir = new System.Windows.Forms.PictureBox();
@@ -66,10 +64,8 @@
             this.pnlContenido.Controls.Add(this.lblDescuentos);
             this.pnlContenido.Controls.Add(this.txtPuntos);
             this.pnlContenido.Controls.Add(this.lblPuntos);
-            this.pnlContenido.Controls.Add(this.textBox1);
+            this.pnlContenido.Controls.Add(this.txtDescripcion);
             this.pnlContenido.Controls.Add(this.lblDescripcion);
-            this.pnlContenido.Controls.Add(this.txtEstado);
-            this.pnlContenido.Controls.Add(this.lblEstado);
             this.pnlContenido.Controls.Add(this.btnGuardar);
             this.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenido.Location = new System.Drawing.Point(250, 50);
@@ -82,7 +78,7 @@
             // 
             this.txtDescuentos.Enabled = false;
             this.txtDescuentos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescuentos.Location = new System.Drawing.Point(759, 218);
+            this.txtDescuentos.Location = new System.Drawing.Point(198, 214);
             this.txtDescuentos.Name = "txtDescuentos";
             this.txtDescuentos.Size = new System.Drawing.Size(233, 32);
             this.txtDescuentos.TabIndex = 9;
@@ -92,7 +88,7 @@
             // 
             this.lblDescuentos.AutoSize = true;
             this.lblDescuentos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescuentos.Location = new System.Drawing.Point(531, 218);
+            this.lblDescuentos.Location = new System.Drawing.Point(24, 214);
             this.lblDescuentos.Name = "lblDescuentos";
             this.lblDescuentos.Size = new System.Drawing.Size(124, 23);
             this.lblDescuentos.TabIndex = 8;
@@ -102,7 +98,7 @@
             // 
             this.txtPuntos.Enabled = false;
             this.txtPuntos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPuntos.Location = new System.Drawing.Point(196, 215);
+            this.txtPuntos.Location = new System.Drawing.Point(198, 57);
             this.txtPuntos.Name = "txtPuntos";
             this.txtPuntos.Size = new System.Drawing.Size(233, 32);
             this.txtPuntos.TabIndex = 7;
@@ -111,19 +107,19 @@
             // 
             this.lblPuntos.AutoSize = true;
             this.lblPuntos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPuntos.Location = new System.Drawing.Point(22, 218);
+            this.lblPuntos.Location = new System.Drawing.Point(24, 60);
             this.lblPuntos.Name = "lblPuntos";
             this.lblPuntos.Size = new System.Drawing.Size(74, 23);
             this.lblPuntos.TabIndex = 6;
             this.lblPuntos.Text = "Puntos";
             // 
-            // textBox1
+            // txtDescripcion
             // 
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(759, 54);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(233, 32);
-            this.textBox1.TabIndex = 5;
+            this.txtDescripcion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Location = new System.Drawing.Point(759, 54);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(233, 32);
+            this.txtDescripcion.TabIndex = 5;
             // 
             // lblDescripcion
             // 
@@ -135,33 +131,18 @@
             this.lblDescripcion.TabIndex = 4;
             this.lblDescripcion.Text = "Descripcion";
             // 
-            // txtEstado
-            // 
-            this.txtEstado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstado.Location = new System.Drawing.Point(196, 51);
-            this.txtEstado.Name = "txtEstado";
-            this.txtEstado.Size = new System.Drawing.Size(233, 32);
-            this.txtEstado.TabIndex = 3;
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.AutoSize = true;
-            this.lblEstado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.Location = new System.Drawing.Point(22, 54);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(77, 23);
-            this.lblEstado.TabIndex = 1;
-            this.lblEstado.Text = "Estado";
-            // 
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(392, 391);
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuardar.Location = new System.Drawing.Point(382, 380);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(202, 72);
+            this.btnGuardar.Size = new System.Drawing.Size(272, 84);
             this.btnGuardar.TabIndex = 0;
             this.btnGuardar.Text = "Guardar Datos";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // pnlFormMenu
             // 
@@ -362,14 +343,12 @@
         private System.Windows.Forms.Button btnIngreso;
         private System.Windows.Forms.Button btnVolverMenu;
         private System.Windows.Forms.PictureBox picLogo;
-        private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.TextBox txtEstado;
         private System.Windows.Forms.TextBox txtDescuentos;
         private System.Windows.Forms.Label lblDescuentos;
         private System.Windows.Forms.TextBox txtPuntos;
         private System.Windows.Forms.Label lblPuntos;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label lblDescripcion;
     }
 }

@@ -97,11 +97,17 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(264, 32);
             this.txtBuscar.TabIndex = 12;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // cmbColumna
             // 
             this.cmbColumna.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbColumna.FormattingEnabled = true;
+            this.cmbColumna.Items.AddRange(new object[] {
+            "ID",
+            "Usuario",
+            "Contraseña",
+            "Rol"});
             this.cmbColumna.Location = new System.Drawing.Point(194, 35);
             this.cmbColumna.Name = "cmbColumna";
             this.cmbColumna.Size = new System.Drawing.Size(264, 31);
@@ -109,6 +115,10 @@
             // 
             // dgridDatos
             // 
+            this.dgridDatos.AllowUserToAddRows = false;
+            this.dgridDatos.AllowUserToDeleteRows = false;
+            this.dgridDatos.AllowUserToOrderColumns = true;
+            this.dgridDatos.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dgridDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgridDatos.Location = new System.Drawing.Point(49, 100);
             this.dgridDatos.Name = "dgridDatos";

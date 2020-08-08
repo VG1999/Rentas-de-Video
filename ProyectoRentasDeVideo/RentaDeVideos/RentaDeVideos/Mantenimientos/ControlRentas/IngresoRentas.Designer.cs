@@ -30,9 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresoRentas));
             this.pnlContenido = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gboxEncabezado = new System.Windows.Forms.GroupBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
             this.txtEmpleado = new System.Windows.Forms.TextBox();
             this.lblEmpleado = new System.Windows.Forms.Label();
-            this.txtCliente = new System.Windows.Forms.TextBox();
             this.lblCliente = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
@@ -46,24 +48,22 @@
             this.btnIngreso = new System.Windows.Forms.Button();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pnlContenido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.gboxEncabezado.SuspendLayout();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).BeginInit();
             this.pnlSlideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlContenido
             // 
             this.pnlContenido.BackColor = System.Drawing.Color.White;
             this.pnlContenido.Controls.Add(this.dataGridView1);
-            this.pnlContenido.Controls.Add(this.groupBox1);
+            this.pnlContenido.Controls.Add(this.gboxEncabezado);
             this.pnlContenido.Controls.Add(this.btnGuardar);
             this.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenido.Location = new System.Drawing.Point(250, 50);
@@ -71,6 +71,36 @@
             this.pnlContenido.Size = new System.Drawing.Size(1050, 550);
             this.pnlContenido.TabIndex = 5;
             this.pnlContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContenido_Paint);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(41, 194);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(975, 260);
+            this.dataGridView1.TabIndex = 7;
+            // 
+            // gboxEncabezado
+            // 
+            this.gboxEncabezado.Controls.Add(this.txtCliente);
+            this.gboxEncabezado.Controls.Add(this.txtEmpleado);
+            this.gboxEncabezado.Controls.Add(this.lblEmpleado);
+            this.gboxEncabezado.Controls.Add(this.lblCliente);
+            this.gboxEncabezado.Location = new System.Drawing.Point(41, 19);
+            this.gboxEncabezado.Name = "gboxEncabezado";
+            this.gboxEncabezado.Size = new System.Drawing.Size(975, 169);
+            this.gboxEncabezado.TabIndex = 6;
+            this.gboxEncabezado.TabStop = false;
+            this.gboxEncabezado.Text = "Encabezado";
+            // 
+            // txtCliente
+            // 
+            this.txtCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCliente.Location = new System.Drawing.Point(262, 39);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Size = new System.Drawing.Size(233, 32);
+            this.txtCliente.TabIndex = 3;
             // 
             // txtEmpleado
             // 
@@ -89,14 +119,6 @@
             this.lblEmpleado.Size = new System.Drawing.Size(139, 23);
             this.lblEmpleado.TabIndex = 4;
             this.lblEmpleado.Text = "ID Empleado";
-            // 
-            // txtCliente
-            // 
-            this.txtCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCliente.Location = new System.Drawing.Point(262, 39);
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(233, 32);
-            this.txtCliente.TabIndex = 3;
             // 
             // lblCliente
             // 
@@ -278,28 +300,6 @@
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtCliente);
-            this.groupBox1.Controls.Add(this.txtEmpleado);
-            this.groupBox1.Controls.Add(this.lblEmpleado);
-            this.groupBox1.Controls.Add(this.lblCliente);
-            this.groupBox1.Location = new System.Drawing.Point(41, 19);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(975, 169);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(41, 194);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(975, 260);
-            this.dataGridView1.TabIndex = 7;
-            // 
             // IngresoRentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -313,6 +313,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IngresoClientes";
             this.pnlContenido.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.gboxEncabezado.ResumeLayout(false);
+            this.gboxEncabezado.PerformLayout();
             this.pnlFormMenu.ResumeLayout(false);
             this.pnlFormMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
@@ -320,9 +323,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).EndInit();
             this.pnlSlideMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -347,6 +347,6 @@
         private System.Windows.Forms.TextBox txtEmpleado;
         private System.Windows.Forms.Label lblEmpleado;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gboxEncabezado;
     }
 }

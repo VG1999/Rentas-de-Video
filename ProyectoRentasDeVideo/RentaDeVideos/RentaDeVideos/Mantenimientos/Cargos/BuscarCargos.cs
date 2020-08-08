@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using RentaDeVideos.Clases;
+using System.Data.Odbc;
 
 namespace RentaDeVideos.Mantenimientos.Cargos
 {
@@ -16,7 +18,12 @@ namespace RentaDeVideos.Mantenimientos.Cargos
         public BuscarCargos()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        Conexion cn = new Conexion();
+        OdbcDataAdapter datos;
+        DataTable dt;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,6 +87,41 @@ namespace RentaDeVideos.Mantenimientos.Cargos
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        void CargarDatos()
+        {
+            string cadena = "SELECT * FROM cargo";
+
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridDatos.DataSource = dt;
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (cmbColumna.Text == "ID")
+            {
+                datos = new OdbcDataAdapter("SELECT id_cargo, nombre_cargo, descripcion_cargo FROM proveedor WHERE id_cargo='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Nombre")
+            {
+                datos = new OdbcDataAdapter("SELECT id_cargo, nombre_cargo, descripcion_cargo FROM proveedor WHERE nombre_cargo='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Descripcion")
+            {
+                datos = new OdbcDataAdapter("SELECT id_cargo, nombre_cargo, descripcion_cargo FROM proveedor WHERE descripcion_cargo='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
         }
     }
 }

@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using RentaDeVideos.Clases;
+using System.Data.Odbc;
 
 namespace RentaDeVideos.Mantenimientos.Clientes
 {
@@ -17,6 +20,8 @@ namespace RentaDeVideos.Mantenimientos.Clientes
         {
             InitializeComponent();
         }
+
+        Conexion cn = new Conexion();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -165,6 +170,59 @@ namespace RentaDeVideos.Mantenimientos.Clientes
             {
                 e.Handled = true;
             }
+        }
+        void insertarClientes()
+        {
+            string cadena = "INSERT INTO cliente (id_membresia_cliente, dpi_cliente, nit_cliente, nombre_cliente, apellido_cliente, telefono_cliente, correo_cliente, estado) VALUES ('" + txtMembresia.Text +"','"+txtDPI.Text+"','"+txtNIT.Text+"','"+ txtNombre.Text+"','"+txtApellidos.Text+"','"+txtTelefono.Text+"','"+txtCorreo.Text+"', 1);";
+            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+            consulta.ExecuteNonQuery();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (txtNombre.Text == ""||txtApellidos.Text==""||txtCorreo.Text==""||txtDPI.Text==""||txtMembresia.Text==""||txtNIT.Text==""||txtTelefono.Text=="")
+            {
+                MessageBox.Show("Por favor llene los campos requeridos", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                VaciarText();
+                txtNombre.Focus();
+                return;
+            }
+            else if(!Regex.Match(txtNombre.Text, @"^[A-Za-z]+([\ A-Za-z]+)*$").Success)
+            {
+                MessageBox.Show("Datos del campo nombre invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                VaciarText();
+                txtNombre.Focus();
+                return;
+            }
+            else if (!Regex.Match(txtApellidos.Text, @"^[A-Za-z]+([\ A-Za-z]+)*$").Success)
+            {
+                MessageBox.Show("Datos del campo apellido invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                VaciarText();
+                txtApellidos.Focus();
+                return;
+            }
+            else if (!Regex.Match(txtTelefono.Text, @"^[0-9]\d{7}$").Success)
+            {
+                MessageBox.Show("Datos del campo telefono invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                VaciarText();
+                txtTelefono.Focus();
+                return;
+            }
+            else
+            {
+                insertarClientes();
+                VaciarText();
+            }
+        }
+        void VaciarText()
+        {
+            txtMembresia.Text = "";
+            txtDPI.Text = "";
+            txtNIT.Text = "";
+            txtNombre.Text = "";
+            txtApellidos.Text = "";
+            txtTelefono.Text = "";
+            txtCorreo.Text = "";
         }
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using RentaDeVideos.Clases;
+using System.Data.Odbc;
 
 namespace RentaDeVideos.Mantenimientos.CategoriaVideos
 {
@@ -16,7 +18,12 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
         public ActualizarEliminarCatVideos()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        Conexion cn = new Conexion();
+        OdbcDataAdapter datos;
+        DataTable dt;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,6 +87,65 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        void CargarDatos()
+        {
+            string cadena = "SELECT id_categoria, nombre_categoria FROM categoria WHERE estado=1";
+
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridVista.DataSource = dt;
+        }
+        string sCadena;
+        int iID;
+        int iIDEliminar;
+
+        private void cmsDelete_Click(object sender, EventArgs e)
+        {
+            string cadena = "UPDATE categoria SET estado=0  WHERE id_categoria='" + iIDEliminar + "';";
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridVista.DataSource = dt;
+            CargarDatos();
+        }
+
+        private void dgridVista_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            sCadena = dgridVista.Rows[e.RowIndex].Cells["id_categoria"].Value.ToString();
+            if (sCadena == "")
+            {
+                iID = 0;
+            }
+            else
+            {
+                iID = int.Parse(dgridVista.Rows[e.RowIndex].Cells["id_categoria"].Value.ToString());
+            }
+            if (iID != 0)
+            {
+                if (dgridVista.CurrentRow != null)
+                {
+                    string cadena = "UPDATE categoria SET nombre_categoria='" + dgridVista.Rows[e.RowIndex].Cells["nombre_categoria"].Value.ToString() + "' WHERE id_categoria='" + iID + "';";
+                    datos = new OdbcDataAdapter(cadena, cn.conexion());
+                    dt = new DataTable();
+                    datos.Fill(dt);
+                    dgridVista.DataSource = dt;
+                    CargarDatos();
+                }
+            }
+
+        }
+
+        private void dgridVista_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                iIDEliminar = int.Parse(dgridVista.Rows[e.RowIndex].Cells["id_categoria"].Value.ToString());
+                this.cmsDelete.Show(this.dgridVista, e.Location);
+                cmsDelete.Show(Cursor.Position);
+            }
         }
     }
 }

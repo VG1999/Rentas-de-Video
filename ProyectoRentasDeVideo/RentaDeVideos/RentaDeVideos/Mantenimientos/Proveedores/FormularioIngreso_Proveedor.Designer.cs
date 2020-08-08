@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioIngreso_Proveedor));
             this.pnlSlideMenu = new System.Windows.Forms.Panel();
             this.btnProveedores = new System.Windows.Forms.Button();
@@ -37,12 +38,16 @@
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlContenido = new System.Windows.Forms.Panel();
+            this.picSlider = new System.Windows.Forms.PictureBox();
             this.picBotonMenuSlide = new System.Windows.Forms.PictureBox();
             this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
             this.picSalir = new System.Windows.Forms.PictureBox();
+            this.timerProve = new System.Windows.Forms.Timer(this.components);
             this.pnlSlideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            this.pnlContenido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             this.pnlFormMenu.SuspendLayout();
@@ -162,12 +167,25 @@
             // pnlContenido
             // 
             this.pnlContenido.BackColor = System.Drawing.Color.White;
+            this.pnlContenido.Controls.Add(this.picSlider);
             this.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenido.Location = new System.Drawing.Point(250, 50);
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(1050, 550);
             this.pnlContenido.TabIndex = 2;
             this.pnlContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContenido_Paint);
+            // 
+            // picSlider
+            // 
+            this.picSlider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picSlider.ErrorImage = null;
+            this.picSlider.Image = ((System.Drawing.Image)(resources.GetObject("picSlider.Image")));
+            this.picSlider.Location = new System.Drawing.Point(0, 0);
+            this.picSlider.Name = "picSlider";
+            this.picSlider.Size = new System.Drawing.Size(1050, 550);
+            this.picSlider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picSlider.TabIndex = 6;
+            this.picSlider.TabStop = false;
             // 
             // picBotonMenuSlide
             // 
@@ -219,6 +237,12 @@
             this.picSalir.TabStop = false;
             this.picSalir.Click += new System.EventHandler(this.picSalir_Click);
             // 
+            // timerProve
+            // 
+            this.timerProve.Enabled = true;
+            this.timerProve.Interval = 1500;
+            this.timerProve.Tick += new System.EventHandler(this.timerProve_Tick);
+            // 
             // FormularioIngreso_Proveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -235,6 +259,8 @@
             this.Text = "FormularioIngreso_Cliente";
             this.pnlSlideMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            this.pnlContenido.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             this.pnlFormMenu.ResumeLayout(false);
@@ -258,5 +284,7 @@
         private System.Windows.Forms.Button btnAct_Eliminar;
         private System.Windows.Forms.Button btnIngreso;
         private System.Windows.Forms.Button btnProveedores;
+        private System.Windows.Forms.PictureBox picSlider;
+        private System.Windows.Forms.Timer timerProve;
     }
 }

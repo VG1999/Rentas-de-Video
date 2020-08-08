@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using RentaDeVideos.Clases;
+using System.Data.Odbc;
 
 namespace RentaDeVideos.Mantenimientos.Cargos
 {
@@ -16,7 +18,12 @@ namespace RentaDeVideos.Mantenimientos.Cargos
         public ActualizarEliminarCargos()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        Conexion cn = new Conexion();
+        OdbcDataAdapter datos;
+        DataTable dt;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,6 +87,63 @@ namespace RentaDeVideos.Mantenimientos.Cargos
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        void CargarDatos()
+        {
+            string cadena = "SELECT id_cargo, nombre_cargo, descripcion_cargo FROM cargo WHERE estado=1";
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridVista.DataSource = dt;
+        }
+        string sCadena;
+        int iID;
+        int iIDEliminar;
+
+        private void dgridVista_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                iIDEliminar = int.Parse(dgridVista.Rows[e.RowIndex].Cells["id_cargo"].Value.ToString());
+                this.cmsDelete.Show(this.dgridVista, e.Location);
+                cmsDelete.Show(Cursor.Position);
+            }
+        }
+
+        private void dgridVista_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            sCadena = dgridVista.Rows[e.RowIndex].Cells["id_cargo"].Value.ToString();
+            if (sCadena == "")
+            {
+                iID = 0;
+            }
+            else
+            {
+                iID = int.Parse(dgridVista.Rows[e.RowIndex].Cells["id_cargo"].Value.ToString());
+            }
+            if (iID != 0)
+            {
+                if (dgridVista.CurrentRow != null)
+                {
+                    string cadena = "UPDATE cargo SET nombre_cargo='" + dgridVista.Rows[e.RowIndex].Cells["nombre_cargo"].Value.ToString() + "', descripcion_cargo='" + dgridVista.Rows[e.RowIndex].Cells["descripcion_cargo"].Value.ToString() +"' WHERE id_cargo='" + iID + "';";
+                    datos = new OdbcDataAdapter(cadena, cn.conexion());
+                    dt = new DataTable();
+                    datos.Fill(dt);
+                    dgridVista.DataSource = dt;
+                    CargarDatos();
+                }
+            }
+        }
+
+        private void cmsDelete_Click(object sender, EventArgs e)
+        {
+            string cadena = "UPDATE cargo SET estado_video=0  WHERE id_cargo='" + iIDEliminar + "';";
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridVista.DataSource = dt;
+            CargarDatos();
         }
     }
 }

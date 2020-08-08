@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Data.Odbc;
+using RentaDeVideos.Clases;
 
 namespace RentaDeVideos.Mantenimientos.Cargos
 {
@@ -17,6 +19,8 @@ namespace RentaDeVideos.Mantenimientos.Cargos
         {
             InitializeComponent();
         }
+
+        Conexion cn = new Conexion();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -94,6 +98,20 @@ namespace RentaDeVideos.Mantenimientos.Cargos
             {
                 e.Handled = true;
             }
+        }
+
+        void insertarCargos()
+        {
+            string cadena = "INSERT INTO cargo (nombre_cargo, descripcion_cargo, estado) VALUES ('" + txtNombre.Text + "','" + txtDescripcion.Text + "', 1);";
+            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+            consulta.ExecuteNonQuery();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            insertarCargos();
+            txtNombre.Text = "";
+            txtDescripcion.Text = "";
         }
     }
 }

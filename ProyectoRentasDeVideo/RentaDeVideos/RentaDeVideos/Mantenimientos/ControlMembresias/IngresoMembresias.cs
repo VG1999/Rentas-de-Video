@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Data.Odbc;
+using RentaDeVideos.Clases;
 
 namespace RentaDeVideos.Mantenimientos.ControlMembresias
 {
@@ -17,6 +19,8 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
         {
             InitializeComponent();
         }
+
+        Conexion cn = new Conexion();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -94,6 +98,21 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
             {
                 e.Handled = true;
             }
+        }
+
+        void insertarMembresias()
+        {
+            string cadena = "INSERT INTO membresia (estado_membresia, descripcion_membresia, puntos_membresia, descuento_membresia) VALUES ( 1,'" + txtDescripcion.Text + "','" + txtPuntos.Text + "','" + txtDescuentos.Text + "');";
+            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+            consulta.ExecuteNonQuery();
+        }
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            insertarMembresias();
+            txtDescuentos.Text = "";
+            txtDescripcion.Text = "";
+            txtPuntos.Text = "";
+
         }
     }
 }

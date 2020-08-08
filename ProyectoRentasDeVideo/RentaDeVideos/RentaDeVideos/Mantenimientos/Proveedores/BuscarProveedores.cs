@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using RentaDeVideos.Clases;
+using System.Data.Odbc;
 
 namespace RentaDeVideos.Mantenimientos.Proveedores
 {
@@ -16,7 +18,12 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
         public BuscarProveedores()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        Conexion cn = new Conexion();
+        OdbcDataAdapter datos;
+        DataTable dt;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,6 +87,61 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+        void CargarDatos()
+        {
+            string cadena = "SELECT * FROM proveedor";
+
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridDatos.DataSource = dt;
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (cmbColumna.Text == "ID")
+            {
+                datos = new OdbcDataAdapter("SELECT id_proveedor, razon_social, representante_legal, nit, telefono, correo FROM proveedor WHERE id_proveedor='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Razon Social")
+            {
+                datos = new OdbcDataAdapter("SELECT id_proveedor, razon_social, representante_legal, nit, telefono, correo FROM proveedor WHERE rason_social='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Representante Legal")
+            {
+                datos = new OdbcDataAdapter("SELECT id_proveedor, razon_social, representante_legal, nit, telefono, correo FROM proveedor WHERE representante_legal='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "NIT")
+            {
+                datos = new OdbcDataAdapter("SELECT id_proveedor, razon_social, representante_legal, nit, telefono, correo FROM proveedor WHERE nit='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Telefono")
+            {
+                datos = new OdbcDataAdapter("SELECT id_proveedor, razon_social, representante_legal, nit, telefono, correo FROM proveedor WHERE telefono='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Correo")
+            {
+                datos = new OdbcDataAdapter("SELECT id_proveedor, razon_social, representante_legal, nit, telefono, correo FROM proveedor WHERE correo='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
         }
     }
 }

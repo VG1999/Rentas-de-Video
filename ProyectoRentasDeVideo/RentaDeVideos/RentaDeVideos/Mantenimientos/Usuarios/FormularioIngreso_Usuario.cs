@@ -22,6 +22,18 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
+        private int contadorImagen = 1;
+
+        private void CargarImagenes()
+        {
+            if (contadorImagen == 5)
+            {
+                contadorImagen = 1;
+            }
+            picSlider.ImageLocation = string.Format(@"ImagenesUsuario\{0}.jpg", contadorImagen);
+            contadorImagen++;
+        }
+
         private void picBotonMenuSlide_Click(object sender, EventArgs e)
         {
             if (pnlSlideMenu.Width == 188)
@@ -85,6 +97,11 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
             BuscarUsuarios bu = new BuscarUsuarios();
             this.Hide();
             bu.Show();
+        }
+
+        private void timerUser_Tick(object sender, EventArgs e)
+        {
+            CargarImagenes();
         }
     }
 }

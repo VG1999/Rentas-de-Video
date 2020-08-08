@@ -28,134 +28,234 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioInicioMenu));
+            this.btnClientes = new System.Windows.Forms.Button();
+            this.btnProveedor = new System.Windows.Forms.Button();
+            this.btnUsuarios = new System.Windows.Forms.Button();
+            this.btnCargos = new System.Windows.Forms.Button();
+            this.btnEmpleados = new System.Windows.Forms.Button();
+            this.btnCategoria = new System.Windows.Forms.Button();
+            this.btnMembresias = new System.Windows.Forms.Button();
+            this.btnVideos = new System.Windows.Forms.Button();
+            this.gboxInicio = new System.Windows.Forms.GroupBox();
+            this.pnlSuperior = new System.Windows.Forms.Panel();
+            this.picSalir = new System.Windows.Forms.PictureBox();
+            this.picMinimizar = new System.Windows.Forms.PictureBox();
+            this.pnlCuerpo = new System.Windows.Forms.Panel();
+            this.gboxInicio.SuspendLayout();
+            this.pnlSuperior.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
+            this.pnlCuerpo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnClientes
             // 
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(73, 50);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 53);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Clientes";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnClientes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClientes.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientes.Location = new System.Drawing.Point(73, 30);
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Size = new System.Drawing.Size(152, 69);
+            this.btnClientes.TabIndex = 0;
+            this.btnClientes.Text = "Clientes";
+            this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnProveedor
             // 
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(280, 50);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 53);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Proveedores";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnProveedor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnProveedor.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProveedor.Location = new System.Drawing.Point(280, 30);
+            this.btnProveedor.Name = "btnProveedor";
+            this.btnProveedor.Size = new System.Drawing.Size(164, 69);
+            this.btnProveedor.TabIndex = 1;
+            this.btnProveedor.Text = "Proveedores";
+            this.btnProveedor.UseVisualStyleBackColor = true;
+            this.btnProveedor.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // btnUsuarios
             // 
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(73, 153);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(144, 50);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Usuarios";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUsuarios.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.Location = new System.Drawing.Point(73, 133);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(152, 69);
+            this.btnUsuarios.TabIndex = 2;
+            this.btnUsuarios.Text = "Usuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // btnCargos
             // 
-            this.button4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(280, 153);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(144, 50);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Cargos";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnCargos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCargos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCargos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargos.Location = new System.Drawing.Point(280, 133);
+            this.btnCargos.Name = "btnCargos";
+            this.btnCargos.Size = new System.Drawing.Size(164, 69);
+            this.btnCargos.TabIndex = 3;
+            this.btnCargos.Text = "Cargos";
+            this.btnCargos.UseVisualStyleBackColor = true;
+            this.btnCargos.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
+            // btnEmpleados
             // 
-            this.button5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(73, 264);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(144, 50);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Empleados";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnEmpleados.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEmpleados.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmpleados.Location = new System.Drawing.Point(73, 232);
+            this.btnEmpleados.Name = "btnEmpleados";
+            this.btnEmpleados.Size = new System.Drawing.Size(152, 69);
+            this.btnEmpleados.TabIndex = 4;
+            this.btnEmpleados.Text = "Empleados";
+            this.btnEmpleados.UseVisualStyleBackColor = true;
+            this.btnEmpleados.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
+            // btnCategoria
             // 
-            this.button6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(280, 264);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(144, 50);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Categoria Videos";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btnCategoria.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCategoria.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCategoria.Location = new System.Drawing.Point(280, 232);
+            this.btnCategoria.Name = "btnCategoria";
+            this.btnCategoria.Size = new System.Drawing.Size(164, 69);
+            this.btnCategoria.TabIndex = 5;
+            this.btnCategoria.Text = "Categoria Videos";
+            this.btnCategoria.UseVisualStyleBackColor = true;
+            this.btnCategoria.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button7
+            // btnMembresias
             // 
-            this.button7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(280, 352);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(144, 50);
-            this.button7.TabIndex = 7;
-            this.button7.Text = "Membresias";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.btnMembresias.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMembresias.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMembresias.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMembresias.Location = new System.Drawing.Point(280, 341);
+            this.btnMembresias.Name = "btnMembresias";
+            this.btnMembresias.Size = new System.Drawing.Size(164, 67);
+            this.btnMembresias.TabIndex = 7;
+            this.btnMembresias.Text = "Membresias";
+            this.btnMembresias.UseVisualStyleBackColor = true;
+            this.btnMembresias.Click += new System.EventHandler(this.button7_Click);
             // 
-            // button8
+            // btnVideos
             // 
-            this.button8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(73, 352);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(144, 50);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "Videos";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.btnVideos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVideos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVideos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVideos.Location = new System.Drawing.Point(73, 341);
+            this.btnVideos.Name = "btnVideos";
+            this.btnVideos.Size = new System.Drawing.Size(152, 67);
+            this.btnVideos.TabIndex = 6;
+            this.btnVideos.Text = "Videos";
+            this.btnVideos.UseVisualStyleBackColor = true;
+            this.btnVideos.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // gboxInicio
+            // 
+            this.gboxInicio.BackColor = System.Drawing.Color.White;
+            this.gboxInicio.Controls.Add(this.btnCargos);
+            this.gboxInicio.Controls.Add(this.btnMembresias);
+            this.gboxInicio.Controls.Add(this.btnVideos);
+            this.gboxInicio.Controls.Add(this.btnClientes);
+            this.gboxInicio.Controls.Add(this.btnProveedor);
+            this.gboxInicio.Controls.Add(this.btnCategoria);
+            this.gboxInicio.Controls.Add(this.btnEmpleados);
+            this.gboxInicio.Controls.Add(this.btnUsuarios);
+            this.gboxInicio.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gboxInicio.Location = new System.Drawing.Point(108, 40);
+            this.gboxInicio.Name = "gboxInicio";
+            this.gboxInicio.Size = new System.Drawing.Size(524, 445);
+            this.gboxInicio.TabIndex = 8;
+            this.gboxInicio.TabStop = false;
+            this.gboxInicio.Text = "Mantenimiento de Tablas";
+            // 
+            // pnlSuperior
+            // 
+            this.pnlSuperior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(182)))), ((int)(((byte)(255)))));
+            this.pnlSuperior.Controls.Add(this.picSalir);
+            this.pnlSuperior.Controls.Add(this.picMinimizar);
+            this.pnlSuperior.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSuperior.Location = new System.Drawing.Point(0, 0);
+            this.pnlSuperior.Name = "pnlSuperior";
+            this.pnlSuperior.Size = new System.Drawing.Size(728, 57);
+            this.pnlSuperior.TabIndex = 9;
+            this.pnlSuperior.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlSuperior_MouseDown);
+            // 
+            // picSalir
+            // 
+            this.picSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picSalir.Image = ((System.Drawing.Image)(resources.GetObject("picSalir.Image")));
+            this.picSalir.Location = new System.Drawing.Point(692, 12);
+            this.picSalir.Name = "picSalir";
+            this.picSalir.Size = new System.Drawing.Size(24, 24);
+            this.picSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picSalir.TabIndex = 9;
+            this.picSalir.TabStop = false;
+            this.picSalir.Click += new System.EventHandler(this.picSalir_Click);
+            // 
+            // picMinimizar
+            // 
+            this.picMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("picMinimizar.Image")));
+            this.picMinimizar.Location = new System.Drawing.Point(646, 12);
+            this.picMinimizar.Name = "picMinimizar";
+            this.picMinimizar.Size = new System.Drawing.Size(24, 24);
+            this.picMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picMinimizar.TabIndex = 8;
+            this.picMinimizar.TabStop = false;
+            this.picMinimizar.Click += new System.EventHandler(this.picMinimizar_Click);
+            // 
+            // pnlCuerpo
+            // 
+            this.pnlCuerpo.BackColor = System.Drawing.Color.White;
+            this.pnlCuerpo.Controls.Add(this.gboxInicio);
+            this.pnlCuerpo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCuerpo.Location = new System.Drawing.Point(0, 57);
+            this.pnlCuerpo.Name = "pnlCuerpo";
+            this.pnlCuerpo.Size = new System.Drawing.Size(728, 559);
+            this.pnlCuerpo.TabIndex = 10;
             // 
             // FormularioInicioMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(505, 580);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(728, 616);
+            this.Controls.Add(this.pnlCuerpo);
+            this.Controls.Add(this.pnlSuperior);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormularioInicioMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.gboxInicio.ResumeLayout(false);
+            this.pnlSuperior.ResumeLayout(false);
+            this.pnlSuperior.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
+            this.pnlCuerpo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnClientes;
+        private System.Windows.Forms.Button btnProveedor;
+        private System.Windows.Forms.Button btnUsuarios;
+        private System.Windows.Forms.Button btnCargos;
+        private System.Windows.Forms.Button btnEmpleados;
+        private System.Windows.Forms.Button btnCategoria;
+        private System.Windows.Forms.Button btnMembresias;
+        private System.Windows.Forms.Button btnVideos;
+        private System.Windows.Forms.GroupBox gboxInicio;
+        private System.Windows.Forms.Panel pnlSuperior;
+        private System.Windows.Forms.PictureBox picSalir;
+        private System.Windows.Forms.PictureBox picMinimizar;
+        private System.Windows.Forms.Panel pnlCuerpo;
     }
 }
 

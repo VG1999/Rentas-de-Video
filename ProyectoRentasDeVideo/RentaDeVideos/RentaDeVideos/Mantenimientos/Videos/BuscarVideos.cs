@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using RentaDeVideos.Clases;
+using System.Data.Odbc;
 
 namespace RentaDeVideos.Mantenimientos.Videos
 {
@@ -16,7 +18,12 @@ namespace RentaDeVideos.Mantenimientos.Videos
         public BuscarVideos()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        Conexion cn = new Conexion();
+        OdbcDataAdapter datos;
+        DataTable dt;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,6 +87,69 @@ namespace RentaDeVideos.Mantenimientos.Videos
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        void CargarDatos()
+        {
+            string cadena = "SELECT * FROM video";
+
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridDatos.DataSource = dt;
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (cmbColumna.Text == "ID")
+            {
+                datos = new OdbcDataAdapter("SELECT * FROM video WHERE id_video='" + txtBuscar.Text + "' AND estado_video=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "ID CATEGORIA")
+            {
+                datos = new OdbcDataAdapter("SELECT * FROM video WHERE id_categoria_video='" + txtBuscar.Text + "' AND estado_video=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Titulo")
+            {
+                datos = new OdbcDataAdapter("SELECT * FROM video WHERE titulo_video='" + txtBuscar.Text + "' AND estado_video=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Duracion")
+            {
+                datos = new OdbcDataAdapter("SELECT * FROM video WHERE duracion_video='" + txtBuscar.Text + "' AND estado_video=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Formato")
+            {
+                datos = new OdbcDataAdapter("SELECT * FROM video WHERE formato_video='" + txtBuscar.Text + "' AND estado_video=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Año")
+            {
+                datos = new OdbcDataAdapter("SELECT * FROM video WHERE anio_video='" + txtBuscar.Text + "' AND estado_video=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Precio")
+            {
+                datos = new OdbcDataAdapter("SELECT * FROM video WHERE precio_video='" + txtBuscar.Text + "' AND estado_video=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
         }
     }
 }

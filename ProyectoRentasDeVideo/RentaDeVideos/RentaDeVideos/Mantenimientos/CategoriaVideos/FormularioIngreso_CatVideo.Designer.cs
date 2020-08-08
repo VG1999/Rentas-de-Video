@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioIngreso_CatVideo));
             this.pnlSlideMenu = new System.Windows.Forms.Panel();
             this.btnCatVideos = new System.Windows.Forms.Button();
@@ -41,12 +42,16 @@
             this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
             this.picSalir = new System.Windows.Forms.PictureBox();
+            this.picSlider = new System.Windows.Forms.PictureBox();
+            this.timerVideo = new System.Windows.Forms.Timer(this.components);
             this.pnlSlideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            this.pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSlideMenu
@@ -162,6 +167,7 @@
             // pnlContenido
             // 
             this.pnlContenido.BackColor = System.Drawing.Color.White;
+            this.pnlContenido.Controls.Add(this.picSlider);
             this.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenido.Location = new System.Drawing.Point(250, 50);
             this.pnlContenido.Name = "pnlContenido";
@@ -219,6 +225,24 @@
             this.picSalir.TabStop = false;
             this.picSalir.Click += new System.EventHandler(this.picSalir_Click);
             // 
+            // picSlider
+            // 
+            this.picSlider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picSlider.ErrorImage = null;
+            this.picSlider.Image = ((System.Drawing.Image)(resources.GetObject("picSlider.Image")));
+            this.picSlider.Location = new System.Drawing.Point(0, 0);
+            this.picSlider.Name = "picSlider";
+            this.picSlider.Size = new System.Drawing.Size(1050, 550);
+            this.picSlider.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picSlider.TabIndex = 3;
+            this.picSlider.TabStop = false;
+            // 
+            // timerVideo
+            // 
+            this.timerVideo.Enabled = true;
+            this.timerVideo.Interval = 1500;
+            this.timerVideo.Tick += new System.EventHandler(this.timerVideo_Tick);
+            // 
             // FormularioIngreso_CatVideo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -235,11 +259,13 @@
             this.Text = "FormularioIngreso_Cliente";
             this.pnlSlideMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            this.pnlContenido.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             this.pnlFormMenu.ResumeLayout(false);
             this.pnlFormMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSlider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -258,5 +284,7 @@
         private System.Windows.Forms.Button btnAct_Eliminar;
         private System.Windows.Forms.Button btnIngreso;
         private System.Windows.Forms.Button btnCatVideos;
+        private System.Windows.Forms.PictureBox picSlider;
+        private System.Windows.Forms.Timer timerVideo;
     }
 }

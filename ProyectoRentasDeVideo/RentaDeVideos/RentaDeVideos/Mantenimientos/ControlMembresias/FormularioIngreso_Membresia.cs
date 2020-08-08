@@ -22,6 +22,18 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
+        private int contadorImagen = 1;
+
+        private void CargarImagenes()
+        {
+            if (contadorImagen == 5)
+            {
+                contadorImagen = 1;
+            }
+            picSlider.ImageLocation = string.Format(@"ImagenesMembresia\{0}.jpg", contadorImagen);
+            contadorImagen++;
+        }
+
         private void picBotonMenuSlide_Click(object sender, EventArgs e)
         {
             if (pnlSlideMenu.Width == 188)
@@ -85,6 +97,11 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
             BuscarMembresias bcv = new BuscarMembresias();
             bcv.Show();
             this.Hide();
+        }
+
+        private void timerProve_Tick(object sender, EventArgs e)
+        {
+            CargarImagenes();
         }
     }
 }

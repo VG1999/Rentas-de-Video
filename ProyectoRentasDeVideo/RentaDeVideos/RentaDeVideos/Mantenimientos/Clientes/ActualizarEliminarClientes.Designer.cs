@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActualizarEliminarClientes));
             this.pnlContenido = new System.Windows.Forms.Panel();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
@@ -41,17 +42,24 @@
             this.btnIngreso = new System.Windows.Forms.Button();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
+            this.dgridVista = new System.Windows.Forms.DataGridView();
+            this.cmsDelete = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarDatoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlContenido.SuspendLayout();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).BeginInit();
             this.pnlSlideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridVista)).BeginInit();
+            this.cmsDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlContenido
             // 
             this.pnlContenido.BackColor = System.Drawing.Color.White;
+            this.pnlContenido.Controls.Add(this.dgridVista);
             this.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenido.Location = new System.Drawing.Point(250, 50);
             this.pnlContenido.Name = "pnlContenido";
@@ -218,6 +226,35 @@
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
+            // dgridVista
+            // 
+            this.dgridVista.AllowUserToAddRows = false;
+            this.dgridVista.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.dgridVista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgridVista.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgridVista.Location = new System.Drawing.Point(0, 0);
+            this.dgridVista.Name = "dgridVista";
+            this.dgridVista.RowTemplate.Height = 24;
+            this.dgridVista.Size = new System.Drawing.Size(1050, 550);
+            this.dgridVista.TabIndex = 1;
+            this.dgridVista.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgridVista_CellMouseUp);
+            this.dgridVista.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridVista_CellValueChanged);
+            // 
+            // cmsDelete
+            // 
+            this.cmsDelete.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsDelete.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarDatoToolStripMenuItem});
+            this.cmsDelete.Name = "cmsDelete";
+            this.cmsDelete.Size = new System.Drawing.Size(176, 56);
+            this.cmsDelete.Click += new System.EventHandler(this.cmsDelete_Click);
+            // 
+            // eliminarDatoToolStripMenuItem
+            // 
+            this.eliminarDatoToolStripMenuItem.Name = "eliminarDatoToolStripMenuItem";
+            this.eliminarDatoToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.eliminarDatoToolStripMenuItem.Text = "Eliminar Dato";
+            // 
             // ActualizarEliminarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -230,6 +267,7 @@
             this.Name = "ActualizarEliminarClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ActualizarEliminarClientes";
+            this.pnlContenido.ResumeLayout(false);
             this.pnlFormMenu.ResumeLayout(false);
             this.pnlFormMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
@@ -237,6 +275,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).EndInit();
             this.pnlSlideMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridVista)).EndInit();
+            this.cmsDelete.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -255,5 +295,8 @@
         private System.Windows.Forms.Button btnIngreso;
         private System.Windows.Forms.Button btnVolverMenu;
         private System.Windows.Forms.PictureBox picLogo;
+        private System.Windows.Forms.DataGridView dgridVista;
+        private System.Windows.Forms.ContextMenuStrip cmsDelete;
+        private System.Windows.Forms.ToolStripMenuItem eliminarDatoToolStripMenuItem;
     }
 }

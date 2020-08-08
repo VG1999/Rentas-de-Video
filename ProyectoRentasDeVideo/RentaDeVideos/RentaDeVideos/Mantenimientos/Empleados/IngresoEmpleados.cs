@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Data.Odbc;
+using RentaDeVideos.Clases;
 
 namespace RentaDeVideos.Mantenimientos.Empleados
 {
@@ -17,6 +19,8 @@ namespace RentaDeVideos.Mantenimientos.Empleados
         {
             InitializeComponent();
         }
+
+        Conexion cn = new Conexion();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -140,5 +144,26 @@ namespace RentaDeVideos.Mantenimientos.Empleados
                 e.Handled = true;
             }
         }
+
+        void insertarEmpleados()
+        {
+            string cadena = "INSERT INTO empleado (id_cargo_empleado,id_usuario_empleado, dpi_empleado, nit_empleado, nombre_empleado, apellido_empleado, corre_empleado, telefono_empleado, direccion_empleado, estado) VALUES ('" + txtCargo.Text + "','" +txtUsuario.Text+"','"+ txtDPI.Text + "','" + txtNIT.Text + "','" + txtNombre.Text + "','" + txtApellidos.Text + "','" + txtCorreo.Text + "','" + txtTelefono.Text + "','"+txtDireccion.Text+"', 1);";
+            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+            consulta.ExecuteNonQuery();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            insertarEmpleados();
+            txtCargo.Text = "";
+            txtUsuario.Text = "";
+            txtDPI.Text = "";
+            txtNIT.Text = "";
+            txtNombre.Text = "";
+            txtApellidos.Text = "";
+            txtCorreo.Text = "";
+            txtTelefono.Text = "";
+            txtDireccion.Text = "";
+         }
     }
 }

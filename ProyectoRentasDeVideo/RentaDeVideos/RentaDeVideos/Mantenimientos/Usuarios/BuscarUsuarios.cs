@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Data.Odbc;
+using RentaDeVideos.Clases;
 
 namespace RentaDeVideos.Mantenimientos.Usuarios
 {
@@ -16,7 +18,13 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
         public BuscarUsuarios()
         {
             InitializeComponent();
+            CargarDatos();
+            
         }
+
+        Conexion cn = new Conexion();
+        OdbcDataAdapter datos;
+        DataTable dt;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,6 +88,48 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        void CargarDatos()
+        {
+            string cadena = "SELECT * FROM control_usuario";
+
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridDatos.DataSource = dt;
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (cmbColumna.Text == "Usuario")
+            {
+                datos = new OdbcDataAdapter("SELECT id_usuario, usuario, contraseña_usuario, rol_usuario FROM control_usuario WHERE usuario='" + txtBuscar.Text+"' AND estado=1",cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Contraseña")
+            {
+                datos = new OdbcDataAdapter("SELECT id_usuario, usuario, contraseña_usuario, rol_usuario FROM control_usuario WHERE contraseña_usuario='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Rol")
+            {
+                datos = new OdbcDataAdapter("SELECT id_usuario, usuario, contraseña_usuario, rol_usuario FROM control_usuario WHERE rol_usuario='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "ID")
+            {
+                datos = new OdbcDataAdapter("SELECT id_usuario, usuario, contraseña_usuario, rol_usuario FROM control_usuario WHERE id_usuario='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
         }
     }
 }

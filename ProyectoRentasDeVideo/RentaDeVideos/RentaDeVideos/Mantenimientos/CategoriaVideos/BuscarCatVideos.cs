@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Data.Odbc;
+using RentaDeVideos.Clases;
 
 namespace RentaDeVideos.Mantenimientos.CategoriaVideos
 {
@@ -16,7 +18,12 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
         public BuscarCatVideos()
         {
             InitializeComponent();
+            CargarDatos();
         }
+
+        Conexion cn = new Conexion();
+        OdbcDataAdapter datos;
+        DataTable dt;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,6 +87,34 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        void CargarDatos()
+        {
+            string cadena = "SELECT * FROM categoria";
+
+            datos = new OdbcDataAdapter(cadena, cn.conexion());
+            dt = new DataTable();
+            datos.Fill(dt);
+            dgridDatos.DataSource = dt;
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (cmbColumna.Text == "ID")
+            {
+                datos = new OdbcDataAdapter("SELECT id_categoria, nombre_categoria FROM categoria WHERE id_categoria='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            else if (cmbColumna.Text == "Nombre")
+            {
+                datos = new OdbcDataAdapter("SELECT id_categoria, nombre_categoria FROM categoria WHERE nombre_categoria='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
         }
     }
 }

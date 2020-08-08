@@ -21,6 +21,18 @@ namespace RentaDeVideos.Mantenimientos.Empleados
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
+        private int contadorImagen = 1;
+
+        private void CargarImagenes()
+        {
+            if (contadorImagen == 5)
+            {
+                contadorImagen = 1;
+            }
+            picSlider.ImageLocation = string.Format(@"ImagenesEmpleado\{0}.jpg", contadorImagen);
+            contadorImagen++;
+        }
+
 
         private void picBotonMenuSlide_Click(object sender, EventArgs e)
         {
@@ -85,6 +97,11 @@ namespace RentaDeVideos.Mantenimientos.Empleados
             BuscarEmpleados bc = new BuscarEmpleados();
             bc.Show();
             this.Hide();
+        }
+
+        private void timerEmp_Tick(object sender, EventArgs e)
+        {
+            CargarImagenes();
         }
     }
 }

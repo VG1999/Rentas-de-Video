@@ -12,7 +12,7 @@ namespace RentaDeVideos.Clases
         public OdbcConnection conexion()
         {
             //creacion de la conexion via ODBC
-            OdbcConnection conn = new OdbcConnection("Dsn=Conexion_Renta_Videos");
+            OdbcConnection conn = new OdbcConnection("Dsn=Rentas_Video");
             try
             {
                 conn.Open();

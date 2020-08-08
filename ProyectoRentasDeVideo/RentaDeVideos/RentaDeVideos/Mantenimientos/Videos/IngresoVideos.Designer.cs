@@ -36,8 +36,6 @@
             this.lblCategoria = new System.Windows.Forms.Label();
             this.txtAnio = new System.Windows.Forms.TextBox();
             this.lblAnio = new System.Windows.Forms.Label();
-            this.txtCopia = new System.Windows.Forms.TextBox();
-            this.lblCopia = new System.Windows.Forms.Label();
             this.txtFormato = new System.Windows.Forms.TextBox();
             this.txtDuracion = new System.Windows.Forms.TextBox();
             this.lblFormato = new System.Windows.Forms.Label();
@@ -74,8 +72,6 @@
             this.pnlContenido.Controls.Add(this.lblCategoria);
             this.pnlContenido.Controls.Add(this.txtAnio);
             this.pnlContenido.Controls.Add(this.lblAnio);
-            this.pnlContenido.Controls.Add(this.txtCopia);
-            this.pnlContenido.Controls.Add(this.lblCopia);
             this.pnlContenido.Controls.Add(this.txtFormato);
             this.pnlContenido.Controls.Add(this.txtDuracion);
             this.pnlContenido.Controls.Add(this.lblFormato);
@@ -93,7 +89,7 @@
             // txtPrecio
             // 
             this.txtPrecio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecio.Location = new System.Drawing.Point(654, 221);
+            this.txtPrecio.Location = new System.Drawing.Point(668, 238);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(233, 32);
             this.txtPrecio.TabIndex = 18;
@@ -102,7 +98,7 @@
             // txtCategoria
             // 
             this.txtCategoria.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCategoria.Location = new System.Drawing.Point(203, 311);
+            this.txtCategoria.Location = new System.Drawing.Point(217, 238);
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(233, 32);
             this.txtCategoria.TabIndex = 17;
@@ -112,7 +108,7 @@
             // 
             this.lblPrecio.AutoSize = true;
             this.lblPrecio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(527, 218);
+            this.lblPrecio.Location = new System.Drawing.Point(541, 235);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(70, 23);
             this.lblPrecio.TabIndex = 16;
@@ -122,7 +118,7 @@
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(36, 314);
+            this.lblCategoria.Location = new System.Drawing.Point(50, 241);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(135, 23);
             this.lblCategoria.TabIndex = 15;
@@ -131,7 +127,7 @@
             // txtAnio
             // 
             this.txtAnio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnio.Location = new System.Drawing.Point(654, 33);
+            this.txtAnio.Location = new System.Drawing.Point(668, 50);
             this.txtAnio.Name = "txtAnio";
             this.txtAnio.Size = new System.Drawing.Size(233, 32);
             this.txtAnio.TabIndex = 14;
@@ -141,35 +137,16 @@
             // 
             this.lblAnio.AutoSize = true;
             this.lblAnio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnio.Location = new System.Drawing.Point(527, 33);
+            this.lblAnio.Location = new System.Drawing.Point(541, 50);
             this.lblAnio.Name = "lblAnio";
             this.lblAnio.Size = new System.Drawing.Size(50, 23);
             this.lblAnio.TabIndex = 13;
             this.lblAnio.Text = "Año";
             // 
-            // txtCopia
-            // 
-            this.txtCopia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCopia.Location = new System.Drawing.Point(203, 215);
-            this.txtCopia.Name = "txtCopia";
-            this.txtCopia.Size = new System.Drawing.Size(233, 32);
-            this.txtCopia.TabIndex = 11;
-            this.txtCopia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCopia_KeyPress);
-            // 
-            // lblCopia
-            // 
-            this.lblCopia.AutoSize = true;
-            this.lblCopia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCopia.Location = new System.Drawing.Point(36, 218);
-            this.lblCopia.Name = "lblCopia";
-            this.lblCopia.Size = new System.Drawing.Size(70, 23);
-            this.lblCopia.TabIndex = 9;
-            this.lblCopia.Text = "Copia";
-            // 
             // txtFormato
             // 
             this.txtFormato.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFormato.Location = new System.Drawing.Point(654, 127);
+            this.txtFormato.Location = new System.Drawing.Point(668, 144);
             this.txtFormato.Name = "txtFormato";
             this.txtFormato.Size = new System.Drawing.Size(233, 32);
             this.txtFormato.TabIndex = 8;
@@ -177,7 +154,7 @@
             // txtDuracion
             // 
             this.txtDuracion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDuracion.Location = new System.Drawing.Point(203, 121);
+            this.txtDuracion.Location = new System.Drawing.Point(217, 138);
             this.txtDuracion.Name = "txtDuracion";
             this.txtDuracion.Size = new System.Drawing.Size(233, 32);
             this.txtDuracion.TabIndex = 7;
@@ -186,7 +163,7 @@
             // 
             this.lblFormato.AutoSize = true;
             this.lblFormato.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormato.Location = new System.Drawing.Point(527, 124);
+            this.lblFormato.Location = new System.Drawing.Point(541, 141);
             this.lblFormato.Name = "lblFormato";
             this.lblFormato.Size = new System.Drawing.Size(92, 23);
             this.lblFormato.TabIndex = 6;
@@ -196,7 +173,7 @@
             // 
             this.lblDuracion.AutoSize = true;
             this.lblDuracion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDuracion.Location = new System.Drawing.Point(36, 124);
+            this.lblDuracion.Location = new System.Drawing.Point(50, 141);
             this.lblDuracion.Name = "lblDuracion";
             this.lblDuracion.Size = new System.Drawing.Size(98, 23);
             this.lblDuracion.TabIndex = 5;
@@ -205,7 +182,7 @@
             // txtTitulo
             // 
             this.txtTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitulo.Location = new System.Drawing.Point(203, 30);
+            this.txtTitulo.Location = new System.Drawing.Point(217, 47);
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(233, 32);
             this.txtTitulo.TabIndex = 3;
@@ -214,7 +191,7 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(36, 33);
+            this.lblTitulo.Location = new System.Drawing.Point(50, 50);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(58, 23);
             this.lblTitulo.TabIndex = 1;
@@ -223,12 +200,15 @@
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(421, 427);
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuardar.Location = new System.Drawing.Point(363, 396);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(198, 94);
+            this.btnGuardar.Size = new System.Drawing.Size(248, 75);
             this.btnGuardar.TabIndex = 0;
             this.btnGuardar.Text = "Guardar Datos";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // pnlFormMenu
             // 
@@ -434,8 +414,6 @@
         private System.Windows.Forms.TextBox txtTitulo;
         private System.Windows.Forms.TextBox txtAnio;
         private System.Windows.Forms.Label lblAnio;
-        private System.Windows.Forms.TextBox txtCopia;
-        private System.Windows.Forms.Label lblCopia;
         private System.Windows.Forms.TextBox txtFormato;
         private System.Windows.Forms.TextBox txtDuracion;
         private System.Windows.Forms.Label lblFormato;

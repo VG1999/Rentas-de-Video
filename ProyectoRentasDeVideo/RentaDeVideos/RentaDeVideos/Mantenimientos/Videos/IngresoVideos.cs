@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Data.Odbc;
+using RentaDeVideos.Clases;
 
 namespace RentaDeVideos.Mantenimientos.Videos
 {
@@ -17,6 +19,7 @@ namespace RentaDeVideos.Mantenimientos.Videos
         {
             InitializeComponent();
         }
+        Conexion cn = new Conexion();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -121,6 +124,24 @@ namespace RentaDeVideos.Mantenimientos.Videos
             {
                 e.Handled = true;
             }
+        }
+
+        void insertarVideos()
+        {
+            string cadena = "INSERT INTO video (id_categoria_video,titulo_video, duracion_video,formato_video, estado_video, anio_video,precio) VALUES ('" + txtCategoria.Text + "','" + txtTitulo.Text + "','" + txtDuracion.Text+ "','" + txtFormato.Text + "',1,'" + txtAnio.Text+ "','"+txtPrecio.Text+"');";
+            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+            consulta.ExecuteNonQuery();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            insertarVideos();
+            txtCategoria.Text = "";
+            txtTitulo.Text = "";
+            txtDuracion.Text = "";
+            txtFormato.Text = "";
+            txtAnio.Text = "";
+            txtPrecio.Text = "";
         }
     }
 }

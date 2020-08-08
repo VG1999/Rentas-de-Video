@@ -30,6 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BuscarClientes));
             this.pnlContenido = new System.Windows.Forms.Panel();
+            this.lblBuscar = new System.Windows.Forms.Label();
+            this.lblColumna = new System.Windows.Forms.Label();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.cmbColumna = new System.Windows.Forms.ComboBox();
+            this.dgridDatos = new System.Windows.Forms.DataGridView();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
             this.picSalir = new System.Windows.Forms.PictureBox();
             this.picMinimizar = new System.Windows.Forms.PictureBox();
@@ -41,19 +46,14 @@
             this.btnIngreso = new System.Windows.Forms.Button();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.dgridDatos = new System.Windows.Forms.DataGridView();
-            this.cmbColumna = new System.Windows.Forms.ComboBox();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.lblColumna = new System.Windows.Forms.Label();
-            this.lblBuscar = new System.Windows.Forms.Label();
             this.pnlContenido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridDatos)).BeginInit();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).BeginInit();
             this.pnlSlideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlContenido
@@ -69,6 +69,63 @@
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(1050, 550);
             this.pnlContenido.TabIndex = 11;
+            // 
+            // lblBuscar
+            // 
+            this.lblBuscar.AutoSize = true;
+            this.lblBuscar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscar.Location = new System.Drawing.Point(541, 41);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(74, 23);
+            this.lblBuscar.TabIndex = 4;
+            this.lblBuscar.Text = "Buscar";
+            // 
+            // lblColumna
+            // 
+            this.lblColumna.AutoSize = true;
+            this.lblColumna.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumna.Location = new System.Drawing.Point(68, 41);
+            this.lblColumna.Name = "lblColumna";
+            this.lblColumna.Size = new System.Drawing.Size(101, 23);
+            this.lblColumna.TabIndex = 3;
+            this.lblColumna.Text = "Columna";
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(617, 43);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(264, 32);
+            this.txtBuscar.TabIndex = 2;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            // 
+            // cmbColumna
+            // 
+            this.cmbColumna.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbColumna.FormattingEnabled = true;
+            this.cmbColumna.Items.AddRange(new object[] {
+            "ID",
+            "ID Membresia",
+            "DPI",
+            "NIT",
+            "NOMBRE",
+            "APELLIDO",
+            "TELEFONO",
+            "CORREO"});
+            this.cmbColumna.Location = new System.Drawing.Point(185, 41);
+            this.cmbColumna.Name = "cmbColumna";
+            this.cmbColumna.Size = new System.Drawing.Size(264, 31);
+            this.cmbColumna.TabIndex = 1;
+            // 
+            // dgridDatos
+            // 
+            this.dgridDatos.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.dgridDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgridDatos.Location = new System.Drawing.Point(40, 106);
+            this.dgridDatos.Name = "dgridDatos";
+            this.dgridDatos.RowTemplate.Height = 24;
+            this.dgridDatos.Size = new System.Drawing.Size(952, 415);
+            this.dgridDatos.TabIndex = 0;
             // 
             // pnlFormMenu
             // 
@@ -230,52 +287,6 @@
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
-            // dgridDatos
-            // 
-            this.dgridDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgridDatos.Location = new System.Drawing.Point(40, 106);
-            this.dgridDatos.Name = "dgridDatos";
-            this.dgridDatos.RowTemplate.Height = 24;
-            this.dgridDatos.Size = new System.Drawing.Size(952, 415);
-            this.dgridDatos.TabIndex = 0;
-            // 
-            // cmbColumna
-            // 
-            this.cmbColumna.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbColumna.FormattingEnabled = true;
-            this.cmbColumna.Location = new System.Drawing.Point(185, 41);
-            this.cmbColumna.Name = "cmbColumna";
-            this.cmbColumna.Size = new System.Drawing.Size(264, 31);
-            this.cmbColumna.TabIndex = 1;
-            // 
-            // txtBuscar
-            // 
-            this.txtBuscar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(617, 43);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(264, 32);
-            this.txtBuscar.TabIndex = 2;
-            // 
-            // lblColumna
-            // 
-            this.lblColumna.AutoSize = true;
-            this.lblColumna.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumna.Location = new System.Drawing.Point(68, 41);
-            this.lblColumna.Name = "lblColumna";
-            this.lblColumna.Size = new System.Drawing.Size(101, 23);
-            this.lblColumna.TabIndex = 3;
-            this.lblColumna.Text = "Columna";
-            // 
-            // lblBuscar
-            // 
-            this.lblBuscar.AutoSize = true;
-            this.lblBuscar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscar.Location = new System.Drawing.Point(541, 41);
-            this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(74, 23);
-            this.lblBuscar.TabIndex = 4;
-            this.lblBuscar.Text = "Buscar";
-            // 
             // BuscarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -290,6 +301,7 @@
             this.Text = "BuscarClientes";
             this.pnlContenido.ResumeLayout(false);
             this.pnlContenido.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridDatos)).EndInit();
             this.pnlFormMenu.ResumeLayout(false);
             this.pnlFormMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
@@ -297,7 +309,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).EndInit();
             this.pnlSlideMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridDatos)).EndInit();
             this.ResumeLayout(false);
 
         }

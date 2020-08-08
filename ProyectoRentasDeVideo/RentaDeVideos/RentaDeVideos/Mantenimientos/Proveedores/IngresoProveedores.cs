@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using RentaDeVideos.Clases;
+using System.Data.Odbc;
 
 namespace RentaDeVideos.Mantenimientos.Proveedores
 {
@@ -17,6 +19,8 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
         {
             InitializeComponent();
         }
+
+        Conexion cn = new Conexion();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -98,6 +102,23 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
             {
                 e.Handled = true;
             }
+        }
+
+        void insertarProveedores()
+        {
+            string cadena = "INSERT INTO proveedor (razon_social, represante_legal, nit, telefono, correo, estado) VALUES ('" + txtRazon.Text + "','" + txtRepresentante.Text + "','" + txtNIT.Text + "','" + txtTelefono.Text + "','" + txtCorreo.Text + "',1);";
+            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+            consulta.ExecuteNonQuery();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            insertarProveedores();
+            txtCorreo.Text = "";
+            txtRepresentante.Text = "";
+            txtRazon.Text = "";
+            txtNIT.Text = "";
+            txtTelefono.Text = "";
         }
     }
 }
