@@ -87,7 +87,7 @@ create table if not exists cargo (
 );
 /*Estructura de la tabla ENCABEZADO_FACTURA*/
 create table if not exists encabezado_factura (
-    id_encabezado_factura int(6) not null,
+    id_encabezado_factura int(6) not null auto_increment,
     id_cliente int(6) not null,
     id_empleado int(6) not null,
     no_serie varchar(10)not null,
