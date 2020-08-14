@@ -1,6 +1,7 @@
 create database rentas;
 use rentas;
 
+
 /*estructura tabla clientes*/
 create table if not exists cliente (
     id_cliente int(6) not null auto_increment,
@@ -11,6 +12,7 @@ create table if not exists cliente (
     apellido varchar(30) not null,
     telefono int(8) not null,
     correo varchar(35) not null,
+    direccion varchar(35)not null,
     estado int(1)not null,
     primary key (id_cliente),
     key (id_cliente)
@@ -36,6 +38,7 @@ create table if not exists video (
     formato varchar(20) not null,
     anio varchar(10) not null,
     precio double(12,2)not null,
+    cantidad int(8)not null, 
     estado int(1) not null,
     primary key (id_video),
     key (id_video)
@@ -117,6 +120,7 @@ create table if not exists detalle_factura (
 create table if not exists video_estado (
     id_video_estado int(6) not null auto_increment,
     multa_unitaria double(12,2) not null,
+    descripcion varchar(40)not null,
     estado int(1) not null,
     primary key (id_video_estado),
     key (id_video_estado)
@@ -192,6 +196,5 @@ alter table detalle_compra add constraint fk_video_compra_detalle foreign key(id
 alter table control_recibido add constraint fk_video_estado_control foreign key(id_video_estado) references video_estado(id_video_estado);
 alter table control_recibido add constraint fk_encabezado_control foreign key(id_factura_encabezado) references encabezado_factura(id_encabezado_factura);
 alter table bitacora add constraint fk_bitacora_usuario foreign key(id_usuario) references control_usuario(id_usuario);
-
 /**/
 
