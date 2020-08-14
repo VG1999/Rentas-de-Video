@@ -11,11 +11,13 @@ using System.Runtime.InteropServices;
 using RentaDeVideos.Clases;
 using System.Data.Odbc;
 using System.Text.RegularExpressions;
+using System.Net;
 
 namespace RentaDeVideos.Mantenimientos.Proveedores
 {
     public partial class IngresoProveedores : Form
     {
+        int iUsuario = 1;
         public IngresoProveedores()
         {
             InitializeComponent();
@@ -30,7 +32,12 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void picMinimizar_Click(object sender, EventArgs e)
@@ -68,9 +75,8 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void btnAct_Eliminar_Click(object sender, EventArgs e)
@@ -107,9 +113,41 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
 
         void insertarProveedores()
         {
-            string cadena = "INSERT INTO proveedor (razon_social, representante_legal, nit, telefono, correo, estado) VALUES ('" + txtRazon.Text + "','" + txtRepresentante.Text + "','" + txtNIT.Text + "','" + txtTelefono.Text + "','" + txtCorreo.Text + "',1);";
-            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
-            consulta.ExecuteNonQuery();
+            try
+            {
+                IPHostEntry host_ip;
+                string sLocalIP = "?";
+                host_ip = Dns.GetHostEntry(Dns.GetHostName());
+
+                foreach (IPAddress ip in host_ip.AddressList)
+                {
+                    if (ip.AddressFamily.ToString() == "InterNetwork")
+                    {
+                        sLocalIP = ip.ToString();
+                    }
+                }
+
+                string cadena = "INSERT INTO proveedor (razon_social, representante_legal, nit, telefono, correo, estado) VALUES ('" + txtRazon.Text + "','" + txtRepresentante.Text + "','" + txtNIT.Text + "','" + txtTelefono.Text + "','" + txtCorreo.Text + "',1);";
+                OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+                consulta.ExecuteNonQuery();
+                consulta.Connection.Close();
+
+                OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                llenarBitacora.CommandType = CommandType.StoredProcedure;
+                llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "PROVEEDORES";
+                llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "INSERTAR";
+                llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                llenarBitacora.ExecuteNonQuery();
+                llenarBitacora.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         void borraDatos()
         {
@@ -157,7 +195,13 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
                 txtRepresentante.Focus();
                 return false;
             }
-            
+            if (!Regex.Match(txtRazon.Text, @"^[A-Za-z]+([\ A-Za-z]+)*$").Success)
+            {
+                MessageBox.Show("Datos del campo representante invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRazon.Text = "";
+                txtRazon.Focus();
+                return false;
+            }
             if (!Regex.Match(txtRepresentante.Text, @"^[A-Za-z]+([\ A-Za-z]+)*$").Success)
             {
                 MessageBox.Show("Datos del campo representante invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -172,27 +216,33 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
                 txtTelefono.Focus();
                 return false;
             }
+            if (!Regex.Match(txtCorreo.Text, @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.([a-zA-Z]{2,4})+$").Success)
+            {
+                MessageBox.Show("Datos del campo correo invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCorreo.Text = "";
+                txtCorreo.Focus();
+                return false;
+            }
+            else if (!Regex.Match(txtNIT.Text, @"^[0-9]{6}[-][0-9A-z]{1}$").Success)
+            {
+                MessageBox.Show("Datos del campo NIT invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNIT.Text = "";
+                txtNIT.Focus();
+                return false;
+            }
             return true;
 
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            if (validarTextbox() == true)
             {
-                if (validarTextbox() == true)
-                {
-                    insertarProveedores();
-                    MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    borraDatos();
-                }
+                insertarProveedores();
+                MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                borraDatos();
             }
-            catch (Exception)
-            {
 
-                throw;
-            }
-            
         }
     }
 }

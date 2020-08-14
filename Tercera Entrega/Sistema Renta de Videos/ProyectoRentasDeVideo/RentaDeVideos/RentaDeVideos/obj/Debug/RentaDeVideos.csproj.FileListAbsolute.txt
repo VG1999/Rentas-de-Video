@@ -8,7 +8,6 @@ C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVi
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.exe
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.pdb
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Mantenimientos.Clientes.IngresoClientes.resources
-C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.FormularioInicioMenu.resources
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Mantenimientos.Clientes.ActualizarEliminarClientes.resources
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Mantenimientos.Clientes.BuscarClientes.resources
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Mantenimientos.Proveedores.ActualizarEliminarProveedores.resources
@@ -58,3 +57,5 @@ C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVi
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Reportes.FormulariosReportes.formularioReporteClientes.resources
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RdlCompile.cache
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RdlCompile.compiled
+C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.formularioFondoPrincipal.resources
+C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Reportes.FormulariosReportes.formularioReporteBitacora.resources

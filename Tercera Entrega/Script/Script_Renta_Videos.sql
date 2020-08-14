@@ -113,15 +113,6 @@ create table if not exists detalle_factura (
     primary key (cod_linea,id_encabezado_factura)
 );
 
-
-/*Estructura del DEVOLUCION*/
-create table if not exists historial_rentas (
-    id_historial int(6) not null auto_increment,
-    id_encabezado_factura int(6) not null,
-    primary key (id_historial),
-    key (id_historial)
-);
-
 /*Estructura del VIDEO_ESTADO*/
 create table if not exists video_estado (
     id_video_estado int(6) not null auto_increment,
@@ -180,8 +171,8 @@ create table bitacora(
     id_usuario int(6)not null,
     tabla varchar(25)not null,
     actividad varchar(25)not null,
-    fecha varchar(10)not null,
-    host_usuario varchar(20)not null,
+    fecha datetime not null,
+    host_ip varchar(20)not null,
     primary key(id_bitacora),
     key(id_bitacora)
 );
@@ -195,10 +186,12 @@ alter table encabezado_factura add constraint fk_encabezado_cliente foreign key(
 alter table encabezado_factura add constraint fk_encabezado_empleado foreign key(id_empleado) references empleado(id_empleado);
 alter table detalle_factura add constraint fk_encabezado_detalle foreign key(id_encabezado_factura) references encabezado_factura(id_encabezado_factura);
 alter table detalle_factura add constraint fk_video_detalle foreign key(id_video) references video(id_video);
-alter table historial_rentas add constraint fk_factura_rentas foreign key(id_encabezado_factura) references encabezado_factura(id_encabezado_factura);
 alter table encabezado_compra add constraint fk_compra_proveedor foreign key(id_proveedor) references proveedor(id_proveedor);
 alter table detalle_compra add constraint fk_compra_detalle foreign key(id_compra) references encabezado_compra(id_compra);
 alter table detalle_compra add constraint fk_video_compra_detalle foreign key(id_video) references video(id_video);
 alter table control_recibido add constraint fk_video_estado_control foreign key(id_video_estado) references video_estado(id_video_estado);
 alter table control_recibido add constraint fk_encabezado_control foreign key(id_factura_encabezado) references encabezado_factura(id_encabezado_factura);
 alter table bitacora add constraint fk_bitacora_usuario foreign key(id_usuario) references control_usuario(id_usuario);
+
+/**/
+

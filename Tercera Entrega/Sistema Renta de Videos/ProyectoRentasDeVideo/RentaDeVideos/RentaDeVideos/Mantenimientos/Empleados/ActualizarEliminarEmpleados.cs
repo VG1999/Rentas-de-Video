@@ -10,24 +10,19 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using RentaDeVideos.Clases;
 using System.Data.Odbc;
+using System.Net;
 
 namespace RentaDeVideos.Mantenimientos.Empleados
 {
     public partial class ActualizarEliminarEmpleados : Form
     {
+        int iUsuario = 1;
+
         public ActualizarEliminarEmpleados()
         {
             InitializeComponent();
-            try
-            {
-                CargarDatos();
-            }
-            catch (Exception)
-            {
+            CargarDatos();
 
-                throw;
-            }
-            
         }
 
         Conexion cn = new Conexion();
@@ -56,7 +51,12 @@ namespace RentaDeVideos.Mantenimientos.Empleados
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void btnEmpleados_Click(object sender, EventArgs e)
@@ -87,9 +87,8 @@ namespace RentaDeVideos.Mantenimientos.Empleados
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void pnlFormMenu_MouseDown(object sender, MouseEventArgs e)
@@ -100,12 +99,21 @@ namespace RentaDeVideos.Mantenimientos.Empleados
 
         void CargarDatos()
         {
-            string cadena = "SELECT id_empleado, id_cargo, id_usuario, dpi, nit, nombre, apellido, correo, telefono, direccion FROM empleado WHERE estado=1";
+            try
+            {
+                string cadena = "SELECT id_empleado, id_cargo, id_usuario, dpi, nit, nombre, apellido, correo, telefono, direccion FROM empleado WHERE estado=1";
 
-            datos = new OdbcDataAdapter(cadena, cn.conexion());
-            dt = new DataTable();
-            datos.Fill(dt);
-            dgridVista.DataSource = dt;
+                datos = new OdbcDataAdapter(cadena, cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridVista.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         string sCadena;
         int iID;
@@ -136,6 +144,17 @@ namespace RentaDeVideos.Mantenimientos.Empleados
                 }
                 if (iID != 0)
                 {
+                    IPHostEntry host_ip;
+                    string sLocalIP = "?";
+                    host_ip = Dns.GetHostEntry(Dns.GetHostName());
+
+                    foreach (IPAddress ip in host_ip.AddressList)
+                    {
+                        if (ip.AddressFamily.ToString() == "InterNetwork")
+                        {
+                            sLocalIP = ip.ToString();
+                        }
+                    }
                     if (dgridVista.CurrentRow != null)
                     {
                         string cadena = "UPDATE empleado SET id_cargo='" + int.Parse(dgridVista.Rows[e.RowIndex].Cells["id_cargo"].Value.ToString()) + "', id_usuario='" + int.Parse(dgridVista.Rows[e.RowIndex].Cells["id_usuario"].Value.ToString()) +
@@ -149,13 +168,23 @@ namespace RentaDeVideos.Mantenimientos.Empleados
                         dgridVista.DataSource = dt;
                         MessageBox.Show("Datos Correctamente Actualizados", "Actualizacion/Modificacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarDatos();
+
+                        OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                        llenarBitacora.CommandType = CommandType.StoredProcedure;
+                        llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                        llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "EMPLEADOS";
+                        llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "ACTUALIZAR";
+                        llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                        llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                        llenarBitacora.ExecuteNonQuery();
+                        llenarBitacora.Connection.Close();
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -164,6 +193,18 @@ namespace RentaDeVideos.Mantenimientos.Empleados
         {
             try
             {
+                IPHostEntry host_ip;
+                string sLocalIP = "?";
+                host_ip = Dns.GetHostEntry(Dns.GetHostName());
+
+                foreach (IPAddress ip in host_ip.AddressList)
+                {
+                    if (ip.AddressFamily.ToString() == "InterNetwork")
+                    {
+                        sLocalIP = ip.ToString();
+                    }
+                }
+
                 string cadena = "UPDATE empleado SET estado=0  WHERE id_empleado='" + iIDEliminar + "';";
                 datos = new OdbcDataAdapter(cadena, cn.conexion());
                 dt = new DataTable();
@@ -171,11 +212,21 @@ namespace RentaDeVideos.Mantenimientos.Empleados
                 dgridVista.DataSource = dt;
                 MessageBox.Show("Datos Eliminados", "Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarDatos();
-            }
-            catch (Exception)
-            {
 
-                throw;
+                OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                llenarBitacora.CommandType = CommandType.StoredProcedure;
+                llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "EMPLEADOS";
+                llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "ELIMINAR";
+                llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                llenarBitacora.ExecuteNonQuery();
+                llenarBitacora.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al eliminar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

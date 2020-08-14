@@ -10,11 +10,14 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Data.Odbc;
 using RentaDeVideos.Clases;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace RentaDeVideos.Mantenimientos.Usuarios
 {
     public partial class IngresoUsuarios: Form
     {
+        int iUsuario = 1;
         public IngresoUsuarios()
         {
             InitializeComponent();
@@ -29,7 +32,12 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void picMinimizar_Click(object sender, EventArgs e)
@@ -67,9 +75,8 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void btnAct_Eliminar_Click(object sender, EventArgs e)
@@ -88,9 +95,41 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
 
         void insertarUsuario()
         {
-           string cadena = "INSERT INTO control_usuario (usuario,contrasenia, rol,estado) VALUES ('"+txtUsuario.Text+"', MD5('"+txtPassword.Text+"'),'"+txtRol.Text+"',1);";
-           OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
-           consulta.ExecuteNonQuery();
+            try
+            {
+                IPHostEntry host_ip;
+                string sLocalIP = "?";
+                host_ip = Dns.GetHostEntry(Dns.GetHostName());
+
+                foreach (IPAddress ip in host_ip.AddressList)
+                {
+                    if (ip.AddressFamily.ToString() == "InterNetwork")
+                    {
+                        sLocalIP = ip.ToString();
+                    }
+                }
+
+                string cadena = "INSERT INTO control_usuario (usuario,contrasenia, rol,estado) VALUES ('" + txtUsuario.Text + "', MD5('" + txtPassword.Text + "'),'" + txtRol.Text + "',1);";
+                OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+                consulta.ExecuteNonQuery();
+                consulta.Connection.Close();
+
+                OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                llenarBitacora.CommandType = CommandType.StoredProcedure;
+                llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "USUARIOS";
+                llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "INSERTAR";
+                llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                llenarBitacora.ExecuteNonQuery();
+                llenarBitacora.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
         void borraDatos()
         {
@@ -122,27 +161,40 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
                 txtPassword.Focus();
                 return false;
             }
+            else if (!Regex.Match(txtUsuario.Text, @"^[A-Za-z]+([\ A-Za-z]+)*$").Success)
+            {
+                MessageBox.Show("Datos del campo usuario invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUsuario.Text = "";
+                txtUsuario.Focus();
+                return false;
+            }
+            else if (!Regex.Match(txtRol.Text, @"^[A-Za-z]+([\ A-Za-z]+)*$").Success)
+            {
+                MessageBox.Show("Datos del campo rol invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRol.Text = "";
+                txtRol.Focus();
+                return false;
+            }
+            else if (!Regex.Match(txtPassword.Text, @"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$").Success)
+            {
+                MessageBox.Show("Datos del campo contraseña invalido. ", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Text = "";
+                txtPassword.Focus();
+                return false;
+            }
             return true;
 
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            if (validarTextbox() == true)
             {
-                if (validarTextbox() == true)
-                {
-                    insertarUsuario();
-                    MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    borraDatos();
-                }
+                insertarUsuario();
+                MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                borraDatos();
             }
-            catch (Exception)
-            {
 
-                throw;
-            }
-            
         }
 
         private void txtRol_KeyPress(object sender, KeyPressEventArgs e)
@@ -152,6 +204,8 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
             {
                 e.Handled = true;
             }
+            txtRol.Text = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtRol.Text);
+            txtRol.SelectionStart = txtRol.Text.Length;
         }
     }
 }

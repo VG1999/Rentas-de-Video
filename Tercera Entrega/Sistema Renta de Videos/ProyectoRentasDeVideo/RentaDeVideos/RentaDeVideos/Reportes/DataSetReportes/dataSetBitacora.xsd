@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dataSetBitacora" targetNamespace="http://tempuri.org/dataSetBitacora.xsd" xmlns:mstns="http://tempuri.org/dataSetBitacora.xsd" xmlns="http://tempuri.org/dataSetBitacora.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dataSetBitacora" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dataSetBitacora" msprop:Generator_UserDSName="dataSetBitacora">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="bitacora" msprop:Generator_TableClassName="bitacoraDataTable" msprop:Generator_TableVarName="tablebitacora" msprop:Generator_TablePropName="bitacora" msprop:Generator_RowDeletingName="bitacoraRowDeleting" msprop:Generator_RowChangingName="bitacoraRowChanging" msprop:Generator_RowEvHandlerName="bitacoraRowChangeEventHandler" msprop:Generator_RowDeletedName="bitacoraRowDeleted" msprop:Generator_UserTableName="bitacora" msprop:Generator_RowChangedName="bitacoraRowChanged" msprop:Generator_RowEvArgName="bitacoraRowChangeEvent" msprop:Generator_RowClassName="bitacoraRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_usuario" msprop:Generator_ColumnVarNameInTable="columnid_usuario" msprop:Generator_ColumnPropNameInRow="id_usuario" msprop:Generator_ColumnPropNameInTable="id_usuarioColumn" msprop:Generator_UserColumnName="id_usuario" type="xs:int" minOccurs="0" />
+              <xs:element name="usuario" msprop:Generator_ColumnVarNameInTable="columnusuario" msprop:Generator_ColumnPropNameInRow="usuario" msprop:Generator_ColumnPropNameInTable="usuarioColumn" msprop:Generator_UserColumnName="usuario" type="xs:string" minOccurs="0" />
+              <xs:element name="tabla" msprop:Generator_ColumnVarNameInTable="columntabla" msprop:Generator_ColumnPropNameInRow="tabla" msprop:Generator_ColumnPropNameInTable="tablaColumn" msprop:Generator_UserColumnName="tabla" type="xs:string" minOccurs="0" />
+              <xs:element name="actividad" msprop:Generator_ColumnVarNameInTable="columnactividad" msprop:Generator_ColumnPropNameInRow="actividad" msprop:Generator_ColumnPropNameInTable="actividadColumn" msprop:Generator_UserColumnName="actividad" type="xs:string" minOccurs="0" />
+              <xs:element name="fecha" msprop:Generator_ColumnVarNameInTable="columnfecha" msprop:Generator_ColumnPropNameInRow="fecha" msprop:Generator_ColumnPropNameInTable="fechaColumn" msprop:Generator_UserColumnName="fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="host_ip" msprop:Generator_ColumnVarNameInTable="columnhost_ip" msprop:Generator_ColumnPropNameInRow="host_ip" msprop:Generator_ColumnPropNameInTable="host_ipColumn" msprop:Generator_UserColumnName="host_ip" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

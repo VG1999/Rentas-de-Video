@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActualizarEliminarCargos));
             this.pnlContenido = new System.Windows.Forms.Panel();
+            this.dgridVista = new System.Windows.Forms.DataGridView();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
             this.picSalir = new System.Windows.Forms.PictureBox();
             this.picMinimizar = new System.Windows.Forms.PictureBox();
@@ -42,17 +43,16 @@
             this.btnIngreso = new System.Windows.Forms.Button();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.dgridVista = new System.Windows.Forms.DataGridView();
             this.cmsDelete = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.eliminarDatoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlContenido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridVista)).BeginInit();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).BeginInit();
             this.pnlSlideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridVista)).BeginInit();
             this.cmsDelete.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,20 @@
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(1050, 550);
             this.pnlContenido.TabIndex = 8;
+            // 
+            // dgridVista
+            // 
+            this.dgridVista.AllowUserToAddRows = false;
+            this.dgridVista.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.dgridVista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgridVista.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgridVista.Location = new System.Drawing.Point(0, 0);
+            this.dgridVista.Name = "dgridVista";
+            this.dgridVista.RowTemplate.Height = 24;
+            this.dgridVista.Size = new System.Drawing.Size(1050, 550);
+            this.dgridVista.TabIndex = 2;
+            this.dgridVista.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgridVista_CellMouseUp);
+            this.dgridVista.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridVista_CellValueChanged);
             // 
             // pnlFormMenu
             // 
@@ -226,39 +240,26 @@
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
-            // dgridVista
-            // 
-            this.dgridVista.AllowUserToAddRows = false;
-            this.dgridVista.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.dgridVista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgridVista.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgridVista.Location = new System.Drawing.Point(0, 0);
-            this.dgridVista.Name = "dgridVista";
-            this.dgridVista.RowTemplate.Height = 24;
-            this.dgridVista.Size = new System.Drawing.Size(1050, 550);
-            this.dgridVista.TabIndex = 2;
-            this.dgridVista.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgridVista_CellMouseUp);
-            this.dgridVista.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridVista_CellValueChanged);
-            // 
             // cmsDelete
             // 
             this.cmsDelete.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsDelete.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eliminarDatoToolStripMenuItem});
             this.cmsDelete.Name = "cmsDelete";
-            this.cmsDelete.Size = new System.Drawing.Size(176, 56);
+            this.cmsDelete.Size = new System.Drawing.Size(170, 28);
             this.cmsDelete.Click += new System.EventHandler(this.cmsDelete_Click);
             // 
             // eliminarDatoToolStripMenuItem
             // 
             this.eliminarDatoToolStripMenuItem.Name = "eliminarDatoToolStripMenuItem";
-            this.eliminarDatoToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.eliminarDatoToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.eliminarDatoToolStripMenuItem.Text = "Eliminar Dato";
             // 
             // ActualizarEliminarCargos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1300, 600);
             this.Controls.Add(this.pnlContenido);
             this.Controls.Add(this.pnlFormMenu);
@@ -268,6 +269,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ActualizarEliminarClientes";
             this.pnlContenido.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgridVista)).EndInit();
             this.pnlFormMenu.ResumeLayout(false);
             this.pnlFormMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
@@ -275,7 +277,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).EndInit();
             this.pnlSlideMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridVista)).EndInit();
             this.cmsDelete.ResumeLayout(false);
             this.ResumeLayout(false);
 

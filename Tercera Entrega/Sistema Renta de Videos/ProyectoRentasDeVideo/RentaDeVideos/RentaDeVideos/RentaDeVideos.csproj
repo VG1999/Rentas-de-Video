@@ -72,13 +72,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\CargarImagenesSlider.cs" />
     <Compile Include="Clases\Conexion.cs" />
-    <Compile Include="InicioMenu.cs">
+    <Compile Include="formularioFondoPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InicioMenu.Designer.cs">
-      <DependentUpon>InicioMenu.cs</DependentUpon>
+    <Compile Include="formularioFondoPrincipal.Designer.cs">
+      <DependentUpon>formularioFondoPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Mantenimientos\Cargos\ActualizarEliminarCargos.cs">
       <SubType>Form</SubType>
@@ -298,8 +297,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\DataSetReportes\dataSetBitacora.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSetBitacora.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\DataSetReportes\dataSetClientes.cs">
       <DependentUpon>dataSetClientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSetReportes\dataSetRentaVideosPorCategoria.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSetRentaVideosPorCategoria.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DataSetReportes\reporteClientes.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -311,14 +320,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dataSetClientes.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\FormulariosReportes\formularioReporteBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FormulariosReportes\formularioReporteBitacora.Designer.cs">
+      <DependentUpon>formularioReporteBitacora.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\FormulariosReportes\formularioReporteClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reportes\FormulariosReportes\formularioReporteClientes.Designer.cs">
-      <DependentUpon>formularioReporteClientes.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="InicioMenu.resx">
-      <DependentUpon>InicioMenu.cs</DependentUpon>
+    <Compile Include="Reportes\FormulariosReportes\formularioReporteClientes.Designer.cs" />
+    <EmbeddedResource Include="formularioFondoPrincipal.resx">
+      <DependentUpon>formularioFondoPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mantenimientos\Cargos\ActualizarEliminarCargos.resx">
       <DependentUpon>ActualizarEliminarCargos.cs</DependentUpon>
@@ -432,10 +445,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\FormulariosReportes\formularioReporteClientes.resx">
-      <DependentUpon>formularioReporteClientes.cs</DependentUpon>
+    <EmbeddedResource Include="Reportes\FormulariosReportes\formularioReporteBitacora.resx">
+      <DependentUpon>formularioReporteBitacora.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FormulariosReportes\formularioReporteClientes.resx" />
+    <EmbeddedResource Include="Reportes\ReportesDiseño\reporteBitacora.rdlc" />
     <EmbeddedResource Include="Reportes\ReportesDiseño\reporteCliente.rdlc" />
+    <EmbeddedResource Include="Reportes\ReportesDiseño\reporteVideoRentado_Categoria.rdlc" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -445,6 +461,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Reportes\DataSetReportes\dataSetBitacora.xsc">
+      <DependentUpon>dataSetBitacora.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetBitacora.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataSetBitacora.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetBitacora.xss">
+      <DependentUpon>dataSetBitacora.xsd</DependentUpon>
+    </None>
     <None Include="Reportes\DataSetReportes\dataSetClientes.xsc">
       <DependentUpon>dataSetClientes.xsd</DependentUpon>
     </None>
@@ -455,6 +482,17 @@
     </None>
     <None Include="Reportes\DataSetReportes\dataSetClientes.xss">
       <DependentUpon>dataSetClientes.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetRentaVideosPorCategoria.xsc">
+      <DependentUpon>dataSetRentaVideosPorCategoria.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetRentaVideosPorCategoria.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataSetRentaVideosPorCategoria.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetRentaVideosPorCategoria.xss">
+      <DependentUpon>dataSetRentaVideosPorCategoria.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

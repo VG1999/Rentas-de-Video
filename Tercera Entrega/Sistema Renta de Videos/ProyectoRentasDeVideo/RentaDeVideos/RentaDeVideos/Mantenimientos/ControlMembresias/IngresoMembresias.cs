@@ -10,11 +10,14 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Data.Odbc;
 using RentaDeVideos.Clases;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace RentaDeVideos.Mantenimientos.ControlMembresias
 {
     public partial class IngresoMembresias: Form
     {
+        int iUsuario = 1;
         public IngresoMembresias()
         {
             InitializeComponent();
@@ -29,7 +32,12 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void picMinimizar_Click(object sender, EventArgs e)
@@ -67,9 +75,8 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void btnAct_Eliminar_Click(object sender, EventArgs e)
@@ -84,11 +91,6 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
             BuscarMembresias bcv = new BuscarMembresias();
             bcv.Show();
             this.Hide();
-        }
-
-        private void pnlContenido_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void txtDescuentos_KeyPress(object sender, KeyPressEventArgs e)
@@ -116,32 +118,60 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
                 txtDescripcion.Focus();
                 return false;
             }
+            else if (!Regex.Match(txtDescripcion.Text, @"^[A-Za-z]+([\ A-Za-z]+)*$").Success)
+            {
+                MessageBox.Show("Datos del campo nombre invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDescripcion.Text = "";
+                txtDescripcion.Focus();
+                return false;
+            }
             return true;
 
         }
 
         void insertarMembresias()
         {
-            string cadena = "INSERT INTO membresia (descripcion, puntos, descuento, estado) VALUES ('" + txtDescripcion.Text + "','" + txtPuntos.Text + "','" + txtDescuentos.Text + "',1);";
-            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
-            consulta.ExecuteNonQuery();
+            try
+            {
+                IPHostEntry host_ip;
+                string sLocalIP = "?";
+                host_ip = Dns.GetHostEntry(Dns.GetHostName());
+
+                foreach (IPAddress ip in host_ip.AddressList)
+                {
+                    if (ip.AddressFamily.ToString() == "InterNetwork")
+                    {
+                        sLocalIP = ip.ToString();
+                    }
+                }
+                string cadena = "INSERT INTO membresia (descripcion, puntos, descuento, estado) VALUES ('" + txtDescripcion.Text + "','" + txtPuntos.Text + "','" + txtDescuentos.Text + "',1);";
+                OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+                consulta.ExecuteNonQuery();
+                consulta.Connection.Close();
+
+                OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                llenarBitacora.CommandType = CommandType.StoredProcedure;
+                llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "MEMBRESIAS";
+                llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "INSERTAR";
+                llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                llenarBitacora.ExecuteNonQuery();
+                llenarBitacora.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            if (validarTextbox() == true)
             {
-                if (validarTextbox() == true)
-                {
-                    insertarMembresias();
-                    MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    borraDatos();
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
+                insertarMembresias();
+                MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                borraDatos();
             }
 
         }

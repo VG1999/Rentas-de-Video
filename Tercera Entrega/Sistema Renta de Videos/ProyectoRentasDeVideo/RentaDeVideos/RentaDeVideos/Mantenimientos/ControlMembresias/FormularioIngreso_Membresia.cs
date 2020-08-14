@@ -45,14 +45,14 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
             
         }
 
-        private void pnlContenido_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void picMinimizar_Click(object sender, EventArgs e)
@@ -80,9 +80,8 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void btnAct_Eliminar_Click(object sender, EventArgs e)

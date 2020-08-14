@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Data.Odbc;
 using RentaDeVideos.Clases;
+using System.Net;
 
 namespace RentaDeVideos.Mantenimientos.Cargos
 {
     public partial class IngresoCargos: Form
     {
+        int iUsuario = 1;
         public IngresoCargos()
         {
             InitializeComponent();
@@ -29,7 +31,12 @@ namespace RentaDeVideos.Mantenimientos.Cargos
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void picMinimizar_Click(object sender, EventArgs e)
@@ -67,9 +74,8 @@ namespace RentaDeVideos.Mantenimientos.Cargos
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void btnAct_Eliminar_Click(object sender, EventArgs e)
@@ -86,11 +92,6 @@ namespace RentaDeVideos.Mantenimientos.Cargos
             this.Hide();
         }
 
-        private void pnlContenido_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             char cCaracter = e.KeyChar;
@@ -102,9 +103,40 @@ namespace RentaDeVideos.Mantenimientos.Cargos
 
         void insertarCargos()
         {
-            string cadena = "INSERT INTO cargo (nombre, descripcion, estado) VALUES ('" + txtNombre.Text + "','" + txtDescripcion.Text + "', 1);";
-            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
-            consulta.ExecuteNonQuery();
+            try
+            {
+                IPHostEntry host_ip;
+                string sLocalIP = "?";
+                host_ip = Dns.GetHostEntry(Dns.GetHostName());
+
+                foreach (IPAddress ip in host_ip.AddressList)
+                {
+                    if (ip.AddressFamily.ToString() == "InterNetwork")
+                    {
+                        sLocalIP = ip.ToString();
+                    }
+                }
+                string cadena = "INSERT INTO cargo (nombre, descripcion, estado) VALUES ('" + txtNombre.Text + "','" + txtDescripcion.Text + "', 1);";
+                OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+                consulta.ExecuteNonQuery();
+                consulta.Connection.Close();
+
+                OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                llenarBitacora.CommandType = CommandType.StoredProcedure;
+                llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "CARGOS";
+                llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "INSERTAR";
+                llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                llenarBitacora.ExecuteNonQuery();
+                llenarBitacora.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         private bool validarTextbox()
         {
@@ -138,19 +170,11 @@ namespace RentaDeVideos.Mantenimientos.Cargos
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            if (validarTextbox() == true)
             {
-                if (validarTextbox() == true)
-                {
-                    insertarCargos();
-                    MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    BorrarTextbox();
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
+                insertarCargos();
+                MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                BorrarTextbox();
             }
         }
     }

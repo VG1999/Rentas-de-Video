@@ -84,7 +84,6 @@
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(1050, 550);
             this.pnlContenido.TabIndex = 5;
-            this.pnlContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContenido_Paint);
             // 
             // cmbCategoria
             // 
@@ -188,7 +187,6 @@
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(233, 32);
             this.txtTitulo.TabIndex = 3;
-            this.txtTitulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTitulo_KeyPress);
             // 
             // lblTitulo
             // 

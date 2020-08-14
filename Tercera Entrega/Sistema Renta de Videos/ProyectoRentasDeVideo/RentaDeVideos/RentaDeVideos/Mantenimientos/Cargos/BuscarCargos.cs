@@ -77,9 +77,8 @@ namespace RentaDeVideos.Mantenimientos.Cargos
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void picMinimizar_Click(object sender, EventArgs e)
@@ -89,7 +88,12 @@ namespace RentaDeVideos.Mantenimientos.Cargos
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void pnlFormMenu_MouseDown(object sender, MouseEventArgs e)

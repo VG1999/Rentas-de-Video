@@ -11,12 +11,14 @@ using System.Runtime.InteropServices;
 using System.Data.Odbc;
 using RentaDeVideos.Clases;
 using System.Text.RegularExpressions;
+using System.Net;
 
 namespace RentaDeVideos.Mantenimientos.Empleados
 {
     public partial class IngresoEmpleados : Form
     {
         Conexion cn = new Conexion();
+        int iUsuario = 1;
 
         public IngresoEmpleados()
         {
@@ -33,7 +35,12 @@ namespace RentaDeVideos.Mantenimientos.Empleados
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void picMinimizar_Click(object sender, EventArgs e)
@@ -71,9 +78,8 @@ namespace RentaDeVideos.Mantenimientos.Empleados
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void btnAct_Eliminar_Click(object sender, EventArgs e)
@@ -88,11 +94,6 @@ namespace RentaDeVideos.Mantenimientos.Empleados
             BuscarEmpleados bc = new BuscarEmpleados();
             bc.Show();
             this.Hide();
-        }
-
-        private void pnlContenido_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void txtCargo_KeyPress(object sender, KeyPressEventArgs e)
@@ -179,19 +180,50 @@ namespace RentaDeVideos.Mantenimientos.Empleados
                 }
                 cmbUsuario.SelectedIndex.Equals(0);
             }
-            catch (Exception)
+            catch (Exception  ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al datos al combobox", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
            
         }
 
         void insertarEmpleados()
         {
-            string cadena = "INSERT INTO empleado (id_cargo,id_usuario, dpi, nit, nombre, apellido, correo, telefono, direccion, estado) VALUES ('" + cmbCargo.SelectedItem.ToString() + "','" +cmbUsuario.SelectedItem.ToString()+"','"+ txtDPI.Text + "','" + txtNIT.Text + "','" + txtNombre.Text + "','" + txtApellidos.Text + "','" + txtCorreo.Text + "','" + txtTelefono.Text + "','"+txtDireccion.Text+"', 1);";
-            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
-            consulta.ExecuteNonQuery();
+            try
+            {
+                IPHostEntry host_ip;
+                string sLocalIP = "?";
+                host_ip = Dns.GetHostEntry(Dns.GetHostName());
+
+                foreach (IPAddress ip in host_ip.AddressList)
+                {
+                    if (ip.AddressFamily.ToString() == "InterNetwork")
+                    {
+                        sLocalIP = ip.ToString();
+                    }
+                }
+                string cadena = "INSERT INTO empleado (id_cargo,id_usuario, dpi, nit, nombre, apellido, correo, telefono, direccion, estado) VALUES ('" + cmbCargo.SelectedItem.ToString() + "','" + cmbUsuario.SelectedItem.ToString() + "','" + txtDPI.Text + "','" + txtNIT.Text + "','" + txtNombre.Text + "','" + txtApellidos.Text + "','" + txtCorreo.Text + "','" + txtTelefono.Text + "','" + txtDireccion.Text + "', 1);";
+                OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+                consulta.ExecuteNonQuery();
+                consulta.Connection.Close();
+
+                OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                llenarBitacora.CommandType = CommandType.StoredProcedure;
+                llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "EMPLEADOS";
+                llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "INSERTAR";
+                llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                llenarBitacora.ExecuteNonQuery();
+                llenarBitacora.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         void borraDatos()
         {
@@ -291,26 +323,38 @@ namespace RentaDeVideos.Mantenimientos.Empleados
 
                 return true;
             }
+            if (!Regex.Match(txtNIT.Text, @"^[0-9]{6}[-][0-9A-z]{1}$").Success)
+            {
+                MessageBox.Show("Datos del campo NIT invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNIT.Text = "";
+                txtNIT.Focus();
+                return false;
+            }
+            if (!Regex.Match(txtCorreo.Text, @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.([a-zA-Z]{2,4})+$").Success)
+            {
+                MessageBox.Show("Datos del campo correo invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCorreo.Text = "";
+                txtCorreo.Focus();
+                return false;
+            }
+            if (!Regex.Match(txtDPI.Text, @"(^[0-9]{4}[ ][0-9]{5}[ ][0-9]{4})$").Success)
+            {
+                MessageBox.Show("Datos del campo DPI invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDPI.Text = "";
+                txtDPI.Focus();
+                return false;
+            }
             return true;
             
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
+            if (validarTextbox() == true)
             {
-
-                if (validarTextbox() == true)
-                {
-                    insertarEmpleados();
-                    MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    borraDatos();
-                }
+                insertarEmpleados();
+                MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                borraDatos();
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-         }
+        }
     }
 }

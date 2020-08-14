@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using RentaDeVideos.Clases;
 using System.Data.Odbc;
+using System.Net;
 
 namespace RentaDeVideos.Mantenimientos.CategoriaVideos
 {
     public partial class IngresoCatVideos: Form
     {
+        int iUsuario = 1;
         public IngresoCatVideos()
         {
             InitializeComponent();
@@ -29,7 +31,12 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void picMinimizar_Click(object sender, EventArgs e)
@@ -67,9 +74,8 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void btnAct_Eliminar_Click(object sender, EventArgs e)
@@ -86,42 +92,58 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
             this.Hide();
         }
 
-        private void pnlContenido_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         void insertarCategorias()
-        {
-            string cadena = "INSERT INTO categoria_video (nombre, estado) VALUES ('" + txtNombre.Text + "', 1);";
-            OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
-            consulta.ExecuteNonQuery();
-        }
-
-
-        private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txtNombre.Text == "")
-                {
-                    MessageBox.Show("Llene el campo nombre", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtNombre.Text = "";
-                    txtNombre.Focus();
-                }
-                else
-                {
-                    insertarCategorias();
-                    MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtNombre.Text = "";
-                }
-            }
-            catch (Exception)
-            {
+                IPHostEntry host_ip;
+                string sLocalIP = "?";
+                host_ip = Dns.GetHostEntry(Dns.GetHostName());
 
-                throw;
+                foreach (IPAddress ip in host_ip.AddressList)
+                {
+                    if (ip.AddressFamily.ToString() == "InterNetwork")
+                    {
+                        sLocalIP = ip.ToString();
+                    }
+                }
+                string cadena = "INSERT INTO categoria_video (nombre, estado) VALUES ('" + txtNombre.Text + "', 1);";
+                OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
+                consulta.ExecuteNonQuery();
+                consulta.Connection.Close();
+
+                OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                llenarBitacora.CommandType = CommandType.StoredProcedure;
+                llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "CATEGORIA_VIDEOS";
+                llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "INSERTAR";
+                llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                llenarBitacora.ExecuteNonQuery();
+                llenarBitacora.Connection.Close();
+            }
+            catch (Exception  ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+        
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (txtNombre.Text == "")
+            {
+                MessageBox.Show("Llene el campo nombre", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNombre.Text = "";
+                txtNombre.Focus();
+            }
+            else
+            {
+                insertarCategorias();
+                MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtNombre.Text = "";
+            }
         }
     }
 }

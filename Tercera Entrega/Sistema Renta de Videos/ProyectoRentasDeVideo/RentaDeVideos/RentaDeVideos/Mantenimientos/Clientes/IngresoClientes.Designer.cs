@@ -88,7 +88,6 @@
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(1050, 550);
             this.pnlContenido.TabIndex = 5;
-            this.pnlContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContenido_Paint);
             // 
             // btnGuardar
             // 
@@ -164,7 +163,6 @@
             this.lblCorreo.Size = new System.Drawing.Size(77, 23);
             this.lblCorreo.TabIndex = 6;
             this.lblCorreo.Text = "Correo";
-            this.lblCorreo.Click += new System.EventHandler(this.label7_Click);
             // 
             // lblNIT
             // 
@@ -175,7 +173,6 @@
             this.lblNIT.Size = new System.Drawing.Size(38, 23);
             this.lblNIT.TabIndex = 5;
             this.lblNIT.Text = "NIT";
-            this.lblNIT.Click += new System.EventHandler(this.label6_Click);
             // 
             // lblApellidos
             // 
@@ -186,7 +183,6 @@
             this.lblApellidos.Size = new System.Drawing.Size(100, 23);
             this.lblApellidos.TabIndex = 4;
             this.lblApellidos.Text = "Apellidos";
-            this.lblApellidos.Click += new System.EventHandler(this.lblApellidos_Click);
             // 
             // lblMembresia
             // 
@@ -197,7 +193,6 @@
             this.lblMembresia.Size = new System.Drawing.Size(143, 23);
             this.lblMembresia.TabIndex = 3;
             this.lblMembresia.Text = "ID Membresia";
-            this.lblMembresia.Click += new System.EventHandler(this.label4_Click);
             // 
             // lblTelefono
             // 
@@ -208,7 +203,6 @@
             this.lblTelefono.Size = new System.Drawing.Size(93, 23);
             this.lblTelefono.TabIndex = 2;
             this.lblTelefono.Text = "Telefono";
-            this.lblTelefono.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblDPI
             // 
@@ -219,7 +213,6 @@
             this.lblDPI.Size = new System.Drawing.Size(42, 23);
             this.lblDPI.TabIndex = 1;
             this.lblDPI.Text = "DPI";
-            this.lblDPI.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblNombre
             // 
@@ -230,7 +223,6 @@
             this.lblNombre.Size = new System.Drawing.Size(90, 23);
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
-            this.lblNombre.Click += new System.EventHandler(this.lblNombre_Click);
             // 
             // pnlFormMenu
             // 

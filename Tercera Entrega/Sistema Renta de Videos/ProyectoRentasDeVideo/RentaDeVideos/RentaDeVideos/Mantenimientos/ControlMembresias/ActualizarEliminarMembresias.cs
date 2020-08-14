@@ -10,24 +10,19 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using RentaDeVideos.Clases;
 using System.Data.Odbc;
+using System.Net;
 
 namespace RentaDeVideos.Mantenimientos.ControlMembresias
 {
     public partial class ActualizarEliminarMembresias : Form
     {
+        int iUsuario = 1;
+
         public ActualizarEliminarMembresias()
         {
             InitializeComponent();
-            try
-            {
-                CargarDatos();
-            }
-            catch (Exception)
-            {
+            CargarDatos();
 
-                throw;
-            }
-            
         }
 
         Conexion cn = new Conexion();
@@ -56,7 +51,12 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void btnMembresias_Click(object sender, EventArgs e)
@@ -87,9 +87,8 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void pnlFormMenu_MouseDown(object sender, MouseEventArgs e)
@@ -99,12 +98,21 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
         }
         void CargarDatos()
         {
-            string cadena = "SELECT id_membresia, descripcion, puntos, descuento FROM membresia WHERE estado=1";
+            try
+            {
+                string cadena = "SELECT id_membresia, descripcion, puntos, descuento FROM membresia WHERE estado=1";
 
-            datos = new OdbcDataAdapter(cadena, cn.conexion());
-            dt = new DataTable();
-            datos.Fill(dt);
-            dgridVista.DataSource = dt;
+                datos = new OdbcDataAdapter(cadena, cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridVista.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         string sCadena;
         int iID;
@@ -124,6 +132,17 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
                 }
                 if (iID != 0)
                 {
+                    IPHostEntry host_ip;
+                    string sLocalIP = "?";
+                    host_ip = Dns.GetHostEntry(Dns.GetHostName());
+
+                    foreach (IPAddress ip in host_ip.AddressList)
+                    {
+                        if (ip.AddressFamily.ToString() == "InterNetwork")
+                        {
+                            sLocalIP = ip.ToString();
+                        }
+                    }
                     if (dgridVista.CurrentRow != null)
                     {
                         string cadena = "UPDATE membresia SET descripcion='" + dgridVista.Rows[e.RowIndex].Cells["descripcion"].Value.ToString() + "',puntos='" + int.Parse(dgridVista.Rows[e.RowIndex].Cells["puntos"].Value.ToString()) + "', descuento='" + int.Parse(dgridVista.Rows[e.RowIndex].Cells["descuento"].Value.ToString()) + "' WHERE id_membresia='" + iID + "';";
@@ -133,13 +152,23 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
                         dgridVista.DataSource = dt;
                         MessageBox.Show("Datos Correctamente Actualizados", "Actualizacion/Modificacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarDatos();
+
+                        OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                        llenarBitacora.CommandType = CommandType.StoredProcedure;
+                        llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                        llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "MEMBRESIAS";
+                        llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "ACTUALIZAR";
+                        llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                        llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                        llenarBitacora.ExecuteNonQuery();
+                        llenarBitacora.Connection.Close();
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
             
@@ -155,15 +184,22 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
             }
         }
 
-        private void cmsDelete_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
         private void cmsDelete_Click(object sender, EventArgs e)
         {
             try
             {
+                IPHostEntry host_ip;
+                string sLocalIP = "?";
+                host_ip = Dns.GetHostEntry(Dns.GetHostName());
+
+                foreach (IPAddress ip in host_ip.AddressList)
+                {
+                    if (ip.AddressFamily.ToString() == "InterNetwork")
+                    {
+                        sLocalIP = ip.ToString();
+                    }
+                }
+
                 string cadena = "UPDATE membresia SET estado=0  WHERE id_membresia='" + iIDEliminar + "';";
                 datos = new OdbcDataAdapter(cadena, cn.conexion());
                 dt = new DataTable();
@@ -171,11 +207,21 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
                 dgridVista.DataSource = dt;
                 MessageBox.Show("Datos Eliminados", "Eliminacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarDatos();
-            }
-            catch (Exception)
-            {
 
-                throw;
+                OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
+                llenarBitacora.CommandType = CommandType.StoredProcedure;
+                llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
+                llenarBitacora.Parameters.Add("tabla", OdbcType.Text).Value = "MEMBREISAS";
+                llenarBitacora.Parameters.Add("actividad", OdbcType.Text).Value = "ELIMINAR";
+                llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
+                llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
+                llenarBitacora.ExecuteNonQuery();
+                llenarBitacora.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al eliminar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

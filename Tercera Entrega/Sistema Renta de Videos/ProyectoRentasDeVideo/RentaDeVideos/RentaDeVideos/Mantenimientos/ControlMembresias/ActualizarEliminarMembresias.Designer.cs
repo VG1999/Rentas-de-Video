@@ -247,7 +247,6 @@
             this.eliminarDatoToolStripMenuItem});
             this.cmsDelete.Name = "cmsDelete";
             this.cmsDelete.Size = new System.Drawing.Size(170, 28);
-            this.cmsDelete.Opening += new System.ComponentModel.CancelEventHandler(this.cmsDelete_Opening);
             this.cmsDelete.Click += new System.EventHandler(this.cmsDelete_Click);
             // 
             // eliminarDatoToolStripMenuItem

@@ -71,9 +71,8 @@ namespace RentaDeVideos.Mantenimientos.EstadosVideos
 
         private void btnVolverMenu_Click(object sender, EventArgs e)
         {
-            FormularioInicioMenu fim = new FormularioInicioMenu();
-            fim.Show();
-            this.Hide();
+            formularioFondoPrincipal fim = new formularioFondoPrincipal();
+            this.Dispose();
         }
 
         private void pnlFormMenu_MouseDown(object sender, MouseEventArgs e)
