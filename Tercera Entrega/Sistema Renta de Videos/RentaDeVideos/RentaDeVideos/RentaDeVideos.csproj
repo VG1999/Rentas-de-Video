@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F22117D2-70EC-45DF-A959-D9D5A1CF6BBF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RentaDeVideos</RootNamespace>
+    <AssemblyName>RentaDeVideos</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.21\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.21\lib\net452\Zstandard.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Conexion.cs" />
+    <Compile Include="Clases\Control.cs" />
+    <Compile Include="Clases\ControlUsuario.cs" />
+    <Compile Include="Clases\Modelo.cs" />
+    <Compile Include="Clases\Users.cs" />
+    <Compile Include="formularioFondoPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formularioFondoPrincipal.Designer.cs">
+      <DependentUpon>formularioFondoPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Cargos\ActualizarEliminarCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Cargos\ActualizarEliminarCargos.Designer.cs">
+      <DependentUpon>ActualizarEliminarCargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Cargos\BuscarCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Cargos\BuscarCargos.Designer.cs">
+      <DependentUpon>BuscarCargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Cargos\FormularioIngreso_Cargo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Cargos\FormularioIngreso_Cargo.Designer.cs">
+      <DependentUpon>FormularioIngreso_Cargo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Cargos\IngresoCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Cargos\IngresoCargos.Designer.cs">
+      <DependentUpon>IngresoCargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\ActualizarEliminarCatVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\ActualizarEliminarCatVideos.Designer.cs">
+      <DependentUpon>ActualizarEliminarCatVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\BuscarCatVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\BuscarCatVideos.Designer.cs">
+      <DependentUpon>BuscarCatVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\FormularioIngreso_CatVideo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\FormularioIngreso_CatVideo.Designer.cs">
+      <DependentUpon>FormularioIngreso_CatVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\IngresoCatVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\CategoriaVideos\IngresoCatVideos.Designer.cs">
+      <DependentUpon>IngresoCatVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Clientes\ActualizarEliminarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Clientes\ActualizarEliminarClientes.Designer.cs">
+      <DependentUpon>ActualizarEliminarClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Clientes\BuscarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Clientes\BuscarClientes.Designer.cs">
+      <DependentUpon>BuscarClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Clientes\FormularioIngreso_Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Clientes\FormularioIngreso_Cliente.Designer.cs">
+      <DependentUpon>FormularioIngreso_Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Clientes\IngresoClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Clientes\IngresoClientes.Designer.cs">
+      <DependentUpon>IngresoClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\ActualizarEliminarMembresias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\ActualizarEliminarMembresias.Designer.cs">
+      <DependentUpon>ActualizarEliminarMembresias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\BuscarMembresias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\BuscarMembresias.Designer.cs">
+      <DependentUpon>BuscarMembresias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\FormularioIngreso_Membresia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\FormularioIngreso_Membresia.Designer.cs">
+      <DependentUpon>FormularioIngreso_Membresia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\IngresoMembresias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\ControlMembresias\IngresoMembresias.Designer.cs">
+      <DependentUpon>IngresoMembresias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Empleados\ActualizarEliminarEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Empleados\ActualizarEliminarEmpleados.Designer.cs">
+      <DependentUpon>ActualizarEliminarEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Empleados\BuscarEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Empleados\BuscarEmpleados.Designer.cs">
+      <DependentUpon>BuscarEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Empleados\FormularioIngreso_Empleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Empleados\FormularioIngreso_Empleado.Designer.cs">
+      <DependentUpon>FormularioIngreso_Empleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Empleados\IngresoEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Empleados\IngresoEmpleados.Designer.cs">
+      <DependentUpon>IngresoEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\ActualizarEliminarEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\ActualizarEliminarEstado.Designer.cs">
+      <DependentUpon>ActualizarEliminarEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\BuscarEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\BuscarEstado.Designer.cs">
+      <DependentUpon>BuscarEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\FormularioIngreso_Estado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\FormularioIngreso_Estado.Designer.cs">
+      <DependentUpon>FormularioIngreso_Estado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\IngresoEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\EstadosVideos\IngresoEstado.Designer.cs">
+      <DependentUpon>IngresoEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Login\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Login\FormLogin.designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Proveedores\ActualizarEliminarProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Proveedores\ActualizarEliminarProveedores.Designer.cs">
+      <DependentUpon>ActualizarEliminarProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Proveedores\BuscarProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Proveedores\BuscarProveedores.Designer.cs">
+      <DependentUpon>BuscarProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Proveedores\FormularioIngreso_Proveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Proveedores\FormularioIngreso_Proveedor.Designer.cs">
+      <DependentUpon>FormularioIngreso_Proveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Proveedores\IngresoProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Proveedores\IngresoProveedores.Designer.cs">
+      <DependentUpon>IngresoProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios\ActualizarEliminarUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios\ActualizarEliminarUsuarios.Designer.cs">
+      <DependentUpon>ActualizarEliminarUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios\BuscarUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios\BuscarUsuarios.Designer.cs">
+      <DependentUpon>BuscarUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios\FormularioIngreso_Usuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios\FormularioIngreso_Usuario.Designer.cs">
+      <DependentUpon>FormularioIngreso_Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios\IngresoUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Usuarios\IngresoUsuarios.Designer.cs">
+      <DependentUpon>IngresoUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\ActualizarEliminarVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\ActualizarEliminarVideos.Designer.cs">
+      <DependentUpon>ActualizarEliminarVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\BuscarVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\BuscarVideos.Designer.cs">
+      <DependentUpon>BuscarVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\FormularioIngreso_Video.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\FormularioIngreso_Video.Designer.cs">
+      <DependentUpon>FormularioIngreso_Video.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\IngresoVideos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mantenimientos\Videos\IngresoVideos.Designer.cs">
+      <DependentUpon>IngresoVideos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Procesos\Compras\IngresoCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Procesos\Compras\IngresoCompras.Designer.cs">
+      <DependentUpon>IngresoCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Procesos\Compras\ManBusquedaCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Procesos\Compras\ManBusquedaCompras.Designer.cs">
+      <DependentUpon>ManBusquedaCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Procesos\Compras\MantenimientoCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Procesos\Compras\MantenimientoCompras.Designer.cs">
+      <DependentUpon>MantenimientoCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Procesos\Facturas\IngresoFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Procesos\Facturas\IngresoFactura.Designer.cs">
+      <DependentUpon>IngresoFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Procesos\Facturas\ManBusquedaFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Procesos\Facturas\ManBusquedaFactura.Designer.cs">
+      <DependentUpon>ManBusquedaFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Procesos\Facturas\MantenimientoFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Procesos\Facturas\MantenimientoFacturas.Designer.cs">
+      <DependentUpon>MantenimientoFacturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\DataSetReportes\dataSetBitacora.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSetBitacora.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSetReportes\dataSetClientes.cs">
+      <DependentUpon>dataSetClientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSetReportes\dataSetRentaVideosPorCategoria.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSetRentaVideosPorCategoria.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSetReportes\reporteClientes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSetClientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSetReportes\dataSetClientes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSetClientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FormulariosReportes\formularioReporteBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FormulariosReportes\formularioReporteBitacora.Designer.cs">
+      <DependentUpon>formularioReporteBitacora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FormulariosReportes\formularioReporteClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\FormulariosReportes\formularioReporteClientes.Designer.cs" />
+    <EmbeddedResource Include="formularioFondoPrincipal.resx">
+      <DependentUpon>formularioFondoPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Cargos\ActualizarEliminarCargos.resx">
+      <DependentUpon>ActualizarEliminarCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Cargos\BuscarCargos.resx">
+      <DependentUpon>BuscarCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Cargos\FormularioIngreso_Cargo.resx">
+      <DependentUpon>FormularioIngreso_Cargo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Cargos\IngresoCargos.resx">
+      <DependentUpon>IngresoCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\CategoriaVideos\ActualizarEliminarCatVideos.resx">
+      <DependentUpon>ActualizarEliminarCatVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\CategoriaVideos\BuscarCatVideos.resx">
+      <DependentUpon>BuscarCatVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\CategoriaVideos\FormularioIngreso_CatVideo.resx">
+      <DependentUpon>FormularioIngreso_CatVideo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\CategoriaVideos\IngresoCatVideos.resx">
+      <DependentUpon>IngresoCatVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Clientes\ActualizarEliminarClientes.resx">
+      <DependentUpon>ActualizarEliminarClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Clientes\BuscarClientes.resx">
+      <DependentUpon>BuscarClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Clientes\FormularioIngreso_Cliente.resx">
+      <DependentUpon>FormularioIngreso_Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Clientes\IngresoClientes.resx">
+      <DependentUpon>IngresoClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlMembresias\ActualizarEliminarMembresias.resx">
+      <DependentUpon>ActualizarEliminarMembresias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlMembresias\BuscarMembresias.resx">
+      <DependentUpon>BuscarMembresias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlMembresias\FormularioIngreso_Membresia.resx">
+      <DependentUpon>FormularioIngreso_Membresia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\ControlMembresias\IngresoMembresias.resx">
+      <DependentUpon>IngresoMembresias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Empleados\ActualizarEliminarEmpleados.resx">
+      <DependentUpon>ActualizarEliminarEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Empleados\BuscarEmpleados.resx">
+      <DependentUpon>BuscarEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Empleados\FormularioIngreso_Empleado.resx">
+      <DependentUpon>FormularioIngreso_Empleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Empleados\IngresoEmpleados.resx">
+      <DependentUpon>IngresoEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\EstadosVideos\ActualizarEliminarEstado.resx">
+      <DependentUpon>ActualizarEliminarEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\EstadosVideos\BuscarEstado.resx">
+      <DependentUpon>BuscarEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\EstadosVideos\FormularioIngreso_Estado.resx">
+      <DependentUpon>FormularioIngreso_Estado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\EstadosVideos\IngresoEstado.resx">
+      <DependentUpon>IngresoEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Login\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Proveedores\ActualizarEliminarProveedores.resx">
+      <DependentUpon>ActualizarEliminarProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Proveedores\BuscarProveedores.resx">
+      <DependentUpon>BuscarProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Proveedores\FormularioIngreso_Proveedor.resx">
+      <DependentUpon>FormularioIngreso_Proveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Proveedores\IngresoProveedores.resx">
+      <DependentUpon>IngresoProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Usuarios\ActualizarEliminarUsuarios.resx">
+      <DependentUpon>ActualizarEliminarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Usuarios\BuscarUsuarios.resx">
+      <DependentUpon>BuscarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Usuarios\FormularioIngreso_Usuario.resx">
+      <DependentUpon>FormularioIngreso_Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Usuarios\IngresoUsuarios.resx">
+      <DependentUpon>IngresoUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Videos\ActualizarEliminarVideos.resx">
+      <DependentUpon>ActualizarEliminarVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Videos\BuscarVideos.resx">
+      <DependentUpon>BuscarVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Videos\FormularioIngreso_Video.resx">
+      <DependentUpon>FormularioIngreso_Video.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mantenimientos\Videos\IngresoVideos.resx">
+      <DependentUpon>IngresoVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Procesos\Compras\IngresoCompras.resx">
+      <DependentUpon>IngresoCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Procesos\Compras\ManBusquedaCompras.resx">
+      <DependentUpon>ManBusquedaCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Procesos\Compras\MantenimientoCompras.resx">
+      <DependentUpon>MantenimientoCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Procesos\Facturas\IngresoFactura.resx">
+      <DependentUpon>IngresoFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Procesos\Facturas\ManBusquedaFactura.resx">
+      <DependentUpon>ManBusquedaFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Procesos\Facturas\MantenimientoFacturas.resx">
+      <DependentUpon>MantenimientoFacturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FormulariosReportes\formularioReporteBitacora.resx">
+      <DependentUpon>formularioReporteBitacora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FormulariosReportes\formularioReporteClientes.resx" />
+    <EmbeddedResource Include="Reportes\ReportesDiseño\reporteBitacora.rdlc" />
+    <EmbeddedResource Include="Reportes\ReportesDiseño\reporteCliente.rdlc" />
+    <EmbeddedResource Include="Reportes\ReportesDiseño\reporteVideoRentado_Categoria.rdlc" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Reportes\DataSetReportes\dataSetBitacora.xsc">
+      <DependentUpon>dataSetBitacora.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetBitacora.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataSetBitacora.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetBitacora.xss">
+      <DependentUpon>dataSetBitacora.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetClientes.xsc">
+      <DependentUpon>dataSetClientes.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetClientes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataSetClientes.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetClientes.xss">
+      <DependentUpon>dataSetClientes.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetRentaVideosPorCategoria.xsc">
+      <DependentUpon>dataSetRentaVideosPorCategoria.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetRentaVideosPorCategoria.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataSetRentaVideosPorCategoria.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSetReportes\dataSetRentaVideosPorCategoria.xss">
+      <DependentUpon>dataSetRentaVideosPorCategoria.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
