@@ -18,16 +18,8 @@ namespace RentaDeVideos.Mantenimientos.Videos
         public BuscarVideos()
         {
             InitializeComponent();
-            try
-            {
-                CargarDatos();
-            }
-            catch (Exception)
-            {
+            CargarDatos();
 
-                throw;
-            }
-            
         }
 
         Conexion cn = new Conexion();
@@ -104,12 +96,21 @@ namespace RentaDeVideos.Mantenimientos.Videos
 
         void CargarDatos()
         {
-            string cadena = "SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio FROM video WHERE estado=1";
+            try
+            {
+                string cadena = "SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio, cantidad FROM video WHERE estado=1";
 
-            datos = new OdbcDataAdapter(cadena, cn.conexion());
-            dt = new DataTable();
-            datos.Fill(dt);
-            dgridDatos.DataSource = dt;
+                datos = new OdbcDataAdapter(cadena, cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -118,58 +119,58 @@ namespace RentaDeVideos.Mantenimientos.Videos
             {
                 if (cmbColumna.Text == "ID")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio FROM video WHERE id_video='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio, cantidad FROM video WHERE id_video='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "ID CATEGORIA")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio FROM video WHERE id_categoria='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio, cantidad FROM video WHERE id_categoria='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "Titulo")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio FROM video WHERE titulo='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio, cantidad FROM video WHERE titulo='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "Duracion")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio FROM video WHERE duracion='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio, cantidad FROM video WHERE duracion='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "Formato")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio FROM video WHERE formato='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio, cantidad FROM video WHERE formato='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "Año")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio FROM video WHERE anio='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio, cantidad FROM video WHERE anio='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "Precio")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio FROM video WHERE precio='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio, cantidad FROM video WHERE precio='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al buscar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

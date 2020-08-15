@@ -8,14 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using RentaDeVideos.Clases;
+using System.Data.Odbc;
 
 namespace RentaDeVideos.Mantenimientos.EstadosVideos
 {
     public partial class BuscarEstado : Form
     {
+        Conexion cn = new Conexion();
+        OdbcDataAdapter datos;
+        DataTable dt;
+
         public BuscarEstado()
         {
             InitializeComponent();
+            CargarDatos();
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -72,13 +79,70 @@ namespace RentaDeVideos.Mantenimientos.EstadosVideos
 
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void pnlFormMenu_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        void CargarDatos()
+        {
+            try
+            {
+                string cadena = "SELECT id_video_estado, multa_unitaria, descripcion FROM video_estado WHERE estado=1";
+
+                datos = new OdbcDataAdapter(cadena, cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbColumna.Text == "ID")
+                {
+                    datos = new OdbcDataAdapter("SELECT id_video_estado, multa_unitaria, descripcion FROM video_estado WHERE id_video_estado='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    dt = new DataTable();
+                    datos.Fill(dt);
+                    dgridDatos.DataSource = dt;
+                }
+                else if (cmbColumna.Text == "Multa")
+                {
+                    datos = new OdbcDataAdapter("SELECT id_video_estado, multa_unitaria, descripcion FROM video_estado WHERE multa_unitaria='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    dt = new DataTable();
+                    datos.Fill(dt);
+                    dgridDatos.DataSource = dt;
+                }
+                else if (cmbColumna.Text == "Estado")
+                {
+                    datos = new OdbcDataAdapter("SELECT id_video_estado, multa_unitaria, descripcion FROM video_estado WHERE descripcion='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    dt = new DataTable();
+                    datos.Fill(dt);
+                    dgridDatos.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al buscar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

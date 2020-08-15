@@ -99,7 +99,7 @@ namespace RentaDeVideos.Mantenimientos.Clientes
         {
             try
             {
-                string cadena = "SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE estado=1";
+                string cadena = "SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE estado=1";
 
                 datos = new OdbcDataAdapter(cadena, cn.conexion());
                 dt = new DataTable();
@@ -148,7 +148,8 @@ namespace RentaDeVideos.Mantenimientos.Clientes
                         string cadena = "UPDATE cliente SET id_membresia='" + int.Parse(dgridVista.Rows[e.RowIndex].Cells["id_membresia"].Value.ToString()) +
                             "',dpi='" + dgridVista.Rows[e.RowIndex].Cells["dpi"].Value.ToString() + "', nit='" + dgridVista.Rows[e.RowIndex].Cells["nit"].Value.ToString() +
                             "', nombre='" + dgridVista.Rows[e.RowIndex].Cells["nombre"].Value.ToString() + "', apellido='" + dgridVista.Rows[e.RowIndex].Cells["apellido"].Value.ToString() +
-                            "', telefono='" + int.Parse(dgridVista.Rows[e.RowIndex].Cells["telefono"].Value.ToString()) + "', correo='" + dgridVista.Rows[e.RowIndex].Cells["correo"].Value.ToString() + "' WHERE id_cliente='" + iID + "';";
+                            "', telefono='" + int.Parse(dgridVista.Rows[e.RowIndex].Cells["telefono"].Value.ToString()) + "', correo='" + dgridVista.Rows[e.RowIndex].Cells["correo"].Value.ToString() +"', direccion='"+dgridVista.Rows[e.RowIndex].Cells["direccion"].Value.ToString()
+                            + "' WHERE id_cliente='" + iID + "';";
                         datos = new OdbcDataAdapter(cadena, cn.conexion());
                         dt = new DataTable();
                         datos.Fill(dt);

@@ -18,17 +18,8 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
         public BuscarUsuarios()
         {
             InitializeComponent();
-            try
-            {
+            CargarDatos();
 
-                CargarDatos();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            
         }
 
         Conexion cn = new Conexion();
@@ -105,12 +96,21 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
 
         void CargarDatos()
         {
-            string cadena = "SELECT id_usuario, usuario, contrasenia, rol FROM control_usuario WHERE estado=1";
+            try
+            {
+                string cadena = "SELECT id_usuario, usuario, contrasenia, rol FROM control_usuario WHERE estado=1";
 
-            datos = new OdbcDataAdapter(cadena, cn.conexion());
-            dt = new DataTable();
-            datos.Fill(dt);
-            dgridDatos.DataSource = dt;
+                datos = new OdbcDataAdapter(cadena, cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -146,10 +146,10 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
                     dgridDatos.DataSource = dt;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al buscar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

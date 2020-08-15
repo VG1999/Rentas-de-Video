@@ -177,7 +177,7 @@ namespace RentaDeVideos.Mantenimientos.Clientes
                         sLocalIP = ip.ToString();
                     }
                 }
-                string cadena = "INSERT INTO cliente (id_membresia, dpi, nit, nombre, apellido, telefono, correo, estado) VALUES ('" + cmbMembresia.SelectedItem.ToString() + "','" + txtDPI.Text + "','" + txtNIT.Text + "','" + txtNombre.Text + "','" + txtApellidos.Text + "','" + txtTelefono.Text + "','" + txtCorreo.Text + "', 1);";
+                string cadena = "INSERT INTO cliente (id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion, estado) VALUES ('" + cmbMembresia.SelectedItem.ToString() + "','" + txtDPI.Text + "','" + txtNIT.Text + "','" + txtNombre.Text + "','" + txtApellidos.Text + "','" + txtTelefono.Text + "','" + txtCorreo.Text + "','" + txtDireccion.Text+ "', 1);";
                 OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
                 consulta.ExecuteNonQuery();
                 consulta.Connection.Close();
@@ -209,6 +209,7 @@ namespace RentaDeVideos.Mantenimientos.Clientes
             txtApellidos.Text = "";
             txtCorreo.Text = "";
             txtTelefono.Text = "";
+            txtDireccion.Text = "";
         }
 
         private bool validarTextbox()
@@ -259,6 +260,13 @@ namespace RentaDeVideos.Mantenimientos.Clientes
                 MessageBox.Show("Ingrese Telefono", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTelefono.Text = "";
                 txtTelefono.Focus();
+                return false;
+            }
+            else if (txtDireccion.Text == "")
+            {
+                MessageBox.Show("Ingrese Direccion", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDireccion.Text = "";
+                txtDireccion.Focus();
                 return false;
             }
             else if(!Regex.Match(txtNombre.Text, @"^[A-Za-z]+([\ A-Za-z]+)*$").Success)

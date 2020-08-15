@@ -197,7 +197,7 @@ namespace RentaDeVideos.Mantenimientos.Proveedores
             }
             if (!Regex.Match(txtRazon.Text, @"^[A-Za-z]+([\ A-Za-z]+)*$").Success)
             {
-                MessageBox.Show("Datos del campo representante invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Datos del campo razon social invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtRazon.Text = "";
                 txtRazon.Focus();
                 return false;

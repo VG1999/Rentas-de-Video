@@ -18,16 +18,8 @@ namespace RentaDeVideos.Mantenimientos.Clientes
         public BuscarClientes()
         {
             InitializeComponent();
-            try
-            {
-                CargarDatos();
-            }
-            catch (Exception)
-            {
+            CargarDatos();
 
-                throw;
-            }
-            
         }
 
         Conexion cn = new Conexion();
@@ -104,12 +96,21 @@ namespace RentaDeVideos.Mantenimientos.Clientes
 
         void CargarDatos()
         {
-            string cadena = "SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE estado=1";
+            try
+            {
+                string cadena = "SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE estado=1";
 
-            datos = new OdbcDataAdapter(cadena, cn.conexion());
-            dt = new DataTable();
-            datos.Fill(dt);
-            dgridDatos.DataSource = dt;
+                datos = new OdbcDataAdapter(cadena, cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -118,65 +119,72 @@ namespace RentaDeVideos.Mantenimientos.Clientes
             {
                 if (cmbColumna.Text == "ID")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE id_cliente='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE id_cliente='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "ID Membresia")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE id_membresia='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE id_membresia='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "DPI")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE dpi='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE dpi='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "NIT")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE nit='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE nit='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "NOMBRE")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE nombre='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE nombre='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "APELLIDO")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE apellido='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE apellido='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "CORREO")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE correo='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE correo='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
                 else if (cmbColumna.Text == "TELEFONO")
                 {
-                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo FROM cliente WHERE telefono='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE telefono='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
+                    dt = new DataTable();
+                    datos.Fill(dt);
+                    dgridDatos.DataSource = dt;
+                }
+                else if (cmbColumna.Text == "DIRECCION")
+                {
+                    datos = new OdbcDataAdapter("SELECT id_cliente, id_membresia, dpi, nit, nombre, apellido, telefono, correo, direccion FROM cliente WHERE direccion='" + txtBuscar.Text + "' AND estado=1", cn.conexion());
                     dt = new DataTable();
                     datos.Fill(dt);
                     dgridDatos.DataSource = dt;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al buscar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

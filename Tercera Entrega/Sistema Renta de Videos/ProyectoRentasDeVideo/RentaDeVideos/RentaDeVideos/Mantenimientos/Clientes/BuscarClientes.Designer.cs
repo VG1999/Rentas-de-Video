@@ -111,7 +111,8 @@
             "NOMBRE",
             "APELLIDO",
             "TELEFONO",
-            "CORREO"});
+            "CORREO",
+            "DIRECCION"});
             this.cmbColumna.Location = new System.Drawing.Point(185, 41);
             this.cmbColumna.Name = "cmbColumna";
             this.cmbColumna.Size = new System.Drawing.Size(264, 31);

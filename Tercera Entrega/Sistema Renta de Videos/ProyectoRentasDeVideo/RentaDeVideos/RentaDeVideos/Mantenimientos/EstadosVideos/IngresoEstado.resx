@@ -152,17 +152,17 @@
   </data>
   <data name="btnEstados.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAALEAAACxAcYtSY0AAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
-        AAAB3klEQVRYR+2XsS9DURTGb9OQEMSiU6VGaSQlHSQdiEUMIgwGicFiEYOxg0hjMjSsDDaDQZAY8AdY
-        DDaDwSQWVgOC5/vq3OT2Oe+lnvdYepJf+s757r3f19fXJjWe56mgcuAG7AboHeAKnINUwJoDcA16NJ2o
-        Q4JaBrwgnYo+6egDip519Hm/bqlvjCmARVABZ8AesCEzl31g9W2ZuWwBqx/LjGcX6jzFmGlPgd2QNPTK
-        irdpA/ys/YuShp70NusyIHugKMlWZEa67S2zoKYdfVDR+xx9QWZFQA87p7e5lOYOpJ0DZmT+CFrs3NGH
-        RH8FGUXnt+QJsBlz5mlALzb0Ni/SVH0HcOEc+PbuLKgpMKppBDUMZpV5FfCC3rULUvEvTAp6Ob7NANEC
-        oFJgDSxpehioWAKMOHtz2pogULEECP0dCAPVDNAM0AwQS4AJZ2+/tiYI1Krse2NjD/lpgFZwCHY0PQxU
-        HtyCTTaRAsTFrwKgMqBL0xqFFSkAqhc8gwfQrq1pBNa/BEDxjw+fo2gBCCrSR4AaBx/ggs094PREW5wE
-        9BJPepsjad5BXtsQJ/QQLzb0NiVnwFem4y9VEvBs16tkU5VlwOYvoFe55u3cGt4J3hL7TCQBz6ZH6cvX
-        M5/1zzLlRPSgigAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        sQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHeSURBVFhH7Zex
+        L0NRFMZv05AQxKJTpUZpJCUdJB2IRQwiDAaJwWIRg7GDSGMyNKwMNoNBkBjwB1gMNoPBJBZWA4Ln++rc
+        5PY576We91h6kl/6zvnuvd/X19cmNZ7nqaBy4AbsBugd4Aqcg1TAmgNwDXo0nahDgloGvCCdij7p6AOK
+        nnX0eb9uqW+MKYBFUAFnwB6wITOXfWD1bZm5bAGrH8uMZxfqPMWYaU+B3ZA09MqKt2kD/Kz9i5KGnvQ2
+        6zIge6AoyVZkRrrtLbOgph19UNH7HH1BZkVADzunt7mU5g6knQNmZP4IWuzc0YdEfwUZRee35AmwGXPm
+        aUAvNvQ2L9JUfQdw4Rz49u4sqCkwqmkENQxmlXkV8ILetQtS8S9MCno5vs0A0QKgUmANLGl6GKhYAow4
+        e3PamiBQsQQI/R0IA9UM0AzQDBBLgAlnb7+2JgjUqux7Y2MP+WmAVnAIdjQ9DFQe3IJNNpECxMWvAqAy
+        oEvTGoUVKQCqFzyDB9CurWkE1r8EQPGPD5+jaAEIKtJHgBoHH+CCzT3g9ERbnAT0Ek96myNp3kFe2xAn
+        9BAvNvQ2JWfAV6bjL1US8GzXq2RTlWXA5i+gV7nm7dwa3gneEvtMJAHPpkfpy9czn/XPMuVE9KCKAAAA
+        AElFTkSuQmCC
 </value>
   </data>
   <data name="btnBuscar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

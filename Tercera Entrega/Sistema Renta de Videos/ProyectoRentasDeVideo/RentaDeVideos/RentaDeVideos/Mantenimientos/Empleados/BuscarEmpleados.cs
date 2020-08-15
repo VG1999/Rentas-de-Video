@@ -18,16 +18,8 @@ namespace RentaDeVideos.Mantenimientos.Empleados
         public BuscarEmpleados()
         {
             InitializeComponent();
-            try
-            {
-                CargarDatos();
-            }
-            catch (Exception)
-            {
+            CargarDatos();
 
-                throw;
-            }
-            
         }
 
         Conexion cn = new Conexion();
@@ -104,12 +96,21 @@ namespace RentaDeVideos.Mantenimientos.Empleados
 
         void CargarDatos()
         {
-            string cadena = "SELECT id_empleado, id_cargo, id_usuario, dpi, nit, nombre, apellido, correo, telefono, direccion FROM empleado WHERE estado=1";
+            try
+            {
+                string cadena = "SELECT id_empleado, id_cargo, id_usuario, dpi, nit, nombre, apellido, correo, telefono, direccion FROM empleado WHERE estado=1";
 
-            datos = new OdbcDataAdapter(cadena, cn.conexion());
-            dt = new DataTable();
-            datos.Fill(dt);
-            dgridDatos.DataSource = dt;
+                datos = new OdbcDataAdapter(cadena, cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -187,10 +188,10 @@ namespace RentaDeVideos.Mantenimientos.Empleados
                     dgridDatos.DataSource = dt;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al buscar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

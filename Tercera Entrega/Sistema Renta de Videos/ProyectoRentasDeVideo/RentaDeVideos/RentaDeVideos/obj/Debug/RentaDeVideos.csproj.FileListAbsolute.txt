@@ -59,3 +59,5 @@ C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVi
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RdlCompile.compiled
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.formularioFondoPrincipal.resources
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Reportes.FormulariosReportes.formularioReporteBitacora.resources
+C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Procesos.Compras.IngresoCompras.resources
+C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Procesos.Facturas.IngresoFactura.resources

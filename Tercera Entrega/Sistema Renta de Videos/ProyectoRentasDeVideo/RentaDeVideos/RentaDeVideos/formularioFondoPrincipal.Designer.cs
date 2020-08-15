@@ -169,6 +169,7 @@
             this.estadoVideosToolStripMenuItem.Name = "estadoVideosToolStripMenuItem";
             this.estadoVideosToolStripMenuItem.Size = new System.Drawing.Size(257, 28);
             this.estadoVideosToolStripMenuItem.Text = "Estado Videos";
+            this.estadoVideosToolStripMenuItem.Click += new System.EventHandler(this.estadoVideosToolStripMenuItem_Click);
             // 
             // videosToolStripMenuItem
             // 
@@ -265,14 +266,16 @@
             // facturaToolStripMenuItem
             // 
             this.facturaToolStripMenuItem.Name = "facturaToolStripMenuItem";
-            this.facturaToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
+            this.facturaToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
             this.facturaToolStripMenuItem.Text = "Factura";
+            this.facturaToolStripMenuItem.Click += new System.EventHandler(this.facturaToolStripMenuItem_Click);
             // 
             // comprasToolStripMenuItem
             // 
             this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
-            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
+            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(181, 28);
             this.comprasToolStripMenuItem.Text = "Compras";
+            this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
             // 
             // informesToolStripMenuItem
             // 

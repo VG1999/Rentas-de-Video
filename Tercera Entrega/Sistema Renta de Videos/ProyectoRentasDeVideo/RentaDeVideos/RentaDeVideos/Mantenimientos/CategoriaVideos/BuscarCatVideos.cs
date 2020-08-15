@@ -18,16 +18,8 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
         public BuscarCatVideos()
         {
             InitializeComponent();
-            try
-            {
-                CargarDatos();
-            }
-            catch (Exception)
-            {
+            CargarDatos();
 
-                throw;
-            }
-            
         }
 
         Conexion cn = new Conexion();
@@ -104,12 +96,21 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
 
         void CargarDatos()
         {
-            string cadena = "SELECT id_categoria, nombre FROM categoria_video WHERE estado=1";
+            try
+            {
+                string cadena = "SELECT id_categoria, nombre FROM categoria_video WHERE estado=1";
 
-            datos = new OdbcDataAdapter(cadena, cn.conexion());
-            dt = new DataTable();
-            datos.Fill(dt);
-            dgridDatos.DataSource = dt;
+                datos = new OdbcDataAdapter(cadena, cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -131,10 +132,10 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
                     dgridDatos.DataSource = dt;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al buscar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

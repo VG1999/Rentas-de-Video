@@ -154,7 +154,7 @@ namespace RentaDeVideos.Mantenimientos.Videos
                     }
                 }
 
-                string cadena = "INSERT INTO video (id_categoria,titulo, duracion,formato, anio,precio, estado) VALUES ('" + cmbCategoria.SelectedItem.ToString() + "','" + txtTitulo.Text + "','" + txtDuracion.Text + "','" + txtFormato.Text + "','" + txtAnio.Text + "','" + txtPrecio.Text + "',1);";
+                string cadena = "INSERT INTO video (id_categoria,titulo, duracion,formato, anio,precio,cantidad, estado) VALUES ('" + cmbCategoria.SelectedItem.ToString() + "','" + txtTitulo.Text + "','" + txtDuracion.Text + "','" + txtFormato.Text + "','" + txtAnio.Text + "','" + txtPrecio.Text + "','"+txtCantidad.Text+"',1);";
                 OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
                 consulta.ExecuteNonQuery();
                 consulta.Connection.Close();
@@ -186,6 +186,7 @@ namespace RentaDeVideos.Mantenimientos.Videos
             txtFormato.Text = "";
             txtPrecio.Text = "";
             txtTitulo.Text = "";
+            txtCantidad.Text = "";
             
         }
 
@@ -260,6 +261,13 @@ namespace RentaDeVideos.Mantenimientos.Videos
                 txtPrecio.Focus();
                 return false;
             }
+            if (!Regex.Match(txtCantidad.Text, @"^[0-9]\d{0,7}$").Success)
+            {
+                MessageBox.Show("Datos del campo cantidad invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCantidad.Text = "";
+                txtCantidad.Focus();
+                return false;
+            }
             return true;
 
         }
@@ -274,6 +282,15 @@ namespace RentaDeVideos.Mantenimientos.Videos
                 MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtTitulo.Focus();
              }
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char cCaracter = e.KeyChar;
+            if (!char.IsDigit(cCaracter) && cCaracter != 8 && cCaracter != 32)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

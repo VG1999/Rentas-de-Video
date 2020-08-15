@@ -1,7 +1,6 @@
 create database rentas;
 use rentas;
 
-
 /*estructura tabla clientes*/
 create table if not exists cliente (
     id_cliente int(6) not null auto_increment,
@@ -90,7 +89,7 @@ create table if not exists cargo (
 );
 /*Estructura de la tabla ENCABEZADO_FACTURA*/
 create table if not exists encabezado_factura (
-    id_encabezado_factura int(6) not null auto_increment,
+    id_encabezado_factura int(6) not null,
     id_cliente int(6) not null,
     id_empleado int(6) not null,
     no_serie varchar(10)not null,
@@ -139,7 +138,7 @@ create table if not exists proveedor (
 );
 /*tabla 16*/
 create table if not exists encabezado_compra (
-    id_compra int(6) not null auto_increment,
+    id_compra int(6) not null,
     id_proveedor int(6) not null,
     fecha_compra int(6) not null,
     total_compra double(12,2)not null,
@@ -147,7 +146,6 @@ create table if not exists encabezado_compra (
     primary key (id_compra),
     key (id_compra)
 );
-
 /*tabla 17*/
 create table if not exists detalle_compra (
     id_compra int(6) not null,

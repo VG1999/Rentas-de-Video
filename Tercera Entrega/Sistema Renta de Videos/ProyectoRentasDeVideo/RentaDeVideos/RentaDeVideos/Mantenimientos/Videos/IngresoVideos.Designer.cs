@@ -54,6 +54,8 @@
             this.btnIngreso = new System.Windows.Forms.Button();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
+            this.lblCantidad = new System.Windows.Forms.Label();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.pnlContenido.SuspendLayout();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
@@ -66,6 +68,8 @@
             // pnlContenido
             // 
             this.pnlContenido.BackColor = System.Drawing.Color.White;
+            this.pnlContenido.Controls.Add(this.txtCantidad);
+            this.pnlContenido.Controls.Add(this.lblCantidad);
             this.pnlContenido.Controls.Add(this.cmbCategoria);
             this.pnlContenido.Controls.Add(this.txtPrecio);
             this.pnlContenido.Controls.Add(this.lblPrecio);
@@ -206,7 +210,7 @@
             this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(329, 392);
+            this.btnGuardar.Location = new System.Drawing.Point(362, 449);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(282, 58);
             this.btnGuardar.TabIndex = 0;
@@ -374,6 +378,25 @@
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidad.Location = new System.Drawing.Point(50, 345);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(104, 23);
+            this.lblCantidad.TabIndex = 20;
+            this.lblCantidad.Text = "Cantidad";
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidad.Location = new System.Drawing.Point(217, 345);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(233, 32);
+            this.txtCantidad.TabIndex = 21;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
+            // 
             // IngresoVideos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -426,5 +449,7 @@
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.ComboBox cmbCategoria;
+        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.Label lblCantidad;
     }
 }

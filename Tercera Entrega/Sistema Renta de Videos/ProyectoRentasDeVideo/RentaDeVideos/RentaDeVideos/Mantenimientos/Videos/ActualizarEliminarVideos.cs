@@ -100,7 +100,7 @@ namespace RentaDeVideos.Mantenimientos.Videos
         {
             try
             {
-                string cadena = "SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio FROM video WHERE estado=1";
+                string cadena = "SELECT id_video, id_categoria, titulo, duracion, formato, anio, precio, cantidad FROM video WHERE estado=1";
 
                 datos = new OdbcDataAdapter(cadena, cn.conexion());
                 dt = new DataTable();
@@ -158,7 +158,7 @@ namespace RentaDeVideos.Mantenimientos.Videos
                     {
                         string cadena = "UPDATE video SET id_categoria='" + int.Parse(dgridVista.Rows[e.RowIndex].Cells["id_categoria"].Value.ToString()) + "', titulo='" + dgridVista.Rows[e.RowIndex].Cells["titulo"].Value.ToString() +
                             "',duracion='" + dgridVista.Rows[e.RowIndex].Cells["duracion"].Value.ToString() + "', formato='" + dgridVista.Rows[e.RowIndex].Cells["formato"].Value.ToString() +
-                            "', anio='" + dgridVista.Rows[e.RowIndex].Cells["anio"].Value.ToString() + "', precio='" + double.Parse(dgridVista.Rows[e.RowIndex].Cells["precio"].Value.ToString()) + "' WHERE id_video='" + iID + "';";
+                            "', anio='" + dgridVista.Rows[e.RowIndex].Cells["anio"].Value.ToString() + "', precio='" + double.Parse(dgridVista.Rows[e.RowIndex].Cells["precio"].Value.ToString()) +"', cantidad='"+int.Parse(dgridVista.Rows[e.RowIndex].Cells["cantidad"].Value.ToString())+ "' WHERE id_video='" + iID + "';";
                         datos = new OdbcDataAdapter(cadena, cn.conexion());
                         dt = new DataTable();
                         datos.Fill(dt);

@@ -34,7 +34,6 @@
             this.lblColumna = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.cmbColumna = new System.Windows.Forms.ComboBox();
-            this.dgridDatos = new System.Windows.Forms.DataGridView();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
             this.picSalir = new System.Windows.Forms.PictureBox();
             this.picMinimizar = new System.Windows.Forms.PictureBox();
@@ -46,24 +45,25 @@
             this.btnIngreso = new System.Windows.Forms.Button();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
+            this.dgridDatos = new System.Windows.Forms.DataGridView();
             this.pnlContenido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridDatos)).BeginInit();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).BeginInit();
             this.pnlSlideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlContenido
             // 
             this.pnlContenido.BackColor = System.Drawing.Color.White;
+            this.pnlContenido.Controls.Add(this.dgridDatos);
             this.pnlContenido.Controls.Add(this.lblBuscar);
             this.pnlContenido.Controls.Add(this.lblColumna);
             this.pnlContenido.Controls.Add(this.txtBuscar);
             this.pnlContenido.Controls.Add(this.cmbColumna);
-            this.pnlContenido.Controls.Add(this.dgridDatos);
             this.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenido.Location = new System.Drawing.Point(250, 50);
             this.pnlContenido.Name = "pnlContenido";
@@ -97,24 +97,20 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(264, 32);
             this.txtBuscar.TabIndex = 2;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // cmbColumna
             // 
             this.cmbColumna.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbColumna.FormattingEnabled = true;
+            this.cmbColumna.Items.AddRange(new object[] {
+            "ID",
+            "Estado",
+            "Multa"});
             this.cmbColumna.Location = new System.Drawing.Point(185, 41);
             this.cmbColumna.Name = "cmbColumna";
             this.cmbColumna.Size = new System.Drawing.Size(264, 31);
             this.cmbColumna.TabIndex = 1;
-            // 
-            // dgridDatos
-            // 
-            this.dgridDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgridDatos.Location = new System.Drawing.Point(40, 106);
-            this.dgridDatos.Name = "dgridDatos";
-            this.dgridDatos.RowTemplate.Height = 24;
-            this.dgridDatos.Size = new System.Drawing.Size(952, 415);
-            this.dgridDatos.TabIndex = 0;
             // 
             // pnlFormMenu
             // 
@@ -276,6 +272,16 @@
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
+            // dgridDatos
+            // 
+            this.dgridDatos.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.dgridDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgridDatos.Location = new System.Drawing.Point(40, 106);
+            this.dgridDatos.Name = "dgridDatos";
+            this.dgridDatos.RowTemplate.Height = 24;
+            this.dgridDatos.Size = new System.Drawing.Size(952, 415);
+            this.dgridDatos.TabIndex = 5;
+            // 
             // BuscarEstado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -290,7 +296,6 @@
             this.Text = "BuscarClientes";
             this.pnlContenido.ResumeLayout(false);
             this.pnlContenido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridDatos)).EndInit();
             this.pnlFormMenu.ResumeLayout(false);
             this.pnlFormMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
@@ -298,6 +303,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBotonMenuSlide)).EndInit();
             this.pnlSlideMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridDatos)).EndInit();
             this.ResumeLayout(false);
 
         }

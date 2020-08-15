@@ -94,5 +94,23 @@ namespace RentaDeVideos
             Reportes.FormulariosReportes.formularioReporteBitacora bitacora = new Reportes.FormulariosReportes.formularioReporteBitacora();
             bitacora.Show();
         }
+
+        private void estadoVideosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Mantenimientos.EstadosVideos.FormularioIngreso_Estado video_estado = new Mantenimientos.EstadosVideos.FormularioIngreso_Estado();
+            video_estado.Show();
+        }
+
+        private void facturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Procesos.Facturas.IngresoFactura factura = new Procesos.Facturas.IngresoFactura();
+            factura.Show();
+        }
+
+        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Procesos.Compras.IngresoCompras compras = new Procesos.Compras.IngresoCompras();
+            compras.Show();
+        }
     }
 }

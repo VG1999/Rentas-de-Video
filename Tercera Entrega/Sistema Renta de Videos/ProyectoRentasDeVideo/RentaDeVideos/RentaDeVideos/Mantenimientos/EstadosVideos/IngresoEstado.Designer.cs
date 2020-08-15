@@ -30,8 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresoEstado));
             this.pnlContenido = new System.Windows.Forms.Panel();
-            this.txtDevolucion = new System.Windows.Forms.TextBox();
-            this.lblDevolucion = new System.Windows.Forms.Label();
+            this.txtMulta = new System.Windows.Forms.TextBox();
+            this.lblMulta = new System.Windows.Forms.Label();
+            this.txtEstado = new System.Windows.Forms.TextBox();
+            this.lblEstado = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.pnlFormMenu = new System.Windows.Forms.Panel();
             this.picSalir = new System.Windows.Forms.PictureBox();
@@ -44,10 +46,6 @@
             this.btnIngreso = new System.Windows.Forms.Button();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.txtEstado = new System.Windows.Forms.TextBox();
-            this.lblEstado = new System.Windows.Forms.Label();
-            this.txtMulta = new System.Windows.Forms.TextBox();
-            this.lblMulta = new System.Windows.Forms.Label();
             this.pnlContenido.SuspendLayout();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
@@ -64,43 +62,60 @@
             this.pnlContenido.Controls.Add(this.lblMulta);
             this.pnlContenido.Controls.Add(this.txtEstado);
             this.pnlContenido.Controls.Add(this.lblEstado);
-            this.pnlContenido.Controls.Add(this.txtDevolucion);
-            this.pnlContenido.Controls.Add(this.lblDevolucion);
             this.pnlContenido.Controls.Add(this.btnGuardar);
             this.pnlContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenido.Location = new System.Drawing.Point(250, 50);
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(1050, 550);
             this.pnlContenido.TabIndex = 5;
-            this.pnlContenido.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContenido_Paint);
             // 
-            // txtDevolucion
+            // txtMulta
             // 
-            this.txtDevolucion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDevolucion.Location = new System.Drawing.Point(204, 60);
-            this.txtDevolucion.Name = "txtDevolucion";
-            this.txtDevolucion.Size = new System.Drawing.Size(233, 32);
-            this.txtDevolucion.TabIndex = 3;
+            this.txtMulta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMulta.Location = new System.Drawing.Point(408, 238);
+            this.txtMulta.Name = "txtMulta";
+            this.txtMulta.Size = new System.Drawing.Size(233, 32);
+            this.txtMulta.TabIndex = 7;
+            this.txtMulta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMulta_KeyPress);
             // 
-            // lblDevolucion
+            // lblMulta
             // 
-            this.lblDevolucion.AutoSize = true;
-            this.lblDevolucion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDevolucion.Location = new System.Drawing.Point(20, 63);
-            this.lblDevolucion.Name = "lblDevolucion";
-            this.lblDevolucion.Size = new System.Drawing.Size(148, 23);
-            this.lblDevolucion.TabIndex = 1;
-            this.lblDevolucion.Text = "ID Devolucion";
+            this.lblMulta.AutoSize = true;
+            this.lblMulta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMulta.Location = new System.Drawing.Point(224, 238);
+            this.lblMulta.Name = "lblMulta";
+            this.lblMulta.Size = new System.Drawing.Size(143, 23);
+            this.lblMulta.TabIndex = 6;
+            this.lblMulta.Text = "Multa Unitaria";
+            // 
+            // txtEstado
+            // 
+            this.txtEstado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEstado.Location = new System.Drawing.Point(408, 106);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.Size = new System.Drawing.Size(233, 32);
+            this.txtEstado.TabIndex = 5;
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.Location = new System.Drawing.Point(224, 109);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(141, 23);
+            this.lblEstado.TabIndex = 4;
+            this.lblEstado.Text = "Estado Video";
             // 
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(408, 359);
+            this.btnGuardar.Location = new System.Drawing.Point(393, 378);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(198, 94);
+            this.btnGuardar.Size = new System.Drawing.Size(218, 78);
             this.btnGuardar.TabIndex = 0;
             this.btnGuardar.Text = "Guardar Datos";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // pnlFormMenu
             // 
@@ -262,42 +277,6 @@
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
-            // txtEstado
-            // 
-            this.txtEstado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstado.Location = new System.Drawing.Point(737, 60);
-            this.txtEstado.Name = "txtEstado";
-            this.txtEstado.Size = new System.Drawing.Size(233, 32);
-            this.txtEstado.TabIndex = 5;
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.AutoSize = true;
-            this.lblEstado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.Location = new System.Drawing.Point(565, 63);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(141, 23);
-            this.lblEstado.TabIndex = 4;
-            this.lblEstado.Text = "Estado Video";
-            // 
-            // txtMulta
-            // 
-            this.txtMulta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMulta.Location = new System.Drawing.Point(204, 200);
-            this.txtMulta.Name = "txtMulta";
-            this.txtMulta.Size = new System.Drawing.Size(233, 32);
-            this.txtMulta.TabIndex = 7;
-            // 
-            // lblMulta
-            // 
-            this.lblMulta.AutoSize = true;
-            this.lblMulta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMulta.Location = new System.Drawing.Point(20, 200);
-            this.lblMulta.Name = "lblMulta";
-            this.lblMulta.Size = new System.Drawing.Size(143, 23);
-            this.lblMulta.TabIndex = 6;
-            this.lblMulta.Text = "Multa Unitaria";
-            // 
             // IngresoEstado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -337,12 +316,10 @@
         private System.Windows.Forms.Button btnIngreso;
         private System.Windows.Forms.Button btnVolverMenu;
         private System.Windows.Forms.PictureBox picLogo;
-        private System.Windows.Forms.Label lblDevolucion;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.TextBox txtDevolucion;
-        private System.Windows.Forms.TextBox txtEstado;
-        private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.TextBox txtMulta;
         private System.Windows.Forms.Label lblMulta;
+        private System.Windows.Forms.TextBox txtEstado;
+        private System.Windows.Forms.Label lblEstado;
     }
 }

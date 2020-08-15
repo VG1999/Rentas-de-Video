@@ -58,20 +58,28 @@ namespace RentaDeVideos.Reportes.FormulariosReportes
 
         private void btnMostrar_Click(object sender, EventArgs e)
         {
-            string sConsulta = " select b.id_usuario, u.usuario, b.tabla, b.actividad, b.fecha, b.host_ip from bitacora b inner join control_usuario u on b.id_usuario=u.id_usuario;";
-            OdbcDataAdapter data_adapter = new OdbcDataAdapter(sConsulta, cn.conexion());
-            DataSet data_set_bitacora = new DataSet();
-            data_adapter.Fill(data_set_bitacora);
+            try
+            {
+                string sConsulta = " select b.id_usuario, u.usuario, b.tabla, b.actividad, b.fecha, b.host_ip from bitacora b inner join control_usuario u on b.id_usuario=u.id_usuario;";
+                OdbcDataAdapter data_adapter = new OdbcDataAdapter(sConsulta, cn.conexion());
+                DataSet data_set_bitacora = new DataSet();
+                data_adapter.Fill(data_set_bitacora);
 
-            ReportDataSource fuente;
-            fuente = new ReportDataSource("dataSet_Bitacora", data_set_bitacora.Tables[0]);
+                ReportDataSource fuente;
+                fuente = new ReportDataSource("dataSet_Bitacora", data_set_bitacora.Tables[0]);
 
-            rptBitacora.LocalReport.DataSources.Clear();
-            rptBitacora.LocalReport.DataSources.Add(fuente);
-            rptBitacora.LocalReport.ReportEmbeddedResource = "RentaDeVideos.Reportes.ReportesDiseño.reporteBitacora.rdlc";
-            rptBitacora.LocalReport.Refresh();
-            rptBitacora.Refresh();
-            rptBitacora.RefreshReport();
+                rptBitacora.LocalReport.DataSources.Clear();
+                rptBitacora.LocalReport.DataSources.Add(fuente);
+                rptBitacora.LocalReport.ReportEmbeddedResource = "RentaDeVideos.Reportes.ReportesDiseño.reporteBitacora.rdlc";
+                rptBitacora.LocalReport.Refresh();
+                rptBitacora.Refresh();
+                rptBitacora.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar reporte", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

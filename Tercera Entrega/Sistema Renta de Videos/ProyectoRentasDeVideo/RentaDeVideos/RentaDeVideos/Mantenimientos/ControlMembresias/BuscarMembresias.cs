@@ -18,16 +18,8 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
         public BuscarMembresias()
         {
             InitializeComponent();
-            try
-            {
-                CargarDatos();
-            }
-            catch (Exception)
-            {
+            CargarDatos();
 
-                throw;
-            }
-            
         }
 
         Conexion cn = new Conexion();
@@ -104,12 +96,21 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
 
         void CargarDatos()
         {
-            string cadena = "SELECT id_membresia, descripcion, puntos, descuento FROM membresia WHERE estado=1";
+            try
+            {
+                string cadena = "SELECT id_membresia, descripcion, puntos, descuento FROM membresia WHERE estado=1";
 
-            datos = new OdbcDataAdapter(cadena, cn.conexion());
-            dt = new DataTable();
-            datos.Fill(dt);
-            dgridDatos.DataSource = dt;
+                datos = new OdbcDataAdapter(cadena, cn.conexion());
+                dt = new DataTable();
+                datos.Fill(dt);
+                dgridDatos.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al cargar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -145,10 +146,10 @@ namespace RentaDeVideos.Mantenimientos.ControlMembresias
                     dgridDatos.DataSource = dt;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error al buscar datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

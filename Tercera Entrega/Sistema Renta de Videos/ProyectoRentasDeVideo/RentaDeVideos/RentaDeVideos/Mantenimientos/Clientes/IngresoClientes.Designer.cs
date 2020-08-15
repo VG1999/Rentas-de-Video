@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresoClientes));
             this.pnlContenido = new System.Windows.Forms.Panel();
+            this.cmbMembresia = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txtCorreo = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
@@ -55,7 +56,8 @@
             this.btnIngreso = new System.Windows.Forms.Button();
             this.btnVolverMenu = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.cmbMembresia = new System.Windows.Forms.ComboBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.lblDireccion = new System.Windows.Forms.Label();
             this.pnlContenido.SuspendLayout();
             this.pnlFormMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
@@ -68,6 +70,8 @@
             // pnlContenido
             // 
             this.pnlContenido.BackColor = System.Drawing.Color.White;
+            this.pnlContenido.Controls.Add(this.txtDireccion);
+            this.pnlContenido.Controls.Add(this.lblDireccion);
             this.pnlContenido.Controls.Add(this.cmbMembresia);
             this.pnlContenido.Controls.Add(this.btnGuardar);
             this.pnlContenido.Controls.Add(this.txtCorreo);
@@ -88,6 +92,17 @@
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(1050, 550);
             this.pnlContenido.TabIndex = 5;
+            // 
+            // cmbMembresia
+            // 
+            this.cmbMembresia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMembresia.FormattingEnabled = true;
+            this.cmbMembresia.Items.AddRange(new object[] {
+            "Seleccione Membresia"});
+            this.cmbMembresia.Location = new System.Drawing.Point(227, 344);
+            this.cmbMembresia.Name = "cmbMembresia";
+            this.cmbMembresia.Size = new System.Drawing.Size(298, 31);
+            this.cmbMembresia.TabIndex = 14;
             // 
             // btnGuardar
             // 
@@ -384,16 +399,23 @@
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
-            // cmbMembresia
+            // txtDireccion
             // 
-            this.cmbMembresia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMembresia.FormattingEnabled = true;
-            this.cmbMembresia.Items.AddRange(new object[] {
-            "Seleccione Membresia"});
-            this.cmbMembresia.Location = new System.Drawing.Point(227, 344);
-            this.cmbMembresia.Name = "cmbMembresia";
-            this.cmbMembresia.Size = new System.Drawing.Size(298, 31);
-            this.cmbMembresia.TabIndex = 14;
+            this.txtDireccion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDireccion.Location = new System.Drawing.Point(708, 345);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(298, 32);
+            this.txtDireccion.TabIndex = 16;
+            // 
+            // lblDireccion
+            // 
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDireccion.Location = new System.Drawing.Point(573, 344);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(101, 23);
+            this.lblDireccion.TabIndex = 15;
+            this.lblDireccion.Text = "Direccion";
             // 
             // IngresoClientes
             // 
@@ -449,5 +471,7 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.ComboBox cmbMembresia;
+        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.Label lblDireccion;
     }
 }
