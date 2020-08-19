@@ -18,7 +18,7 @@ namespace RentaDeVideos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ReporteClientes());
+            Application.Run(new FormLogin());
         }
     }
 }

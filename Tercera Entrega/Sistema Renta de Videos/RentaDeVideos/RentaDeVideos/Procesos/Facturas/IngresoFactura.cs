@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -128,7 +129,6 @@ namespace RentaDeVideos.Procesos.Facturas
         int iCantidad;
         double dPrecio;
         double dSubTotal;
-        double dSubtotalBD;
         double dTotal;
         //Calculo de bon/desc, subtotal, subtotal/desc,
         //No muestra precio pero si se toma de la tabla para el respectivo calculo
@@ -201,10 +201,21 @@ namespace RentaDeVideos.Procesos.Facturas
             return dTotal;
         }
         //Ingresa datos a factura
-        private void RegistrarFactura()
+        private bool RegistrarFactura()
         {
-            int iCodLinea = 0, iVideo, iCantidad, iBonoDesc;
+            int iCodLinea = 0, iVideo, iCantidad, iBonoDesc, iCantidadAnterior;
             double dSubtotalBD, dSubtotal;
+
+            OdbcConnection conexion = cn.conexion();
+
+            OdbcCommand comando = conexion.CreateCommand();
+            OdbcTransaction transaccion;
+
+            transaccion = conexion.BeginTransaction();
+
+            comando.Connection = conexion;
+            comando.Transaction = transaccion;
+
             try
             {
                 IPHostEntry host_ip;
@@ -219,11 +230,10 @@ namespace RentaDeVideos.Procesos.Facturas
                     }
                 }
                 //inserta encabezado primero
-                string cadena = "INSERT INTO encabezado_factura (id_encabezado_factura, id_cliente, id_empleado, no_serie, fecha, forma_pago, total_factura, tipo_doc, estado) VALUES ('" + txtNoFactura.Text + "','" + cmbCliente.SelectedItem.ToString() + "','" + cmbEmpleado.SelectedItem.ToString() + "','" + 
+                comando.CommandText = "INSERT INTO encabezado_factura (id_encabezado_factura, id_cliente, id_empleado, no_serie, fecha, forma_pago, total_factura, tipo_doc, estado) VALUES ('" + txtNoFactura.Text + "','" + cmbCliente.SelectedItem.ToString() + "','" + cmbEmpleado.SelectedItem.ToString() + "','" + 
                     txtSerie.Text+"','"+txtFecha.Text+"','"+cmbFormaPago.SelectedItem.ToString()+"','"+SumarColumnas().ToString()+"','"+cmbTipoDoc.SelectedItem.ToString()+ "', 1);";
-                OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
-                consulta.ExecuteNonQuery();
-                consulta.Connection.Close();
+                comando.ExecuteNonQuery();
+
 
                 int iFilas = dgridDatosFactura.Rows.Count;
                 Console.WriteLine(iFilas);
@@ -235,10 +245,24 @@ namespace RentaDeVideos.Procesos.Facturas
                     dSubtotalBD = double.Parse(dgridDatosFactura.Rows[iCodLinea].Cells["txtSubtotalBD"].Value.ToString());
                     iBonoDesc = int.Parse(dgridDatosFactura.Rows[iCodLinea].Cells["cmbBonoDesc"].Value.ToString());
                     dSubtotal = double.Parse(dgridDatosFactura.Rows[iCodLinea].Cells["txtSubtotal"].Value.ToString());
+                    string sSQL = "SELECT cantidad FROM video WHERE estado=1 AND id_video=" + iVideo + ";";
                     ++iCodLinea;
-                    string sComando = "INSERT INTO detalle_factura (id_encabezado_factura, cod_linea, id_video, cantidad, bon_desc, subtotal_bon_desc, subtotal, estado) VALUES ('" + txtNoFactura.Text + "','" + iCodLinea + "','" + iVideo + "','" + iCantidad +"','"+iBonoDesc +"','" + dSubtotalBD + "','" + dSubtotal + "', 1);";
-                    OdbcCommand insertar = new OdbcCommand(sComando, cn.conexion());
-                    insertar.ExecuteNonQuery();
+                    comando.CommandText = "INSERT INTO detalle_factura (id_encabezado_factura, cod_linea, id_video, cantidad, bon_desc, subtotal_bon_desc, subtotal, estado) VALUES ('" + txtNoFactura.Text + "','" + iCodLinea + "','" + iVideo + "','" + iCantidad +"','"+iBonoDesc +"','" + dSubtotalBD + "','" + dSubtotal + "', 1);";
+                    comando.ExecuteNonQuery();
+
+                    OdbcCommand actualizar = new OdbcCommand(sSQL, cn.conexion());
+                    OdbcDataReader registro = actualizar.ExecuteReader();
+
+                    while (registro.Read())
+                    {
+                        iCantidadAnterior = int.Parse(registro["cantidad"].ToString());
+                        if (iCantidad <= iCantidadAnterior)
+                        {
+
+                            comando.CommandText = "UPDATE video SET cantidad=" + (iCantidadAnterior-iCantidad) + " WHERE id_video=" + iVideo + ";";
+                            comando.ExecuteNonQuery();
+                        }
+                    }
                 }
 
                 OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
@@ -249,13 +273,22 @@ namespace RentaDeVideos.Procesos.Facturas
                 llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
                 llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
                 llenarBitacora.ExecuteNonQuery();
+
+                transaccion.Commit();
+                Console.WriteLine("Transaccion Exitosa");
+
                 llenarBitacora.Connection.Close();
+
+                return true;
 
             }
             catch (Exception ex)
             {
+                transaccion.Rollback();
                 Console.WriteLine(ex.Message);
-                MessageBox.Show("Error al ingresar compras", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al transaccion facturas", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimpiarComponentes();
+                return false;
             }
         }
         //valida componentes externos a grid
@@ -303,6 +336,13 @@ namespace RentaDeVideos.Procesos.Facturas
                 txtSerie.Text = "";
                 return false;
             }
+            if (!Regex.Match(txtFecha.Text, @"^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$").Success)
+            {
+                MessageBox.Show("Datos del campo fecha invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtFecha.Text = "";
+                txtFecha.Focus();
+                return false;
+            }
             return true;
         }
         //limpia componentes y grid
@@ -327,15 +367,19 @@ namespace RentaDeVideos.Procesos.Facturas
                 row.Cells["cmbBonoDesc"].Value = null;
                 row.Cells["txtSubtotal"].Value = null;
             }
+            dgridDatosFactura.Rows.Clear();
         }
         //Boton de guardar datos
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (validarComponentes() == true)
+            if (validarComponentes() == true && RegistrarFactura()==true)
             {
-                RegistrarFactura();
                 LimpiarComponentes();
                 MessageBox.Show("Datos Guardados Correctamente", "Datos Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No se pudieron ingresar los datos, intente nuevamente", "Datos Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //Factura solo numeros

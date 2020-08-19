@@ -359,6 +359,12 @@
     <Compile Include="ReporteClientes.Designer.cs">
       <DependentUpon>ReporteClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReporteDeClientes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteDeClientes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReporteRentaporCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -388,11 +394,6 @@
     </Compile>
     <Compile Include="ReportesBitacora.Designer.cs">
       <DependentUpon>ReportesBitacora.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReportesPorClientes.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReportesPorClientes.rpt</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DataSetReportes\dataSetBitacora.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -580,6 +581,10 @@
     <EmbeddedResource Include="ReporteClientes.resx">
       <DependentUpon>ReporteClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteDeClientes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteDeClientes.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteRentaporCategoria.resx">
       <DependentUpon>ReporteRentaporCategoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -596,10 +601,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportesBitacora.resx">
       <DependentUpon>ReportesBitacora.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportesPorClientes.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ReportesPorClientes.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FormulariosReportes\formularioReporteBitacora.resx">
       <DependentUpon>formularioReporteBitacora.cs</DependentUpon>

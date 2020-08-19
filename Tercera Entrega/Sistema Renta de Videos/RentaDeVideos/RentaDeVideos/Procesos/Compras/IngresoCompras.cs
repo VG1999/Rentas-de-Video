@@ -167,8 +167,6 @@ namespace RentaDeVideos.Procesos.Compras
 
             OdbcConnection conexion = cn.conexion();
 
-         //   conexion.Open();
-
             OdbcCommand comando = conexion.CreateCommand();
             OdbcTransaction transaccion;
 
@@ -242,7 +240,7 @@ namespace RentaDeVideos.Procesos.Compras
                 transaccion.Rollback();
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Trasaccion Fallida");
-                MessageBox.Show("Error al ingresar compras", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error transaccion compras", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LimpiarComponentes();
                 return false;
             }

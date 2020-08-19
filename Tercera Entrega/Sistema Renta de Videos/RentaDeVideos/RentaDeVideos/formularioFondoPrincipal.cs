@@ -118,13 +118,13 @@ namespace RentaDeVideos
         //ir a informe clientes
         private void informeClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          //  Reportes.FormulariosReportes.formularioReporteClientes reporte_cliente = new Reportes.FormulariosReportes.formularioReporteClientes();
-           // reporte_cliente.Show();
+            ReporteClientes repclientes = new ReporteClientes();
+            repclientes.Show();
         }
         //ir a bitacora
         private void informeBitacoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Reportes.FormulariosReportes.formularioReporteBitacora bitacora = new Reportes.FormulariosReportes.formularioReporteBitacora();
+            ReportesBitacora bitacora = new ReportesBitacora();
             bitacora.Show();
         }
         //ir a estado video
@@ -156,6 +156,24 @@ namespace RentaDeVideos
         {
             Procesos.Compras.MantenimientoCompras mancompras = new Procesos.Compras.MantenimientoCompras();
             mancompras.Show();
+        }
+
+        private void informeRentaPorCategoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteRentaporCategoria rentaporcat = new ReporteRentaporCategoria();
+            rentaporcat.Show();
+        }
+
+        private void informeRentaPorClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteVideoRentadoCliente rentaporcliente = new ReporteVideoRentadoCliente();
+            rentaporcliente.Show();
+        }
+
+        private void informeRentaPorFechaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteRentaPorFecha rentafecha = new ReporteRentaPorFecha();
+            rentafecha.Show();
         }
     }
 }

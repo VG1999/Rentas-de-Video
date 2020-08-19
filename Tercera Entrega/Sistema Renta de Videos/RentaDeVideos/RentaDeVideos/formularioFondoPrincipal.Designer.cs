@@ -33,6 +33,11 @@
             this.picSalir = new System.Windows.Forms.PictureBox();
             this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.pnlContenido = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblBienvenida = new System.Windows.Forms.Label();
+            this.lblCodUser = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.LblD = new System.Windows.Forms.Label();
             this.msMenuBarra = new System.Windows.Forms.MenuStrip();
             this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,17 +68,15 @@
             this.manualDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informeBitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblBienvenida = new System.Windows.Forms.Label();
-            this.lblCodUser = new System.Windows.Forms.Label();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.LblD = new System.Windows.Forms.Label();
+            this.informeRentaPorCategoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informeRentaPorClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informeRentaPorFechaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMenuBorde.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             this.pnlContenido.SuspendLayout();
-            this.msMenuBarra.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.msMenuBarra.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMenuBorde
@@ -123,6 +126,71 @@
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(836, 575);
             this.pnlContenido.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblBienvenida);
+            this.panel1.Controls.Add(this.lblCodUser);
+            this.panel1.Controls.Add(this.lblNombre);
+            this.panel1.Controls.Add(this.LblD);
+            this.panel1.Location = new System.Drawing.Point(0, 492);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(836, 49);
+            this.panel1.TabIndex = 8;
+            // 
+            // lblBienvenida
+            // 
+            this.lblBienvenida.AutoSize = true;
+            this.lblBienvenida.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBienvenida.Location = new System.Drawing.Point(16, 6);
+            this.lblBienvenida.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBienvenida.Name = "lblBienvenida";
+            this.lblBienvenida.Size = new System.Drawing.Size(140, 28);
+            this.lblBienvenida.TabIndex = 2;
+            this.lblBienvenida.Text = "Bienvenido";
+            this.lblBienvenida.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblCodUser
+            // 
+            this.lblCodUser.AutoSize = true;
+            this.lblCodUser.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodUser.Location = new System.Drawing.Point(716, 7);
+            this.lblCodUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodUser.Name = "lblCodUser";
+            this.lblCodUser.Size = new System.Drawing.Size(84, 28);
+            this.lblCodUser.TabIndex = 5;
+            this.lblCodUser.Text = "label3";
+            this.lblCodUser.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Location = new System.Drawing.Point(175, 6);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(84, 28);
+            this.lblNombre.TabIndex = 3;
+            this.lblNombre.Text = "label2";
+            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // LblD
+            // 
+            this.LblD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblD.AutoSize = true;
+            this.LblD.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblD.Location = new System.Drawing.Point(488, 7);
+            this.LblD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblD.Name = "LblD";
+            this.LblD.Size = new System.Drawing.Size(191, 28);
+            this.LblD.TabIndex = 4;
+            this.LblD.Text = "Codigo Usuario";
+            this.LblD.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // msMenuBarra
             // 
@@ -323,7 +391,10 @@
             // informesToolStripMenuItem
             // 
             this.informesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.informeClientesToolStripMenuItem});
+            this.informeClientesToolStripMenuItem,
+            this.informeRentaPorCategoriaToolStripMenuItem,
+            this.informeRentaPorClienteToolStripMenuItem,
+            this.informeRentaPorFechaToolStripMenuItem});
             this.informesToolStripMenuItem.Name = "informesToolStripMenuItem";
             this.informesToolStripMenuItem.Size = new System.Drawing.Size(104, 27);
             this.informesToolStripMenuItem.Text = "Informes";
@@ -331,7 +402,7 @@
             // informeClientesToolStripMenuItem
             // 
             this.informeClientesToolStripMenuItem.Name = "informeClientesToolStripMenuItem";
-            this.informeClientesToolStripMenuItem.Size = new System.Drawing.Size(243, 28);
+            this.informeClientesToolStripMenuItem.Size = new System.Drawing.Size(368, 28);
             this.informeClientesToolStripMenuItem.Text = "Informe Clientes";
             this.informeClientesToolStripMenuItem.Click += new System.EventHandler(this.informeClientesToolStripMenuItem_Click);
             // 
@@ -364,70 +435,26 @@
             this.informeBitacoraToolStripMenuItem.Text = "Informe Bitacora";
             this.informeBitacoraToolStripMenuItem.Click += new System.EventHandler(this.informeBitacoraToolStripMenuItem_Click);
             // 
-            // panel1
+            // informeRentaPorCategoriaToolStripMenuItem
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.lblBienvenida);
-            this.panel1.Controls.Add(this.lblCodUser);
-            this.panel1.Controls.Add(this.lblNombre);
-            this.panel1.Controls.Add(this.LblD);
-            this.panel1.Location = new System.Drawing.Point(0, 492);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(836, 49);
-            this.panel1.TabIndex = 8;
+            this.informeRentaPorCategoriaToolStripMenuItem.Name = "informeRentaPorCategoriaToolStripMenuItem";
+            this.informeRentaPorCategoriaToolStripMenuItem.Size = new System.Drawing.Size(368, 28);
+            this.informeRentaPorCategoriaToolStripMenuItem.Text = "Informe Renta por Categoria";
+            this.informeRentaPorCategoriaToolStripMenuItem.Click += new System.EventHandler(this.informeRentaPorCategoriaToolStripMenuItem_Click);
             // 
-            // lblBienvenida
+            // informeRentaPorClienteToolStripMenuItem
             // 
-            this.lblBienvenida.AutoSize = true;
-            this.lblBienvenida.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienvenida.Location = new System.Drawing.Point(16, 6);
-            this.lblBienvenida.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBienvenida.Name = "lblBienvenida";
-            this.lblBienvenida.Size = new System.Drawing.Size(140, 28);
-            this.lblBienvenida.TabIndex = 2;
-            this.lblBienvenida.Text = "Bienvenido";
-            this.lblBienvenida.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.informeRentaPorClienteToolStripMenuItem.Name = "informeRentaPorClienteToolStripMenuItem";
+            this.informeRentaPorClienteToolStripMenuItem.Size = new System.Drawing.Size(368, 28);
+            this.informeRentaPorClienteToolStripMenuItem.Text = "Informe Renta por Cliente";
+            this.informeRentaPorClienteToolStripMenuItem.Click += new System.EventHandler(this.informeRentaPorClienteToolStripMenuItem_Click);
             // 
-            // lblCodUser
+            // informeRentaPorFechaToolStripMenuItem
             // 
-            this.lblCodUser.AutoSize = true;
-            this.lblCodUser.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodUser.Location = new System.Drawing.Point(716, 7);
-            this.lblCodUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCodUser.Name = "lblCodUser";
-            this.lblCodUser.Size = new System.Drawing.Size(84, 28);
-            this.lblCodUser.TabIndex = 5;
-            this.lblCodUser.Text = "label3";
-            this.lblCodUser.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(175, 6);
-            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(84, 28);
-            this.lblNombre.TabIndex = 3;
-            this.lblNombre.Text = "label2";
-            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            // 
-            // LblD
-            // 
-            this.LblD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblD.AutoSize = true;
-            this.LblD.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblD.Location = new System.Drawing.Point(488, 7);
-            this.LblD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblD.Name = "LblD";
-            this.LblD.Size = new System.Drawing.Size(191, 28);
-            this.LblD.TabIndex = 4;
-            this.LblD.Text = "Codigo Usuario";
-            this.LblD.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.informeRentaPorFechaToolStripMenuItem.Name = "informeRentaPorFechaToolStripMenuItem";
+            this.informeRentaPorFechaToolStripMenuItem.Size = new System.Drawing.Size(368, 28);
+            this.informeRentaPorFechaToolStripMenuItem.Text = "Informe Renta por Fecha";
+            this.informeRentaPorFechaToolStripMenuItem.Click += new System.EventHandler(this.informeRentaPorFechaToolStripMenuItem_Click);
             // 
             // formularioFondoPrincipal
             // 
@@ -447,10 +474,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             this.pnlContenido.ResumeLayout(false);
             this.pnlContenido.PerformLayout();
-            this.msMenuBarra.ResumeLayout(false);
-            this.msMenuBarra.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.msMenuBarra.ResumeLayout(false);
+            this.msMenuBarra.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -496,5 +523,8 @@
         private System.Windows.Forms.Label lblCodUser;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label LblD;
+        private System.Windows.Forms.ToolStripMenuItem informeRentaPorCategoriaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informeRentaPorClienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informeRentaPorFechaToolStripMenuItem;
     }
 }
