@@ -139,9 +139,9 @@
             this.lblIDFactura.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIDFactura.Location = new System.Drawing.Point(26, 14);
             this.lblIDFactura.Name = "lblIDFactura";
-            this.lblIDFactura.Size = new System.Drawing.Size(125, 23);
+            this.lblIDFactura.Size = new System.Drawing.Size(131, 23);
             this.lblIDFactura.TabIndex = 4;
-            this.lblIDFactura.Text = "No. Factura";
+            this.lblIDFactura.Text = "No. Compra";
             // 
             // lblTotal
             // 

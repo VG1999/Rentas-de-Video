@@ -39,7 +39,12 @@ namespace RentaDeVideos.Mantenimientos.EstadosVideos
         //Salir sin validacion
         private void picSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult drResultadoMensaje;
+            drResultadoMensaje = MessageBox.Show("¿Realmente desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (drResultadoMensaje == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
         //Minimizar
         private void picMinimizar_Click(object sender, EventArgs e)

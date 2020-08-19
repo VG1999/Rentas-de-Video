@@ -123,7 +123,7 @@ namespace RentaDeVideos.Procesos.Compras
         private void picSalir_Click(object sender, EventArgs e)
         {
             DialogResult drResultadoMensaje;
-            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            drResultadoMensaje = MessageBox.Show("¿Realmente desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (drResultadoMensaje == DialogResult.Yes)
             {
                 this.Dispose();

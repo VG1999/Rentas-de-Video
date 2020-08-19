@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -72,6 +73,7 @@ namespace RentaDeVideos.Procesos.Compras
             }
             
         }
+
         //Inserta el nit del proveedor en el textbox si el usuario selecciona un id proveedor
         private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -158,10 +160,23 @@ namespace RentaDeVideos.Procesos.Compras
             return dTotal;
         }
         //Registrar compra
-        private void RegistrarCompra()
+        private bool RegistrarCompra()
         {
-            int iCodLinea = 0, iVideo, iCantidad;
+            int iCodLinea = 0, iVideo, iCantidad, iCantidadAnterior;
             double dPrecio, dSubtotal;
+
+            OdbcConnection conexion = cn.conexion();
+
+         //   conexion.Open();
+
+            OdbcCommand comando = conexion.CreateCommand();
+            OdbcTransaction transaccion;
+
+            transaccion = conexion.BeginTransaction();
+
+            comando.Connection = conexion;
+            comando.Transaction = transaccion;
+
             try
             {
                 IPHostEntry host_ip;
@@ -175,11 +190,10 @@ namespace RentaDeVideos.Procesos.Compras
                         sLocalIP = ip.ToString();
                     }
                 }
+                
                 //Inserta en encabezado de compra
-                string cadena = "INSERT INTO encabezado_compra (id_compra, id_proveedor, fecha_compra, total_compra, estado) VALUES ('" + txtIDFactura.Text + "','" + cmbProveedor.SelectedItem.ToString() + "','" + txtFecha.Text + "','" + SumarColumnas().ToString() + "', 1);";
-                OdbcCommand consulta = new OdbcCommand(cadena, cn.conexion());
-                consulta.ExecuteNonQuery();
-                consulta.Connection.Close();
+                comando.CommandText = "INSERT INTO encabezado_compra (id_compra, id_proveedor, fecha_compra, total_compra, estado) VALUES ('" + txtIDFactura.Text + "','" + cmbProveedor.SelectedItem.ToString() + "','" + txtFecha.Text + "','" + SumarColumnas().ToString() + "', 1);";
+                comando.ExecuteNonQuery();
 
                 int iFilas = dgridDetalleFactura.Rows.Count;
                 Console.WriteLine(iFilas);
@@ -190,12 +204,22 @@ namespace RentaDeVideos.Procesos.Compras
                     iCantidad = int.Parse(dgridDetalleFactura.Rows[iCodLinea].Cells["txtCantidad"].Value.ToString());
                     dPrecio = double.Parse(dgridDetalleFactura.Rows[iCodLinea].Cells["txtPrecio"].Value.ToString());
                     dSubtotal = double.Parse(dgridDetalleFactura.Rows[iCodLinea].Cells["txtSubtotal"].Value.ToString());
+                    string sSQL = "SELECT cantidad FROM video WHERE estado=1 AND id_video=" + iVideo + ";";
                     ++iCodLinea;
-                    string sComando = "INSERT INTO detalle_compra (id_compra, cod_linea, id_video, cantidad, precio_unitario, subtotal, estado) VALUES ('" + txtIDFactura.Text + "','" + iCodLinea + "','" + iVideo + "','" + iCantidad + "','" + dPrecio + "','" + dSubtotal + "', 1);";
-                    OdbcCommand insertar = new OdbcCommand(sComando, cn.conexion());
-                    insertar.ExecuteNonQuery();
-                }
+                    comando.CommandText = "INSERT INTO detalle_compra (id_compra, cod_linea, id_video, cantidad, precio_unitario, subtotal, estado) VALUES ('" + txtIDFactura.Text + "','" + iCodLinea + "','" + iVideo + "','" + iCantidad + "','" + dPrecio + "','" + dSubtotal + "', 1);";
+                    comando.ExecuteNonQuery();
 
+               
+                    OdbcCommand actualizar = new OdbcCommand(sSQL, cn.conexion());
+                    OdbcDataReader registro = actualizar.ExecuteReader();
+
+                    while (registro.Read())
+                    {
+                        iCantidadAnterior = int.Parse(registro["cantidad"].ToString());
+                        comando.CommandText = "UPDATE video SET cantidad=" + (iCantidad+iCantidadAnterior) + " WHERE id_video=" + iVideo+";";
+                        comando.ExecuteNonQuery();
+                    }
+                }
                 OdbcCommand llenarBitacora = new OdbcCommand("{call insertar_Bitacora(?,?,?,?,?)}", cn.conexion());
                 llenarBitacora.CommandType = CommandType.StoredProcedure;
                 llenarBitacora.Parameters.Add("id_cliente", OdbcType.Text).Value = iUsuario;
@@ -204,18 +228,29 @@ namespace RentaDeVideos.Procesos.Compras
                 llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
                 llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
                 llenarBitacora.ExecuteNonQuery();
+
+                transaccion.Commit();
+                Console.WriteLine("Transaccion Exitosa");
+
                 llenarBitacora.Connection.Close();
+
+                return true;
 
             }
             catch (Exception ex)
             {
+                transaccion.Rollback();
                 Console.WriteLine(ex.Message);
+                Console.WriteLine("Trasaccion Fallida");
                 MessageBox.Show("Error al ingresar compras", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimpiarComponentes();
+                return false;
             }
         }
         //Valida componentes, excepto del grid
         private bool validarComponentes()
         {
+            int iValor = dgridDetalleFactura.Rows.Count;
             if (cmbProveedor.SelectedItem == null)
             {
                 MessageBox.Show("Ingrese Proveedores", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -226,15 +261,23 @@ namespace RentaDeVideos.Procesos.Compras
             {
                 MessageBox.Show("Ingrese Fecha", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtFecha.Text = "";
+                txtFecha.Focus();
                 return false;
             }
             if (txtIDFactura.Text == "")
             {
                 MessageBox.Show("Ingrese ID Factura", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIDFactura.Text = "";
+                txtIDFactura.Focus();
                 return false;
             }
-            
+            if (!Regex.Match(txtFecha.Text, @"^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$").Success)
+            {
+                MessageBox.Show("Datos del campo fecha invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtFecha.Text = "";
+                txtFecha.Focus();
+                return false;
+            }
             return true;
         }
         //Limpia componetes incluyendo grid
@@ -251,15 +294,19 @@ namespace RentaDeVideos.Procesos.Compras
                 row.Cells["txtPrecio"].Value = null;
                 row.Cells["txtSubtotal"].Value = null;
             }
+            dgridDetalleFactura.Rows.Clear();
         }
         //Boton de guardar
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (validarComponentes() == true)
+            if (validarComponentes() == true && RegistrarCompra() == true)
             {
-                RegistrarCompra();
                 LimpiarComponentes();
                 MessageBox.Show("Datos Guardados Correctamente", "Datos Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No se pudieron ingresar los datos, intente nuevamente", "Datos Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //Solo numeros
@@ -275,7 +322,7 @@ namespace RentaDeVideos.Procesos.Compras
         private void picSalir_Click(object sender, EventArgs e)
         {
             DialogResult drResultadoMensaje;
-            drResultadoMensaje = MessageBox.Show("¿Realmemte desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            drResultadoMensaje = MessageBox.Show("¿Realmente desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (drResultadoMensaje == DialogResult.Yes)
             {
                 this.Dispose();
