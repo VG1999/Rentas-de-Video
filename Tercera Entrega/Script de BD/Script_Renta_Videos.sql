@@ -1,7 +1,7 @@
 create database rentas;
 use rentas;
 
-/*estructura tabla clientes*/
+/*CLIENTES*/
 create table if not exists cliente (
     id_cliente int(6) not null auto_increment,
     id_membresia int(6) not null,
@@ -17,7 +17,7 @@ create table if not exists cliente (
     key (id_cliente)
 );
 
-  /*estructura tabla  membresia*/
+  /*MEMBRESIA*/
 create table if not exists membresia (
     id_membresia int(6) not null auto_increment,
     descripcion varchar(20) not null,
@@ -28,7 +28,7 @@ create table if not exists membresia (
     key (id_membresia)
 );
 
-/*Estructura de la tabla video*/
+/*VIDEO*/
 create table if not exists video (
     id_video int(6) not null auto_increment,
     id_categoria int(6) not null,
@@ -43,7 +43,7 @@ create table if not exists video (
     key (id_video)
 );
 
-/*Estructura de la tabla Categoria*/
+/*CATEGORIA VIDEO*/
 create table if not exists categoria_video (
     id_categoria int(6) not null auto_increment,
     nombre varchar(30) not null,
@@ -51,7 +51,7 @@ create table if not exists categoria_video (
     primary key (id_categoria),
     key (id_categoria)
 );
-/*Estructura de la tabla EMPLEADO*/
+/*EMPLEADO*/
 create table if not exists empleado (
     id_empleado int(6) not null auto_increment,
     id_cargo int(6) not null,
@@ -68,7 +68,7 @@ create table if not exists empleado (
     key (id_empleado)
 );
 
-/*Estructura de la tabla CONTROL_USUARIO*/
+/*CONTROL_USUARIO*/
 create table if not exists control_usuario (
     id_usuario int(6) not null auto_increment,
     usuario varchar(20) not null,
@@ -78,7 +78,7 @@ create table if not exists control_usuario (
     primary key (id_usuario),
     key (id_usuario)
 );
-/*Estructura de la tabla CARGO*/
+/*CARGO*/
 create table if not exists cargo (
     id_cargo int(6) not null auto_increment,
     nombre varchar(20) not null,
@@ -87,13 +87,13 @@ create table if not exists cargo (
     primary key (id_cargo),
     key (id_cargo)
 );
-/*Estructura de la tabla ENCABEZADO_FACTURA*/
+/*ENCABEZADO_FACTURA*/
 create table if not exists encabezado_factura (
     id_encabezado_factura int(6) not null,
     id_cliente int(6) not null,
     id_empleado int(6) not null,
     no_serie varchar(10)not null,
-    fecha varchar(10)not null,
+    fecha  datetime not null,
     forma_pago int(1)not null,
     total_factura double(12,2) not null,
     tipo_doc int(1)not null,
@@ -102,7 +102,7 @@ create table if not exists encabezado_factura (
     key (id_encabezado_factura)
 );
 
-/*Estructura de la tabla DETALLE_FACTURA */
+/*DETALLE_FACTURA */
 create table if not exists detalle_factura (
     id_encabezado_factura int(6)not null,
     cod_linea int(6)not null,
@@ -115,7 +115,7 @@ create table if not exists detalle_factura (
     primary key (cod_linea,id_encabezado_factura)
 );
 
-/*Estructura del VIDEO_ESTADO*/
+/*VIDEO_ESTADO*/
 create table if not exists video_estado (
     id_video_estado int(6) not null auto_increment,
     multa_unitaria double(12,2) not null,
@@ -124,7 +124,7 @@ create table if not exists video_estado (
     primary key (id_video_estado),
     key (id_video_estado)
 );
-/*Estructura del PROVEEDOR*/
+/*PROVEEDOR*/
 create table if not exists proveedor (
     id_proveedor int(6) not null auto_increment,
     razon_social varchar(100) not null,
@@ -136,17 +136,17 @@ create table if not exists proveedor (
     primary key (id_proveedor),
     key (id_proveedor)
 );
-/*tabla 16*/
+/*ENCABEZADO_COMPRA*/
 create table if not exists encabezado_compra (
     id_compra int(6) not null,
     id_proveedor int(6) not null,
-    fecha_compra varchar(10) not null,
+    fecha_compra datetime not null,
     total_compra double(12,2)not null,
     estado int(1)not null,
     primary key (id_compra),
     key (id_compra)
 );
-/*tabla 17*/
+/*DETALLE_COMPRA*/
 create table if not exists detalle_compra (
     id_compra int(6) not null,
     cod_linea int(6)not null,
@@ -158,16 +158,18 @@ create table if not exists detalle_compra (
     primary key (id_compra,cod_linea)
 );
 
-/**/
+/*CONTROL_RECIBIDO*/
 create table if not exists control_recibido(
+	id_control int(6)not null auto_increment,
 	id_factura_encabezado int(6)not null,
-    fecha_emision varchar(10)not null,
-    fecha_recibido varchar(10)not null,
+    fecha_emision datetime not null,
+    fecha_recibido datetime not null,
     id_video_estado int(6)not null,
     estado int(1)not null,
-    primary key (id_factura_encabezado),
-    key (id_factura_encabezado)
+    primary key (id_control),
+    key (id_control)
 );
+/*BITACORA*/
 create table bitacora(
 	id_bitacora int(6)not null auto_increment,
     id_usuario int(6)not null,
@@ -179,7 +181,7 @@ create table bitacora(
     key(id_bitacora)
 );
 
- /*Indices de la tabla clientes*/
+ /*LLAVES FORANEAS*/
 alter table cliente add constraint fk_cliente_membresia foreign key(id_membresia) references membresia(id_membresia);
 alter table video add constraint fk_categoria_video foreign key(id_categoria) references categoria_video(id_categoria);
 alter table empleado add constraint fk_empleado_cargo foreign key(id_cargo) references cargo(id_cargo);
@@ -194,5 +196,5 @@ alter table detalle_compra add constraint fk_video_compra_detalle foreign key(id
 alter table control_recibido add constraint fk_video_estado_control foreign key(id_video_estado) references video_estado(id_video_estado);
 alter table control_recibido add constraint fk_encabezado_control foreign key(id_factura_encabezado) references encabezado_factura(id_encabezado_factura);
 alter table bitacora add constraint fk_bitacora_usuario foreign key(id_usuario) references control_usuario(id_usuario);
-/**/
+/*FIN DE SCRIPT*/
 
