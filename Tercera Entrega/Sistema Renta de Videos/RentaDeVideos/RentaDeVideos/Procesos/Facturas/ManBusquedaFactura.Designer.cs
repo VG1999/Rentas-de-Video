@@ -61,6 +61,7 @@
             this.pnlBarra.Name = "pnlBarra";
             this.pnlBarra.Size = new System.Drawing.Size(1088, 48);
             this.pnlBarra.TabIndex = 11;
+            this.pnlBarra.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlBarra_MouseDown);
             // 
             // picSalir
             // 

@@ -102,7 +102,7 @@ namespace RentaDeVideos.Mantenimientos.Usuarios
         {
             try
             {
-                string cadena = "SELECT id_usuario, contrasenia, rol FROM control_usuario WHERE estado=1";
+                string cadena = "SELECT id_usuario, usuario, contrasenia, rol FROM control_usuario WHERE estado=1";
                 datos = new OdbcDataAdapter(cadena, cn.conexion());
                 dt = new DataTable();
                 datos.Fill(dt);

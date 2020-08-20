@@ -142,7 +142,7 @@ namespace RentaDeVideos.Mantenimientos.Videos
            
         }
         //Insercion de datos a tabla y a bitacora
-        void insertarVideos()
+        private bool insertarVideos()
         {
             try
             {
@@ -172,11 +172,14 @@ namespace RentaDeVideos.Mantenimientos.Videos
                 llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
                 llenarBitacora.ExecuteNonQuery();
                 llenarBitacora.Connection.Close();
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                borraDatos();
+                return false;
             }
             
            
@@ -279,13 +282,15 @@ namespace RentaDeVideos.Mantenimientos.Videos
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             
-            if (validarTextbox() == true)
+            if (validarTextbox() == true&&insertarVideos()==true)
             {
-                insertarVideos();
                 borraDatos();
                 MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtTitulo.Focus();
-             }
+            }else
+            {
+                MessageBox.Show("Datos No se pudieron guardar intentelo de nuevo", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         //Ingreso de cantidad, solo numeros
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)

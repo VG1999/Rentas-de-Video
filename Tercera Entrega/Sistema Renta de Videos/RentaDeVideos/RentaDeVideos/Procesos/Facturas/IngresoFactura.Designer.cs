@@ -30,19 +30,28 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresoFactura));
             this.pnlBarra = new System.Windows.Forms.Panel();
+            this.picSalir = new System.Windows.Forms.PictureBox();
+            this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.pnlContenido = new System.Windows.Forms.Panel();
+            this.lblEtiqueta = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.btnRegistrar = new System.Windows.Forms.Button();
             this.txtSerie = new System.Windows.Forms.TextBox();
             this.lblSerie = new System.Windows.Forms.Label();
             this.txtNoFactura = new System.Windows.Forms.TextBox();
             this.lblFactura = new System.Windows.Forms.Label();
             this.pnlContenedorGrid = new System.Windows.Forms.Panel();
             this.dgridDatosFactura = new System.Windows.Forms.DataGridView();
+            this.cmbVideo = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.txtCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbBonoDesc = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.txtSubtotalBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gboxDatosFactura = new System.Windows.Forms.GroupBox();
             this.cmbTipoDoc = new System.Windows.Forms.ComboBox();
             this.lblTipoDoc = new System.Windows.Forms.Label();
             this.cmbFormaPago = new System.Windows.Forms.ComboBox();
             this.lblFormaPago = new System.Windows.Forms.Label();
-            this.txtFecha = new System.Windows.Forms.TextBox();
             this.lblFecha = new System.Windows.Forms.Label();
             this.cmbEmpleado = new System.Windows.Forms.ComboBox();
             this.lblIDEmpleado = new System.Windows.Forms.Label();
@@ -57,24 +66,15 @@
             this.lblIDCliente = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
-            this.cmbVideo = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.txtCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbBonoDesc = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.txtSubtotalBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblEtiqueta = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.btnRegistrar = new System.Windows.Forms.Button();
-            this.picSalir = new System.Windows.Forms.PictureBox();
-            this.picMinimizar = new System.Windows.Forms.PictureBox();
+            this.dpFecha = new System.Windows.Forms.DateTimePicker();
             this.pnlBarra.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             this.pnlContenido.SuspendLayout();
             this.pnlContenedorGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgridDatosFactura)).BeginInit();
             this.gboxDatosFactura.SuspendLayout();
             this.gboxDatosCliente.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBarra
@@ -87,6 +87,33 @@
             this.pnlBarra.Name = "pnlBarra";
             this.pnlBarra.Size = new System.Drawing.Size(1127, 70);
             this.pnlBarra.TabIndex = 0;
+            this.pnlBarra.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlBarra_MouseDown);
+            // 
+            // picSalir
+            // 
+            this.picSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picSalir.Image = ((System.Drawing.Image)(resources.GetObject("picSalir.Image")));
+            this.picSalir.Location = new System.Drawing.Point(1078, 24);
+            this.picSalir.Name = "picSalir";
+            this.picSalir.Size = new System.Drawing.Size(24, 24);
+            this.picSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picSalir.TabIndex = 6;
+            this.picSalir.TabStop = false;
+            this.picSalir.Click += new System.EventHandler(this.picSalir_Click);
+            // 
+            // picMinimizar
+            // 
+            this.picMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("picMinimizar.Image")));
+            this.picMinimizar.Location = new System.Drawing.Point(1032, 24);
+            this.picMinimizar.Name = "picMinimizar";
+            this.picMinimizar.Size = new System.Drawing.Size(24, 24);
+            this.picMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picMinimizar.TabIndex = 5;
+            this.picMinimizar.TabStop = false;
+            this.picMinimizar.Click += new System.EventHandler(this.picMinimizar_Click);
             // 
             // pnlContenido
             // 
@@ -107,6 +134,38 @@
             this.pnlContenido.Name = "pnlContenido";
             this.pnlContenido.Size = new System.Drawing.Size(1127, 1032);
             this.pnlContenido.TabIndex = 1;
+            // 
+            // lblEtiqueta
+            // 
+            this.lblEtiqueta.AutoSize = true;
+            this.lblEtiqueta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEtiqueta.Location = new System.Drawing.Point(104, 867);
+            this.lblEtiqueta.Name = "lblEtiqueta";
+            this.lblEtiqueta.Size = new System.Drawing.Size(62, 23);
+            this.lblEtiqueta.TabIndex = 19;
+            this.lblEtiqueta.Text = "Total:";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(173, 867);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(21, 23);
+            this.lblTotal.TabIndex = 18;
+            this.lblTotal.Text = "0";
+            // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegistrar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.Location = new System.Drawing.Point(851, 846);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(176, 65);
+            this.btnRegistrar.TabIndex = 17;
+            this.btnRegistrar.Text = "Registrar Factura";
+            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // txtSerie
             // 
@@ -172,14 +231,49 @@
             this.dgridDatosFactura.TabIndex = 0;
             this.dgridDatosFactura.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridDatosFactura_CellEndEdit);
             // 
+            // cmbVideo
+            // 
+            this.cmbVideo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmbVideo.HeaderText = "id_video";
+            this.cmbVideo.Name = "cmbVideo";
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.txtCantidad.HeaderText = "cantidad";
+            this.txtCantidad.Name = "txtCantidad";
+            // 
+            // cmbBonoDesc
+            // 
+            this.cmbBonoDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmbBonoDesc.HeaderText = "Bono/Desc";
+            this.cmbBonoDesc.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.cmbBonoDesc.Name = "cmbBonoDesc";
+            // 
+            // txtSubtotalBD
+            // 
+            this.txtSubtotalBD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.txtSubtotalBD.HeaderText = "Subtotal_BD";
+            this.txtSubtotalBD.Name = "txtSubtotalBD";
+            this.txtSubtotalBD.ReadOnly = true;
+            // 
+            // txtSubtotal
+            // 
+            this.txtSubtotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.txtSubtotal.HeaderText = "Subtotal";
+            this.txtSubtotal.Name = "txtSubtotal";
+            this.txtSubtotal.ReadOnly = true;
+            // 
             // gboxDatosFactura
             // 
             this.gboxDatosFactura.BackColor = System.Drawing.Color.White;
+            this.gboxDatosFactura.Controls.Add(this.dpFecha);
             this.gboxDatosFactura.Controls.Add(this.cmbTipoDoc);
             this.gboxDatosFactura.Controls.Add(this.lblTipoDoc);
             this.gboxDatosFactura.Controls.Add(this.cmbFormaPago);
             this.gboxDatosFactura.Controls.Add(this.lblFormaPago);
-            this.gboxDatosFactura.Controls.Add(this.txtFecha);
             this.gboxDatosFactura.Controls.Add(this.lblFecha);
             this.gboxDatosFactura.Controls.Add(this.cmbEmpleado);
             this.gboxDatosFactura.Controls.Add(this.lblIDEmpleado);
@@ -238,15 +332,6 @@
             this.lblFormaPago.Size = new System.Drawing.Size(163, 23);
             this.lblFormaPago.TabIndex = 8;
             this.lblFormaPago.Text = "Forma de Pago";
-            // 
-            // txtFecha
-            // 
-            this.txtFecha.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtFecha.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha.Location = new System.Drawing.Point(706, 39);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(169, 32);
-            this.txtFecha.TabIndex = 7;
             // 
             // lblFecha
             // 
@@ -400,98 +485,12 @@
             this.cmbCliente.TabIndex = 7;
             this.cmbCliente.SelectedIndexChanged += new System.EventHandler(this.cmbCliente_SelectedIndexChanged);
             // 
-            // cmbVideo
+            // dpFecha
             // 
-            this.cmbVideo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmbVideo.HeaderText = "id_video";
-            this.cmbVideo.Name = "cmbVideo";
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.txtCantidad.HeaderText = "cantidad";
-            this.txtCantidad.Name = "txtCantidad";
-            // 
-            // cmbBonoDesc
-            // 
-            this.cmbBonoDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmbBonoDesc.HeaderText = "Bono/Desc";
-            this.cmbBonoDesc.Items.AddRange(new object[] {
-            "0",
-            "1"});
-            this.cmbBonoDesc.Name = "cmbBonoDesc";
-            // 
-            // txtSubtotalBD
-            // 
-            this.txtSubtotalBD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.txtSubtotalBD.HeaderText = "Subtotal_BD";
-            this.txtSubtotalBD.Name = "txtSubtotalBD";
-            this.txtSubtotalBD.ReadOnly = true;
-            // 
-            // txtSubtotal
-            // 
-            this.txtSubtotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.txtSubtotal.HeaderText = "Subtotal";
-            this.txtSubtotal.Name = "txtSubtotal";
-            this.txtSubtotal.ReadOnly = true;
-            // 
-            // lblEtiqueta
-            // 
-            this.lblEtiqueta.AutoSize = true;
-            this.lblEtiqueta.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEtiqueta.Location = new System.Drawing.Point(104, 867);
-            this.lblEtiqueta.Name = "lblEtiqueta";
-            this.lblEtiqueta.Size = new System.Drawing.Size(62, 23);
-            this.lblEtiqueta.TabIndex = 19;
-            this.lblEtiqueta.Text = "Total:";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(173, 867);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(21, 23);
-            this.lblTotal.TabIndex = 18;
-            this.lblTotal.Text = "0";
-            // 
-            // btnRegistrar
-            // 
-            this.btnRegistrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegistrar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrar.Location = new System.Drawing.Point(851, 846);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(176, 65);
-            this.btnRegistrar.TabIndex = 17;
-            this.btnRegistrar.Text = "Registrar Factura";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
-            // 
-            // picSalir
-            // 
-            this.picSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picSalir.Image = ((System.Drawing.Image)(resources.GetObject("picSalir.Image")));
-            this.picSalir.Location = new System.Drawing.Point(1078, 24);
-            this.picSalir.Name = "picSalir";
-            this.picSalir.Size = new System.Drawing.Size(24, 24);
-            this.picSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picSalir.TabIndex = 6;
-            this.picSalir.TabStop = false;
-            this.picSalir.Click += new System.EventHandler(this.picSalir_Click);
-            // 
-            // picMinimizar
-            // 
-            this.picMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("picMinimizar.Image")));
-            this.picMinimizar.Location = new System.Drawing.Point(1032, 24);
-            this.picMinimizar.Name = "picMinimizar";
-            this.picMinimizar.Size = new System.Drawing.Size(24, 24);
-            this.picMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picMinimizar.TabIndex = 5;
-            this.picMinimizar.TabStop = false;
-            this.picMinimizar.Click += new System.EventHandler(this.picMinimizar_Click);
+            this.dpFecha.Location = new System.Drawing.Point(706, 39);
+            this.dpFecha.Name = "dpFecha";
+            this.dpFecha.Size = new System.Drawing.Size(169, 28);
+            this.dpFecha.TabIndex = 12;
             // 
             // IngresoFactura
             // 
@@ -508,6 +507,8 @@
             this.Text = "IngresoFactura";
             this.pnlBarra.ResumeLayout(false);
             this.pnlBarra.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             this.pnlContenido.ResumeLayout(false);
             this.pnlContenido.PerformLayout();
             this.pnlContenedorGrid.ResumeLayout(false);
@@ -516,8 +517,6 @@
             this.gboxDatosFactura.PerformLayout();
             this.gboxDatosCliente.ResumeLayout(false);
             this.gboxDatosCliente.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -532,7 +531,6 @@
         private System.Windows.Forms.Label lblTipoDoc;
         private System.Windows.Forms.ComboBox cmbFormaPago;
         private System.Windows.Forms.Label lblFormaPago;
-        private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.ComboBox cmbEmpleado;
         private System.Windows.Forms.Label lblIDEmpleado;
@@ -562,5 +560,6 @@
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.PictureBox picSalir;
         private System.Windows.Forms.PictureBox picMinimizar;
+        private System.Windows.Forms.DateTimePicker dpFecha;
     }
 }

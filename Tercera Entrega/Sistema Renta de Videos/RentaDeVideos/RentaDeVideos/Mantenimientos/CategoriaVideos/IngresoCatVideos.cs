@@ -96,7 +96,7 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
             this.Hide();
         }
         //Insercion de datos a tabla y a bitacora
-        void insertarCategorias()
+        private bool insertarCategorias()
         {
             try
             {
@@ -125,11 +125,15 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
                 llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
                 llenarBitacora.ExecuteNonQuery();
                 llenarBitacora.Connection.Close();
+                return true;
             }
             catch (Exception  ex)
             {
                 Console.WriteLine(ex.Message);
+                txtNombre.Text = "";
                 MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                return false;
             }
             
         }
@@ -144,9 +148,18 @@ namespace RentaDeVideos.Mantenimientos.CategoriaVideos
             }
             else
             {
-                insertarCategorias();
-                MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtNombre.Text = "";
+                if (insertarCategorias() == true)
+                {
+                    MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNombre.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Datos No se pudieron guardar intentelo de nuevo", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNombre.Text = "";
+                    txtNombre.Focus();
+                }
+
             }
         }
     }

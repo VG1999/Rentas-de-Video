@@ -10,6 +10,7 @@ using System.Data.Odbc;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -20,6 +21,13 @@ namespace RentaDeVideos.Procesos.Compras
     public partial class IngresoCompras : Form
     {
         Conexion cn = new Conexion();
+
+        //Variables que se inicializan y permiten arrastrar y movilizar el formulario
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
+
 
         //Valor de id del usuario logueado
         int iUsuario = Users.id_usario;
@@ -188,9 +196,14 @@ namespace RentaDeVideos.Procesos.Compras
                         sLocalIP = ip.ToString();
                     }
                 }
-                
+                DateTime dtFechaIngreso = dpFecha.Value;
                 //Inserta en encabezado de compra
-                comando.CommandText = "INSERT INTO encabezado_compra (id_compra, id_proveedor, fecha_compra, total_compra, estado) VALUES ('" + txtIDFactura.Text + "','" + cmbProveedor.SelectedItem.ToString() + "','" + txtFecha.Text + "','" + SumarColumnas().ToString() + "', 1);";
+                comando.CommandText = "INSERT INTO encabezado_compra (id_compra, id_proveedor, fecha_compra, total_compra, estado) VALUES (?,?,?,?,?);";
+                comando.Parameters.Add("id_compra", OdbcType.Int).Value = int.Parse(txtIDFactura.Text);
+                comando.Parameters.Add("id_proveedor", OdbcType.Int).Value = int.Parse(cmbProveedor.SelectedItem.ToString());
+                comando.Parameters.Add("fecha_compra", OdbcType.DateTime).Value = dtFechaIngreso;
+                comando.Parameters.Add("total_compra", OdbcType.Double).Value = SumarColumnas();
+                comando.Parameters.Add("estado", OdbcType.Int).Value = 1;
                 comando.ExecuteNonQuery();
 
                 int iFilas = dgridDetalleFactura.Rows.Count;
@@ -255,25 +268,11 @@ namespace RentaDeVideos.Procesos.Compras
                 cmbProveedor.SelectedItem = null;
                 return false;
             }
-            if (txtFecha.Text == "")
-            {
-                MessageBox.Show("Ingrese Fecha", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtFecha.Text = "";
-                txtFecha.Focus();
-                return false;
-            }
             if (txtIDFactura.Text == "")
             {
                 MessageBox.Show("Ingrese ID Factura", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIDFactura.Text = "";
                 txtIDFactura.Focus();
-                return false;
-            }
-            if (!Regex.Match(txtFecha.Text, @"^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$").Success)
-            {
-                MessageBox.Show("Datos del campo fecha invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtFecha.Text = "";
-                txtFecha.Focus();
                 return false;
             }
             return true;
@@ -283,8 +282,8 @@ namespace RentaDeVideos.Procesos.Compras
         {
             cmbProveedor.SelectedItem = null;
             txtNIT.Text = "";
-            txtFecha.Text = "";
             txtIDFactura.Text = "";
+            dpFecha.Value = DateTime.Now;
             foreach (DataGridViewRow row in dgridDetalleFactura.Rows)
             {
                 row.Cells["cmbVideo"].Value = null;
@@ -330,6 +329,12 @@ namespace RentaDeVideos.Procesos.Compras
         private void picMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+        //Movilizar formulario por medio del panel superior
+        private void pnlBarra_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

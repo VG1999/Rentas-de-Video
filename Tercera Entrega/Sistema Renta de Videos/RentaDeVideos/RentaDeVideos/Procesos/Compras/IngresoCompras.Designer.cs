@@ -47,10 +47,10 @@
             this.pnlEncabezadoCompra = new System.Windows.Forms.Panel();
             this.txtNIT = new System.Windows.Forms.TextBox();
             this.lblNIT = new System.Windows.Forms.Label();
-            this.txtFecha = new System.Windows.Forms.TextBox();
             this.lblFecha = new System.Windows.Forms.Label();
             this.cmbProveedor = new System.Windows.Forms.ComboBox();
             this.lblProveedor = new System.Windows.Forms.Label();
+            this.dpFecha = new System.Windows.Forms.DateTimePicker();
             this.pnlBarra.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
@@ -70,6 +70,7 @@
             this.pnlBarra.Name = "pnlBarra";
             this.pnlBarra.Size = new System.Drawing.Size(1005, 50);
             this.pnlBarra.TabIndex = 0;
+            this.pnlBarra.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlBarra_MouseDown);
             // 
             // picSalir
             // 
@@ -218,9 +219,9 @@
             // pnlEncabezadoCompra
             // 
             this.pnlEncabezadoCompra.BackColor = System.Drawing.Color.White;
+            this.pnlEncabezadoCompra.Controls.Add(this.dpFecha);
             this.pnlEncabezadoCompra.Controls.Add(this.txtNIT);
             this.pnlEncabezadoCompra.Controls.Add(this.lblNIT);
-            this.pnlEncabezadoCompra.Controls.Add(this.txtFecha);
             this.pnlEncabezadoCompra.Controls.Add(this.lblFecha);
             this.pnlEncabezadoCompra.Controls.Add(this.cmbProveedor);
             this.pnlEncabezadoCompra.Controls.Add(this.lblProveedor);
@@ -248,15 +249,6 @@
             this.lblNIT.Size = new System.Drawing.Size(147, 23);
             this.lblNIT.TabIndex = 4;
             this.lblNIT.Text = "NIT Proveedor";
-            // 
-            // txtFecha
-            // 
-            this.txtFecha.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtFecha.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha.Location = new System.Drawing.Point(230, 89);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(234, 32);
-            this.txtFecha.TabIndex = 3;
             // 
             // lblFecha
             // 
@@ -288,6 +280,15 @@
             this.lblProveedor.Size = new System.Drawing.Size(113, 23);
             this.lblProveedor.TabIndex = 0;
             this.lblProveedor.Text = "Proveedor";
+            // 
+            // dpFecha
+            // 
+            this.dpFecha.CalendarFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpFecha.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpFecha.Location = new System.Drawing.Point(230, 91);
+            this.dpFecha.Name = "dpFecha";
+            this.dpFecha.Size = new System.Drawing.Size(234, 32);
+            this.dpFecha.TabIndex = 6;
             // 
             // IngresoCompras
             // 
@@ -321,7 +322,6 @@
         private System.Windows.Forms.Panel pnlContenedorGrid;
         private System.Windows.Forms.DataGridView dgridDetalleFactura;
         private System.Windows.Forms.Panel pnlEncabezadoCompra;
-        private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.ComboBox cmbProveedor;
         private System.Windows.Forms.Label lblProveedor;
@@ -338,5 +338,6 @@
         private System.Windows.Forms.PictureBox picSalir;
         private System.Windows.Forms.PictureBox picMinimizar;
         private System.Windows.Forms.Label lblEtiqueta;
+        private System.Windows.Forms.DateTimePicker dpFecha;
     }
 }

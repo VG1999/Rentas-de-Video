@@ -321,6 +321,12 @@
     <Compile Include="Procesos\Compras\MantenimientoCompras.Designer.cs">
       <DependentUpon>MantenimientoCompras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Procesos\ControlDevoluciones\ControlDevolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Procesos\ControlDevoluciones\ControlDevolucion.Designer.cs">
+      <DependentUpon>ControlDevolucion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Procesos\Facturas\IngresoFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -341,6 +347,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RentaPorFecha.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RentaPorFecha.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RentasPorVisitaCliente.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RentasPorVisitaCliente.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RentaVideosPorCliente.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -365,6 +383,18 @@
       <DependentUpon>ReporteDeClientes.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReporteDeGanancias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteDeGanancias.Designer.cs">
+      <DependentUpon>ReporteDeGanancias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteFacturas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteFacturas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReporteRentaporCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -377,23 +407,41 @@
     <Compile Include="ReporteRentaPorFecha.Designer.cs">
       <DependentUpon>ReporteRentaPorFecha.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReporteRentasFechas.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReporteRentasFechas.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ReporteRentaVideoPorCategoria.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReporteRentaVideoPorCategoria.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReporteRentaVisitaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteRentaVisitaCliente.Designer.cs">
+      <DependentUpon>ReporteRentaVisitaCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportesBitacora.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportesBitacora.Designer.cs">
       <DependentUpon>ReportesBitacora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesDeFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportesDeFactura.Designer.cs">
+      <DependentUpon>ReportesDeFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesHistorialPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportesHistorialPago.Designer.cs">
+      <DependentUpon>ReportesHistorialPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesHistorialPagoCliente.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportesHistorialPagoCliente.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\DataSetReportes\dataSetBitacora.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -557,6 +605,9 @@
     <EmbeddedResource Include="Procesos\Compras\MantenimientoCompras.resx">
       <DependentUpon>MantenimientoCompras.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Procesos\ControlDevoluciones\ControlDevolucion.resx">
+      <DependentUpon>ControlDevolucion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Procesos\Facturas\IngresoFactura.resx">
       <DependentUpon>IngresoFactura.cs</DependentUpon>
     </EmbeddedResource>
@@ -569,6 +620,14 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RentaPorFecha.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RentaPorFecha.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RentasPorVisitaCliente.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RentasPorVisitaCliente.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RentaVideosPorCliente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -585,22 +644,38 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteDeClientes.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteDeGanancias.resx">
+      <DependentUpon>ReporteDeGanancias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteFacturas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteFacturas.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteRentaporCategoria.resx">
       <DependentUpon>ReporteRentaporCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteRentaPorFecha.resx">
       <DependentUpon>ReporteRentaPorFecha.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReporteRentasFechas.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ReporteRentasFechas.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="ReporteRentaVideoPorCategoria.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteRentaVideoPorCategoria.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteRentaVisitaCliente.resx">
+      <DependentUpon>ReporteRentaVisitaCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportesBitacora.resx">
       <DependentUpon>ReportesBitacora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesDeFactura.resx">
+      <DependentUpon>ReportesDeFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesHistorialPago.resx">
+      <DependentUpon>ReportesHistorialPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesHistorialPagoCliente.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportesHistorialPagoCliente.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\FormulariosReportes\formularioReporteBitacora.resx">
       <DependentUpon>formularioReporteBitacora.cs</DependentUpon>

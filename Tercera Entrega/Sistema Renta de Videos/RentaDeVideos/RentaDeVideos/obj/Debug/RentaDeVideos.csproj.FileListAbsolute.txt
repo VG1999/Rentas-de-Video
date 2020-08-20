@@ -90,3 +90,6 @@ C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVi
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.ReporteVideoRentadoCliente.resources
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.ReporteRentaPorFecha.resources
 C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.ReporteClientes.resources
+C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.Procesos.ControlDevoluciones.ControlDevolucion.resources
+C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.ReporteRentaVisitaCliente.resources
+C:\Users\cypam\OneDrive\Documents\Visual Studio 2015\Projects\ProyectoRentasDeVideo\RentaDeVideos\RentaDeVideos\obj\Debug\RentaDeVideos.ReportesDeFactura.resources

@@ -33,7 +33,7 @@
             this.picSalir = new System.Windows.Forms.PictureBox();
             this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ReporteRentasFechas1 = new RentaDeVideos.ReporteRentasFechas();
+            this.RentaPorFecha1 = new RentaDeVideos.RentaPorFecha();
             this.pnlBarra.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
@@ -85,7 +85,7 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 55);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.ReporteRentasFechas1;
+            this.crystalReportViewer1.ReportSource = this.RentaPorFecha1;
             this.crystalReportViewer1.Size = new System.Drawing.Size(1185, 647);
             this.crystalReportViewer1.TabIndex = 3;
             // 
@@ -114,6 +114,6 @@
         private System.Windows.Forms.PictureBox picSalir;
         private System.Windows.Forms.PictureBox picMinimizar;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private ReporteRentasFechas ReporteRentasFechas1;
+        private RentaPorFecha RentaPorFecha1;
     }
 }

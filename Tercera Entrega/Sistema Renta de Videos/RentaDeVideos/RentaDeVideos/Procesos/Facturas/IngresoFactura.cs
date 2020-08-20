@@ -10,6 +10,7 @@ using System.Data.Odbc;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -22,6 +23,12 @@ namespace RentaDeVideos.Procesos.Facturas
         Conexion cn = new Conexion();
         //ID de usurio logueado
         int iUsuario = Users.id_usario;
+
+        //Variables que se inicializan y permiten arrastrar y movilizar el formulario
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
         public IngresoFactura()
         {
@@ -229,9 +236,18 @@ namespace RentaDeVideos.Procesos.Facturas
                         sLocalIP = ip.ToString();
                     }
                 }
+                DateTime dtFechaIngreso = dpFecha.Value;
                 //inserta encabezado primero
-                comando.CommandText = "INSERT INTO encabezado_factura (id_encabezado_factura, id_cliente, id_empleado, no_serie, fecha, forma_pago, total_factura, tipo_doc, estado) VALUES ('" + txtNoFactura.Text + "','" + cmbCliente.SelectedItem.ToString() + "','" + cmbEmpleado.SelectedItem.ToString() + "','" + 
-                    txtSerie.Text+"','"+txtFecha.Text+"','"+cmbFormaPago.SelectedItem.ToString()+"','"+SumarColumnas().ToString()+"','"+cmbTipoDoc.SelectedItem.ToString()+ "', 1);";
+                comando.CommandText = "INSERT INTO encabezado_factura (id_encabezado_factura, id_cliente, id_empleado, no_serie, fecha, forma_pago, total_factura, tipo_doc, estado) VALUES (?,?,?,?,?,?,?,?,?);";
+                comando.Parameters.Add("id_encabezado_factura", OdbcType.Int).Value = int.Parse(txtNoFactura.Text);
+                comando.Parameters.Add("id_cliente", OdbcType.Int).Value = int.Parse(cmbCliente.SelectedItem.ToString());
+                comando.Parameters.Add("id_empleado", OdbcType.Int).Value = int.Parse(cmbEmpleado.SelectedItem.ToString());
+                comando.Parameters.Add("no_serie", OdbcType.Text).Value = txtSerie.Text;
+                comando.Parameters.Add("fecha", OdbcType.DateTime).Value = dtFechaIngreso;
+                comando.Parameters.Add("forma_pago", OdbcType.Int).Value = int.Parse(cmbFormaPago.SelectedItem.ToString());
+                comando.Parameters.Add("total_factura", OdbcType.Double).Value = SumarColumnas();
+                comando.Parameters.Add("tipo_doc", OdbcType.Int).Value = int.Parse(cmbTipoDoc.SelectedItem.ToString());
+                comando.Parameters.Add("estado", OdbcType.Int).Value = 1;
                 comando.ExecuteNonQuery();
 
 
@@ -258,9 +274,16 @@ namespace RentaDeVideos.Procesos.Facturas
                         iCantidadAnterior = int.Parse(registro["cantidad"].ToString());
                         if (iCantidad <= iCantidadAnterior)
                         {
-
                             comando.CommandText = "UPDATE video SET cantidad=" + (iCantidadAnterior-iCantidad) + " WHERE id_video=" + iVideo + ";";
                             comando.ExecuteNonQuery();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error No hay existencias suficientes", "Error en transaccion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Console.WriteLine("Cantidad insuficiente, cantidad a rentar: " + iCantidad + " la cantidad de existencias "+iCantidadAnterior);
+                            LimpiarComponentes();
+                            return false;
                         }
                     }
                 }
@@ -273,6 +296,7 @@ namespace RentaDeVideos.Procesos.Facturas
                 llenarBitacora.Parameters.Add("fecha", OdbcType.DateTime).Value = DateTime.Now;
                 llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
                 llenarBitacora.ExecuteNonQuery();
+
 
                 transaccion.Commit();
                 Console.WriteLine("Transaccion Exitosa");
@@ -324,23 +348,10 @@ namespace RentaDeVideos.Procesos.Facturas
                 txtNoFactura.Text = "";
                 return false;
             }
-            if (txtFecha.Text == "")
-            {
-                MessageBox.Show("Ingrese Fecha", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtFecha.Text = "";
-                return false;
-            }
             if (txtSerie.Text == "")
             {
                 MessageBox.Show("Ingrese No. Serie", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSerie.Text = "";
-                return false;
-            }
-            if (!Regex.Match(txtFecha.Text, @"^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$").Success)
-            {
-                MessageBox.Show("Datos del campo fecha invalido", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtFecha.Text = "";
-                txtFecha.Focus();
                 return false;
             }
             return true;
@@ -353,12 +364,12 @@ namespace RentaDeVideos.Procesos.Facturas
             cmbFormaPago.SelectedItem = null;
             cmbTipoDoc.SelectedItem = null;
             txtNIT.Text = "";
-            txtFecha.Text = "";
             txtNoFactura.Text = "";
             txtSerie.Text = "";
             txtDireccion.Text = "";
             txtApellidos.Text = "";
             txtNombreCliente.Text = "";
+            dpFecha.Value = DateTime.Now;
             foreach (DataGridViewRow row in dgridDatosFactura.Rows)
             {
                 row.Cells["cmbVideo"].Value = null;
@@ -405,6 +416,12 @@ namespace RentaDeVideos.Procesos.Facturas
         private void picMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+        //Movilizar formulario por medio de panel superior
+        private void pnlBarra_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

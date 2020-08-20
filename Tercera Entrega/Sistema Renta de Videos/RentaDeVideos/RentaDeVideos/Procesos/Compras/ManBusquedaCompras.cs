@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.Odbc;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,12 @@ namespace RentaDeVideos.Procesos.Compras
         Conexion cn = new Conexion();
         OdbcDataAdapter datos;
         DataTable dt;
+
+        //Variables que se inicializan y permiten arrastrar y movilizar el formulario
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
         public ManBusquedaCompras()
         {
@@ -109,6 +116,12 @@ namespace RentaDeVideos.Procesos.Compras
             {
                 this.Dispose();
             }
+        }
+        //Movilizar formulario por medio de panel superior
+        private void pnlBarra_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

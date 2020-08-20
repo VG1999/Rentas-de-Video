@@ -35,20 +35,20 @@
             this.btnAct_Eliminar = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlBarra = new System.Windows.Forms.Panel();
+            this.picSalir = new System.Windows.Forms.PictureBox();
+            this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.pnlContenedor = new System.Windows.Forms.Panel();
             this.dgridVista = new System.Windows.Forms.DataGridView();
             this.cmsDelete = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.eliminarDatoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.picSalir = new System.Windows.Forms.PictureBox();
-            this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.pnlSlideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.pnlBarra.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             this.pnlContenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgridVista)).BeginInit();
             this.cmsDelete.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSlideMenu
@@ -117,6 +117,33 @@
             this.pnlBarra.Name = "pnlBarra";
             this.pnlBarra.Size = new System.Drawing.Size(1106, 48);
             this.pnlBarra.TabIndex = 6;
+            this.pnlBarra.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlBarra_MouseDown);
+            // 
+            // picSalir
+            // 
+            this.picSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picSalir.Image = ((System.Drawing.Image)(resources.GetObject("picSalir.Image")));
+            this.picSalir.Location = new System.Drawing.Point(1059, 12);
+            this.picSalir.Name = "picSalir";
+            this.picSalir.Size = new System.Drawing.Size(24, 24);
+            this.picSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picSalir.TabIndex = 4;
+            this.picSalir.TabStop = false;
+            this.picSalir.Click += new System.EventHandler(this.picSalir_Click);
+            // 
+            // picMinimizar
+            // 
+            this.picMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("picMinimizar.Image")));
+            this.picMinimizar.Location = new System.Drawing.Point(1013, 12);
+            this.picMinimizar.Name = "picMinimizar";
+            this.picMinimizar.Size = new System.Drawing.Size(24, 24);
+            this.picMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picMinimizar.TabIndex = 3;
+            this.picMinimizar.TabStop = false;
+            this.picMinimizar.Click += new System.EventHandler(this.picMinimizar_Click);
             // 
             // pnlContenedor
             // 
@@ -157,32 +184,6 @@
             this.eliminarDatoToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
             this.eliminarDatoToolStripMenuItem.Text = "Eliminar Dato";
             // 
-            // picSalir
-            // 
-            this.picSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picSalir.Image = ((System.Drawing.Image)(resources.GetObject("picSalir.Image")));
-            this.picSalir.Location = new System.Drawing.Point(1059, 12);
-            this.picSalir.Name = "picSalir";
-            this.picSalir.Size = new System.Drawing.Size(24, 24);
-            this.picSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picSalir.TabIndex = 4;
-            this.picSalir.TabStop = false;
-            this.picSalir.Click += new System.EventHandler(this.picSalir_Click);
-            // 
-            // picMinimizar
-            // 
-            this.picMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("picMinimizar.Image")));
-            this.picMinimizar.Location = new System.Drawing.Point(1013, 12);
-            this.picMinimizar.Name = "picMinimizar";
-            this.picMinimizar.Size = new System.Drawing.Size(24, 24);
-            this.picMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picMinimizar.TabIndex = 3;
-            this.picMinimizar.TabStop = false;
-            this.picMinimizar.Click += new System.EventHandler(this.picMinimizar_Click);
-            // 
             // MantenimientoCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -199,11 +200,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.pnlBarra.ResumeLayout(false);
             this.pnlBarra.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             this.pnlContenedor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgridVista)).EndInit();
             this.cmsDelete.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picSalir)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             this.ResumeLayout(false);
 
         }

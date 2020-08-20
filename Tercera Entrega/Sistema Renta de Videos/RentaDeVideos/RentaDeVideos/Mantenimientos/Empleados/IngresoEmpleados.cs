@@ -174,7 +174,7 @@ namespace RentaDeVideos.Mantenimientos.Empleados
            
         }
         //Insercion de datos a tabla y a bitacora
-        void insertarEmpleados()
+        private bool insertarEmpleados()
         {
             try
             {
@@ -203,11 +203,14 @@ namespace RentaDeVideos.Mantenimientos.Empleados
                 llenarBitacora.Parameters.Add("host_ip", OdbcType.Text).Value = sLocalIP;
                 llenarBitacora.ExecuteNonQuery();
                 llenarBitacora.Connection.Close();
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 MessageBox.Show("Error al guardar Datos", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                borraDatos();
+                return false;
             }
             
         }
@@ -308,7 +311,7 @@ namespace RentaDeVideos.Mantenimientos.Empleados
                 txtTelefono.Text = "";
                 txtTelefono.Focus();
 
-                return true;
+                return false;
             }
             if (!Regex.Match(txtNIT.Text, @"^[0-9]{6}[-][0-9A-z]{1}$").Success)
             {
@@ -337,11 +340,14 @@ namespace RentaDeVideos.Mantenimientos.Empleados
         //Guardar datos
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (validarTextbox() == true)
+            if (validarTextbox() == true&&insertarEmpleados()==true)
             {
-                insertarEmpleados();
                 MessageBox.Show("Datos Correctamente Guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 borraDatos();
+            }
+            else
+            {
+                MessageBox.Show("Datos No se pudieron guardar intentelo de nuevo", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
