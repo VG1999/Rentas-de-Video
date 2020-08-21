@@ -95,6 +95,7 @@
             this.ClientSize = new System.Drawing.Size(1131, 561);
             this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.pnlBarra);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ReporteDeGanancias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReporteDeGanancias";

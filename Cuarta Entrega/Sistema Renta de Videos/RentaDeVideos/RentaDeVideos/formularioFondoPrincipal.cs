@@ -206,5 +206,10 @@ namespace RentaDeVideos
             ControlDevolucion devolucion = new ControlDevolucion();
             devolucion.Show();
         }
+
+        private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "AyudasProyecto/AyudasRentas.chm", "Login.html");
+        }
     }
 }
